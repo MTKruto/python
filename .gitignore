@@ -1,0 +1,6 @@
+__pycache__/
+*_cache
+/venv/
+/*.py
+*.json
+/dist/

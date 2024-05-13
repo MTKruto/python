@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+
+      - uses: abatilo/actions-poetry@v2
+
+      - run: poetry config virtualenvs.create true --local && poetry config virtualenvs.in-project true --local
+
+      - uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+      - run: poetry install
+
+      - run: poetry run mypy mtkruto
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+
+      - uses: abatilo/actions-poetry@v2
+
+      - run: poetry config virtualenvs.create true --local && poetry config virtualenvs.in-project true --local
+
+      - uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+      - run: poetry install
+
+      - run: poetry run ruff format --check mtkruto
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+
+      - uses: abatilo/actions-poetry@v2
+
+      - run: poetry config virtualenvs.create true --local && poetry config virtualenvs.in-project true --local
+
+      - uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+      - run: poetry install
+
+      - run: poetry run ruff check mtkruto
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+
+      - uses: abatilo/actions-poetry@v2
+
+      - run: poetry config virtualenvs.create true --local && poetry config virtualenvs.in-project true --local
+
+      - uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
+
+      - run: poetry install
+
+      - run: poetry run pytest

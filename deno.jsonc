@@ -1,0 +1,7 @@
+{
+  "lock": false,
+  "exclude": ["./.*"],
+  "tasks": {
+    "codegen": "NO_COLOR=1 deno doc --json https://raw.githubusercontent.com/MTKruto/MTKruto/main/3_types.ts > 3_types.json && deno run --allow-write=mtkruto/ --allow-read=mtkruto/_type_extensions.py,3_types.json codegen/main.ts && ruff format mtkruto/types.py && ruff check --fix mtkruto/types.py"
+  }
+}
