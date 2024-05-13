@@ -76,7 +76,10 @@ def to(type_: Any, value: Any, client: Any) -> Any:
         raise ValueError("Type instantiation failed")
 
     # actual types
-    instance = type_()
+    try:
+        instance = type_()
+    except TypeError:
+        return value
     for k, field in get_type_hints(type_, include_extras=True).items():
         if k.startswith("_"):
             continue
