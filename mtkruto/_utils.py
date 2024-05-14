@@ -8,6 +8,8 @@ from typing import (
     get_type_hints,
 )
 
+from .types import _Type
+
 
 def transform(a: Any) -> Any:
     if isinstance(a, dict):
@@ -103,3 +105,16 @@ def satisfies_discriminators(of: Any, value: Any) -> bool:
             if value[d] != annotation.__args__[0]:
                 return False
     return True
+
+
+def default(o: Any) -> Any:
+    if not isinstance(o, _Type):
+        raise TypeError
+    j = {}
+    for k, field in get_type_hints(o.__class__, include_extras=True).items():
+        if k.startswith("_"):
+            continue
+        _, key = get_args(field)
+        if hasattr(o, k):
+            j[key] = getattr(o, k)
+    return j

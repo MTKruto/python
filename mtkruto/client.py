@@ -18,7 +18,7 @@ from urllib.parse import urljoin
 
 import aiohttp
 
-from ._utils import to, transform
+from ._utils import default, to, transform
 from .errors import InputError, InternalError, StopPropagation, TelegramError
 from .filters import Filter
 from .types import (
@@ -115,7 +115,9 @@ class Client:
         if not endpoint_url.endswith("/"):
             endpoint_url += "/"
         self._endpoint_url = endpoint_url
-        self._http_client = aiohttp.ClientSession()
+        self._http_client = aiohttp.ClientSession(
+            json_serialize=json.JSONEncoder(default=default).encode
+        )
 
     async def start(self) -> None:
         self._running = True
@@ -156,7 +158,8 @@ class Client:
             form_data = aiohttp.FormData()
             for arg in args:
                 form_data.add_field(
-                    "_", arg if isinstance(arg, bytes) else json.dumps(arg)
+                    "_",
+                    arg if isinstance(arg, bytes) else json.dumps(arg, default=default),
                 )
             result = await self._http_client.post(
                 url,
