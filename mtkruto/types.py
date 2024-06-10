@@ -154,6 +154,14 @@ class GiveawayParameters(_Type):
 ID: TypeAlias = Union[int, str, Literal["me"]]
 
 
+class Invoice(_Type):
+    title: Annotated[str, "title"]
+    description: Annotated[str, "description"]
+    start_parameter: Annotated[str, "startParameter"]
+    currency: Annotated[str, "currency"]
+    total_amount: Annotated[int, "totalAmount"]
+
+
 class KeyboardButtonPollType(_Type):
     type: Annotated[Optional[Any], "type"]
 
@@ -386,11 +394,6 @@ class OpeningHours(_Type):
 ParseMode: TypeAlias = Union[Literal["HTML"], Literal["Markdown"], None]
 
 
-class PollOption(_Type):
-    text: Annotated[str, "text"]
-    voter_count: Annotated[int, "voterCount"]
-
-
 class PriceTag(_Type):
     label: Annotated[str, "label"]
     amount: Annotated[int, "amount"]
@@ -496,34 +499,41 @@ class Audio(_Type):
 
 class BotCommandScopeDefault(_Type):
     type: Annotated[Literal["default"], "type"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeAllPrivateChats(_Type):
     type: Annotated[Literal["allPrivateChats"], "type"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeAllGroupChats(_Type):
     type: Annotated[Literal["allGroupChats"], "type"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeAllChatAdministrators(_Type):
     type: Annotated[Literal["allChatAdministrators"], "type"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeChat(_Type):
     type: Annotated[Literal["chat"], "type"]
     chat_id: Annotated["ID", "chatId"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeChatAdministrators(_Type):
     type: Annotated[Literal["chatAdministrators"], "type"]
     chat_id: Annotated["ID", "chatId"]
+    __discriminators__ = ["type"]
 
 
 class BotCommandScopeChatMember(_Type):
     type: Annotated[Literal["chatMember"], "type"]
     chat_id: Annotated["ID", "chatId"]
     user_id: Annotated[int, "userId"]
+    __discriminators__ = ["type"]
 
 
 BotCommandScope: TypeAlias = Union[
@@ -955,22 +965,10 @@ class Photo(_Type):
     thumbnails: Annotated[list["Thumbnail"], "thumbnails"]
 
 
-class Poll(_Type):
-    id: Annotated[str, "id"]
-    question: Annotated[str, "question"]
-    options: Annotated[list["PollOption"], "options"]
-    total_voter_count: Annotated[int, "totalVoterCount"]
-    is_closed: Annotated[bool, "isClosed"]
-    is_anonymous: Annotated[bool, "isAnonymous"]
-    type: Annotated[Any, "type"]
-    allow_multiple_answers: Annotated[Optional[bool], "allowMultipleAnswers"]
-    correct_option_index: Annotated[Optional[int], "correctOptionIndex"]
-    explanation: Annotated[Optional[str], "explanation"]
-    explanation_entities: Annotated[
-        Optional[list["MessageEntity"]], "explanationEntities"
-    ]
-    open_period: Annotated[Optional[int], "openPeriod"]
-    close_date: Annotated[Optional[datetime.datetime], "closeDate"]
+class PollOption(_Type):
+    text: Annotated[str, "text"]
+    entities: Annotated[list["MessageEntity"], "entities"]
+    voter_count: Annotated[int, "voterCount"]
 
 
 class ReactionCount(_Type):
@@ -1113,6 +1111,31 @@ class BusinessConnection(_Type):
     can_reply: Annotated[bool, "canReply"]
     is_enabled: Annotated[bool, "isEnabled"]
 
+
+class ChatBase(_Type):
+    photo: Annotated[Optional["Photo"], "photo"]
+
+
+class ChatChannel(ChatBase, ChatPChannel):
+    video_chat_id: Annotated[Optional[str], "videoChatId"]
+
+
+class ChatSupergroup(ChatBase, ChatPSupergroup):
+    video_chat_id: Annotated[Optional[str], "videoChatId"]
+
+
+class ChatGroup(ChatBase, ChatPGroup):
+    video_chat_id: Annotated[Optional[str], "videoChatId"]
+
+
+class ChatPrivate(ChatBase, ChatPPrivate):
+    birthday: Annotated[Optional["Birthday"], "birthday"]
+    address: Annotated[Optional[str], "address"]
+    location: Annotated[Optional["Location"], "location"]
+    opening_hours: Annotated[Optional["OpeningHours"], "openingHours"]
+
+
+Chat: TypeAlias = Union[ChatChannel, ChatSupergroup, ChatGroup, ChatPrivate]
 
 ChatMemberStatus: TypeAlias = Union[
     Literal["creator"],
@@ -1312,6 +1335,25 @@ class MessageReactions(_Type):
     date: Annotated[datetime.datetime, "date"]
     old_reactions: Annotated[list["Reaction"], "oldReactions"]
     new_reactions: Annotated[list["Reaction"], "newReactions"]
+
+
+class Poll(_Type):
+    id: Annotated[str, "id"]
+    question: Annotated[str, "question"]
+    question_entities: Annotated[list["MessageEntity"], "questionEntities"]
+    options: Annotated[list["PollOption"], "options"]
+    total_voter_count: Annotated[int, "totalVoterCount"]
+    is_closed: Annotated[bool, "isClosed"]
+    is_anonymous: Annotated[bool, "isAnonymous"]
+    type: Annotated[Any, "type"]
+    allow_multiple_answers: Annotated[Optional[bool], "allowMultipleAnswers"]
+    correct_option_index: Annotated[Optional[int], "correctOptionIndex"]
+    explanation: Annotated[Optional[str], "explanation"]
+    explanation_entities: Annotated[
+        Optional[list["MessageEntity"]], "explanationEntities"
+    ]
+    open_period: Annotated[Optional[int], "openPeriod"]
+    close_date: Annotated[Optional[datetime.datetime], "closeDate"]
 
 
 class StoryContentPhoto(_Type):
@@ -2547,6 +2589,11 @@ class MessagePoll(_MessageBase):
     __discriminators__ = ["poll"]
 
 
+class MessageInvoice(_MessageBase):
+    invoice: Annotated["Invoice", "invoice"]
+    __discriminators__ = ["invoice"]
+
+
 class MessageVenue(_MessageBase):
     venue: Annotated["Venue", "venue"]
     __discriminators__ = ["venue"]
@@ -2672,10 +2719,6 @@ class MessageUnsupported(_MessageBase):
     unsupported: Annotated[Literal[True], "unsupported"]
     __discriminators__ = ["unsupported"]
 
-class MessageInvoice(_MessageBase):
-    unsupported: Annotated["Invoice", "invoice"]
-    __discriminators__ = ["invoice"]
-
 
 Message: TypeAlias = Union[
     MessageText,
@@ -2692,6 +2735,7 @@ Message: TypeAlias = Union[
     MessageContact,
     MessageGame,
     MessagePoll,
+    MessageInvoice,
     MessageVenue,
     MessageLocation,
     MessageNewChatMembers,
@@ -2717,7 +2761,6 @@ Message: TypeAlias = Union[
     MessageVideoChatEnded,
     MessageGiveaway,
     MessageUnsupported,
-    MessageInvoice,
 ]
 
 
@@ -2804,32 +2847,6 @@ class ChatListItem(_Type):
     order: Annotated[str, "order"]
     pinned: Annotated[int, "pinned"]
     last_message: Annotated[Optional["Message"], "lastMessage"]
-
-
-class ChatBase(_Type):
-    photo: Annotated[Optional["Photo"], "photo"]
-
-
-class ChatChannel(ChatBase, ChatPChannel):
-    video_chat_id: Annotated[Optional[str], "videoChatId"]
-
-
-class ChatSupergroup(ChatBase, ChatPSupergroup):
-    video_chat_id: Annotated[Optional[str], "videoChatId"]
-
-
-class ChatGroup(ChatBase, ChatPGroup):
-    video_chat_id: Annotated[Optional[str], "videoChatId"]
-
-
-class ChatPrivate(ChatBase, ChatPPrivate):
-    birthday: Annotated[Optional["Birthday"], "birthday"]
-    address: Annotated[Optional[str], "address"]
-    location: Annotated[Optional["Location"], "location"]
-    opening_hours: Annotated[Optional["OpeningHours"], "openingHours"]
-
-
-Chat: TypeAlias = Union[ChatChannel, ChatSupergroup, ChatGroup, ChatPrivate]
 
 
 class InlineQueryAnswer(_Type):
@@ -2949,15 +2966,3 @@ Update: TypeAlias = Union[
     UpdateBusinessConnection,
     UpdateVideoChat,
 ]
-
-
-class Invoice(_Type):
-    title: Annotated[str, "title"]
-    description: Annotated[str, "description"]
-    start_parameter: Annotated[str, "startParameter"]
-    currency: Annotated[str, "currency"]
-    total_amount: Annotated[int, "totalAmount"]
-
-class PriceTag(_Type):
-    label: Annotated[str, "label"]
-    amount: Annotated[int, "amount"]
