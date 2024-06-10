@@ -2672,6 +2672,10 @@ class MessageUnsupported(_MessageBase):
     unsupported: Annotated[Literal[True], "unsupported"]
     __discriminators__ = ["unsupported"]
 
+class MessageInvoice(_MessageBase):
+    unsupported: Annotated["Invoice", "invoice"]
+    __discriminators__ = ["invoice"]
+
 
 Message: TypeAlias = Union[
     MessageText,
@@ -2713,6 +2717,7 @@ Message: TypeAlias = Union[
     MessageVideoChatEnded,
     MessageGiveaway,
     MessageUnsupported,
+    MessageInvoice,
 ]
 
 
