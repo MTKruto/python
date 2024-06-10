@@ -2944,3 +2944,11 @@ Update: TypeAlias = Union[
     UpdateBusinessConnection,
     UpdateVideoChat,
 ]
+
+
+class Invoice(_Type):
+    title: Annotated[str, "title"]
+    description: Annotated[str, "description"]
+    start_parameter: Annotated[str, "startParameter"]
+    currency: Annotated[str, "currency"]
+    total_amount: Annotated[int, "totalAmount"]
