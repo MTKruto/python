@@ -2957,3 +2957,7 @@ class Invoice(_Type):
     start_parameter: Annotated[str, "startParameter"]
     currency: Annotated[str, "currency"]
     total_amount: Annotated[int, "totalAmount"]
+
+class PriceTag(_Type):
+    label: Annotated[str, "label"]
+    amount: Annotated[int, "amount"]
