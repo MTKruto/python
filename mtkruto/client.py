@@ -55,6 +55,7 @@ from .types import (
     MessageDocument,
     MessageEntity,
     MessageInteractions,
+    MessageInvoice,
     MessageLocation,
     MessagePhoto,
     MessagePoll,
@@ -70,6 +71,7 @@ from .types import (
     NetworkStatistics,
     ParseMode,
     Poll,
+    PriceTag,
     Reaction,
     ReplyMarkup,
     ReplyQuote,
@@ -102,8 +104,6 @@ from .types import (
     VideoChat,
     VideoChatActive,
     VideoChatScheduled,
-    MessageInvoice,
-    PriceTag,
 )
 
 log = logging.getLogger(__name__)
@@ -645,6 +645,9 @@ class Client:
         question: str,
         options: List[str],
         *,
+        question_entities: Optional[List[MessageEntity]] = None,
+        question_parse_mode: Optional[ParseMode] = None,
+        option_parse_mode: Optional[ParseMode] = None,
         is_anonymous: Optional[bool] = None,
         type: Optional[Literal["quiz", "regular"]] = None,
         allow_multiple_answers: Optional[bool] = None,
@@ -672,6 +675,9 @@ class Client:
                 question,
                 options,
                 {
+                    "questionEntities": question_entities,
+                    "questionParseMode": question_parse_mode,
+                    "optionParseMode": option_parse_mode,
                     "isAnonymous": is_anonymous,
                     "type": type,
                     "allowMultipleAnswers": allow_multiple_answers,
@@ -1146,7 +1152,7 @@ class Client:
         description: str,
         payload: str,
         currency: str,
-        prices: List["PriceTag"],
+        prices: List[PriceTag],
         *,
         provider_token: Optional[str] = None,
         max_tip_amount: Optional[int] = None,
