@@ -425,6 +425,15 @@ SelfDestructAfterSeconds: TypeAlias = int
 SelfDestructOption: TypeAlias = Union[SelfDestructAfterOpen, SelfDestructAfterSeconds]
 
 
+class ShippingAddress(_Type):
+    country_code: Annotated[str, "countryCode"]
+    state: Annotated[str, "state"]
+    city: Annotated[str, "city"]
+    street_line1: Annotated[str, "streetLine1"]
+    street_line2: Annotated[str, "streetLine2"]
+    post_code: Annotated[str, "postCode"]
+
+
 class StoryReference(_Type):
     chat_id: Annotated[int, "chatId"]
     story_id: Annotated[int, "storyId"]
@@ -956,6 +965,13 @@ class NetworkStatistics(_Type):
     cdn: Annotated["NetworkStatisticsEntry", "cdn"]
 
 
+class OrderInfo(_Type):
+    name: Annotated[Optional[str], "name"]
+    phone_number: Annotated[Optional[str], "phoneNumber"]
+    email: Annotated[Optional[str], "email"]
+    shipping_address: Annotated[Optional["ShippingAddress"], "shippingAddress"]
+
+
 class Photo(_Type):
     file_id: Annotated[str, "fileId"]
     file_unique_id: Annotated[str, "fileUniqueId"]
@@ -1356,6 +1372,16 @@ class Poll(_Type):
     close_date: Annotated[Optional[datetime.datetime], "closeDate"]
 
 
+class PreCheckoutQuery(_Type):
+    id: Annotated[str, "id"]
+    from_: Annotated["User", "from"]
+    currency: Annotated[str, "currency"]
+    total_amount: Annotated[int, "totalAmount"]
+    invoice_payload: Annotated[str, "invoicePayload"]
+    shipping_option_id: Annotated[Optional[str], "shippingOptionId"]
+    order_info: Annotated[Optional["OrderInfo"], "orderInfo"]
+
+
 class StoryContentPhoto(_Type):
     photo: Annotated["Photo", "photo"]
     __discriminators__ = ["photo"]
@@ -1420,6 +1446,16 @@ StoryInteractiveArea: TypeAlias = Union[
     StoryInteractiveAreaReaction,
     StoryInteractiveAreaMessage,
 ]
+
+
+class SuccessfulPayment(_Type):
+    currency: Annotated[str, "currency"]
+    total_amount: Annotated[int, "totalAmount"]
+    invoice_payload: Annotated[str, "invoicePayload"]
+    telegram_payment_charge_id: Annotated[str, "telegramPaymentChargeId"]
+    provider_payment_charge_id: Annotated[str, "providerPaymentChargeId"]
+    shipping_option_id: Annotated[Optional[str], "shippingOptionId"]
+    order_info: Annotated[Optional["OrderInfo"], "orderInfo"]
 
 
 class ChatMemberUpdated(_Type):
@@ -2720,6 +2756,11 @@ class MessageUnsupported(_MessageBase):
     __discriminators__ = ["unsupported"]
 
 
+class MessageSuccessfulPayment(_MessageBase):
+    successful_payment: Annotated["SuccessfulPayment", "successfulPayment"]
+    __discriminators__ = ["successfulPayment"]
+
+
 Message: TypeAlias = Union[
     MessageText,
     MessageLink,
@@ -2761,6 +2802,7 @@ Message: TypeAlias = Union[
     MessageVideoChatEnded,
     MessageGiveaway,
     MessageUnsupported,
+    MessageSuccessfulPayment,
 ]
 
 
@@ -2946,6 +2988,11 @@ class UpdateVideoChat(_Type):
     __discriminators__ = ["videoChat"]
 
 
+class UpdatePreCheckoutQuery(_Type):
+    pre_checkout_query: Annotated["PreCheckoutQuery", "preCheckoutQuery"]
+    __discriminators__ = ["preCheckoutQuery"]
+
+
 Update: TypeAlias = Union[
     UpdateNewMessage,
     UpdateEditedMessage,
@@ -2965,4 +3012,5 @@ Update: TypeAlias = Union[
     UpdateNewStory,
     UpdateBusinessConnection,
     UpdateVideoChat,
+    UpdatePreCheckoutQuery,
 ]
