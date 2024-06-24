@@ -1,6 +1,7 @@
 import datetime
 from typing import Annotated, Any, List, Literal, Optional, TypeAlias, Union
 
+
 FileSource = Union[str, bytes]
 
 
@@ -843,30 +844,37 @@ InputStoryContent: TypeAlias = Union[InputStoryContentPhoto, InputStoryContentVi
 
 class KeyboardButtonText(_Type):
     text: Annotated[str, "text"]
+    __discriminators__ = ["text"]
 
 
 class KeyboardButtonRequestUser(KeyboardButtonText):
     request_user: Annotated[Any, "requestUser"]
+    __discriminators__ = ["requestUser"]
 
 
 class KeyboardButtonRequestChat(KeyboardButtonText):
     request_chat: Annotated[Any, "requestChat"]
+    __discriminators__ = ["requestChat"]
 
 
 class KeyboardButtonRequestContact(KeyboardButtonText):
     request_contact: Annotated[Literal[True], "requestContact"]
+    __discriminators__ = ["requestContact"]
 
 
 class KeyboardButtonRequestLocation(KeyboardButtonText):
     request_location: Annotated[Literal[True], "requestLocation"]
+    __discriminators__ = ["requestLocation"]
 
 
 class KeyboardButtonRequestPoll(KeyboardButtonText):
     request_poll: Annotated["KeyboardButtonPollType", "requestPoll"]
+    __discriminators__ = ["requestPoll"]
 
 
 class KeyboardButtonMiniApp(KeyboardButtonText):
     mini_app: Annotated["MiniAppInfo", "miniApp"]
+    __discriminators__ = ["miniApp"]
 
 
 KeyboardButton: TypeAlias = Union[
