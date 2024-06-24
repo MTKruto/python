@@ -100,10 +100,12 @@ from .types import (
     UpdateNewMessage,
     UpdateNewStory,
     UpdateVideoChat,
+    UpdatePreCheckoutQuery,
     User,
     VideoChat,
     VideoChatActive,
     VideoChatScheduled,
+    PreCheckoutQuery,
 )
 
 log = logging.getLogger(__name__)
@@ -318,6 +320,14 @@ class Client:
     def on_video_chat(self) -> Callable[["HandlerCallback[VideoChat]"], None]:
         def decorator(callback: HandlerCallback[VideoChat]) -> None:
             self.add_handler(VideoChatHandler(callback))
+
+        return decorator
+
+    def on_pre_checkout_query(
+        self,
+    ) -> Callable[["HandlerCallback[PreCheckoutQuery]"], None]:
+        def decorator(callback: HandlerCallback[PreCheckoutQuery]) -> None:
+            self.add_handler(PreCheckoutQueryHandler(callback))
 
         return decorator
 
@@ -2185,3 +2195,13 @@ class VideoChatHandler(Handler[UpdateVideoChat]):
             await callback_(client, update.video_chat)
 
         super().__init__(lambda update: isinstance(update, UpdateVideoChat), callback)
+
+
+class PreCheckoutQueryHandler(Handler[UpdatePreCheckoutQuery]):
+    def __init__(self, callback_: HandlerCallback[PreCheckoutQuery]):
+        async def callback(client: Client, update: UpdatePreCheckoutQuery) -> None:
+            await callback_(client, update.pre_checkout_query)
+
+        super().__init__(
+            lambda update: isinstance(update, UpdatePreCheckoutQuery), callback
+        )
