@@ -1433,6 +1433,19 @@ class Client:
             },
         )
 
+    ########################### PAYMENTS ########################
+    async def answer_pre_checkout_query(
+        self, pre_checkout_query_id: str, ok: bool, *, error: Optional[str] = None
+    ) -> None:
+        await self._request(
+            "answerPreCheckoutQuery", pre_checkout_query_id, ok, {"error": error}
+        )
+
+    async def refund_star_payment(
+        self, user_id: ID, telegram_payment_charge_id: str
+    ) -> None:
+        await self._request("refundStarPayment", user_id, telegram_payment_charge_id)
+
     ########################### REACTIONS ########################
     async def add_reaction(
         self,
