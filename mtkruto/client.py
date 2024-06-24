@@ -71,6 +71,7 @@ from .types import (
     NetworkStatistics,
     ParseMode,
     Poll,
+    PreCheckoutQuery,
     PriceTag,
     Reaction,
     ReplyMarkup,
@@ -99,13 +100,12 @@ from .types import (
     UpdateNewChat,
     UpdateNewMessage,
     UpdateNewStory,
-    UpdateVideoChat,
     UpdatePreCheckoutQuery,
+    UpdateVideoChat,
     User,
     VideoChat,
     VideoChatActive,
     VideoChatScheduled,
-    PreCheckoutQuery,
 )
 
 log = logging.getLogger(__name__)
