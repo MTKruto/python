@@ -1,5 +1,6 @@
 import {
   DocNode,
+  DocNodeInterface,
   TsTypeDef,
 } from "https://deno.land/x/deno_doc@0.125.0/types.d.ts";
 
@@ -52,6 +53,51 @@ function getExtensions(t: string) {
   return lines.join("\n");
 }
 
+interface Field {
+  original: string;
+  snake: string;
+  type: string;
+  optional: boolean;
+}
+
+function getFieldsRecursive(name: string): Field[] {
+  const mbInterface = nodes.find((v): v is DocNodeInterface =>
+    v.name == name && v.kind == "interface"
+  );
+  if (!mbInterface) {
+    return [];
+  }
+  const fields = new Array<Field>();
+  for (const property of mbInterface.interfaceDef.properties) {
+    if (property.name == "signal") {
+      continue;
+    }
+    let type = pythonize(property.tsType!);
+    if (property.optional) {
+      type = `Optional[${type}]`;
+    }
+    type = `Annotated[${type}, "${property.name}"]`;
+    fields.push({
+      original: property.name,
+      snake: toSnakeCase(property.name),
+      type,
+      optional: property.optional,
+    });
+  }
+  let extends_ = mbInterface.interfaceDef.extends;
+  while (extends_.length) {
+    for (const extend of extends_) {
+      for (const field of getFieldsRecursive(extend.repr)) {
+        if (!fields.find((v) => v.snake == field.snake)) {
+          fields.push(field);
+        }
+      }
+    }
+    extends_ = [];
+  }
+  return fields;
+}
+
 for (const node of nodes) {
   if (
     node.name.endsWith("Getter") || node.name.endsWith("Resolver") ||
@@ -75,9 +121,7 @@ for (const node of nodes) {
     }:
 `;
 
-    const fields = new Array<
-      { original: string; snake: string; type: string }
-    >();
+    let fields = new Array<Field>();
 
     const discriminators = new Array<string>();
 
@@ -102,8 +146,26 @@ for (const node of nodes) {
         original: property.name,
         snake: toSnakeCase(property.name),
         type,
+        optional: property.optional,
       });
       code += "\n";
+    }
+
+    fields = getFieldsRecursive(node.name);
+    code += "    def __init__(self, ";
+    for (const field of fields.filter((v) => !v.optional)) {
+      code += `${field.snake}: ${field.type}, `;
+    }
+    const optionalFields = fields.filter((v) => v.optional);
+    if (optionalFields.length) {
+      code += "*, ";
+    }
+    for (const field of optionalFields) {
+      code += `${field.snake}: ${field.type} = None, `;
+    }
+    code += "):\n";
+    for (const field of fields) {
+      code += `        self.${field.snake} = ${field.snake}\n`;
     }
 
     if (discriminators.length) {

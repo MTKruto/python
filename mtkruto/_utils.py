@@ -62,6 +62,7 @@ def to(type_: Any, value: Any, client: Any) -> Any:
 
     # unions
     if get_origin(type_) is Union:
+        print("uni")
         args = get_args(type_)
 
         # optional
@@ -78,15 +79,18 @@ def to(type_: Any, value: Any, client: Any) -> Any:
         raise ValueError("Type instantiation failed")
 
     # actual types
-    try:
-        instance = type_()
-    except TypeError:
-        return value
+    kwargs = {}
     for k, field in get_type_hints(type_, include_extras=True).items():
         if k.startswith("_"):
             continue
-        type_, key = get_args(field)
-        instance.__setattr__(k, to(type_, value.pop(key, None), client))
+        type__, key = get_args(field)
+        kwargs[k] = to(type__, value.pop(key, None), client)
+
+    try:
+        instance = type_(**kwargs)
+    except TypeError:
+        return value
+
     if client:
         instance._client = client
 
