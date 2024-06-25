@@ -1,6 +1,6 @@
 # MTKruto API Client for Python
 
-- To get your endpoint url, please read [MTKruto Server](https://github.com/MTKruto/server#mtkruto-server)
+- To get your endpoint url, please read [MTKruto Server Guide](https://github.com/MTKruto/server#mtkruto-server)
 
 ## Example:
 
