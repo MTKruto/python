@@ -1,7 +1,7 @@
 import datetime
 from typing import List, Literal, Optional, Union
 
-from .client import Client
+from ._client import Client
 from .types import (
     ID,
     ChatAction,
