@@ -40,6 +40,7 @@ from .types import (
     MessageVideoNote,
     MessageVoice,
     MessageWriteAccessAllowed,
+    MessageSuccessfulPayment,
 )
 
 
@@ -140,6 +141,10 @@ location = Filter(lambda v: isinstance(v, MessageLocation))
 Location messages
 """
 
+successful_payment = Filter(lambda v: isinstance(v, MessageSuccessfulPayment))
+"""
+Successful payment messages
+"""
 
 new_chat_members = Filter(lambda v: isinstance(v, MessageNewChatMembers))
 """
