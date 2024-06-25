@@ -148,6 +148,17 @@ class Client:
         finally:
             self._running = False
 
+    def run(self) -> None:
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+
+        me = loop.run_until_complete(self.get_me())
+        log.info("Running as %s", me)
+        return loop.run_until_complete(self.start())
+
     async def _request(
         self,
         method: str,
