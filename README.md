@@ -3,7 +3,8 @@
 - To get your endpoint url, please read [MTKruto Server](https://github.com/MTKruto/server#mtkruto-server)
 
 ## Example:
-```pyhton
+
+```python
 import asyncio
 from mtkruto import Client, filters
 from mtkruto.types import Message, MessageText
