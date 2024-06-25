@@ -1,4 +1,3 @@
-from . import filters
-from .client import Client
+from ._client import Client
 
-__all__ = ["Client", "filters"]
+__all__ = ["Client"]
