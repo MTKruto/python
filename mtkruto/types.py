@@ -1966,8 +1966,6 @@ class KeyboardButtonText(_Type):
     ):
         self.text = text
 
-    __discriminators__ = ["text"]
-
 
 class KeyboardButtonRequestUser(KeyboardButtonText):
     request_user: Annotated[Any, "requestUser"]
@@ -1979,8 +1977,6 @@ class KeyboardButtonRequestUser(KeyboardButtonText):
     ):
         self.request_user = request_user
         self.text = text
-
-    __discriminators__ = ["requestUser"]
 
 
 class KeyboardButtonRequestChat(KeyboardButtonText):
@@ -1994,8 +1990,6 @@ class KeyboardButtonRequestChat(KeyboardButtonText):
         self.request_chat = request_chat
         self.text = text
 
-    __discriminators__ = ["requestChat"]
-
 
 class KeyboardButtonRequestContact(KeyboardButtonText):
     request_contact: Annotated[Literal[True], "requestContact"]
@@ -2007,8 +2001,6 @@ class KeyboardButtonRequestContact(KeyboardButtonText):
     ):
         self.request_contact = request_contact
         self.text = text
-
-    __discriminators__ = ["requestContact"]
 
 
 class KeyboardButtonRequestLocation(KeyboardButtonText):
@@ -2022,8 +2014,6 @@ class KeyboardButtonRequestLocation(KeyboardButtonText):
         self.request_location = request_location
         self.text = text
 
-    __discriminators__ = ["requestLocation"]
-
 
 class KeyboardButtonRequestPoll(KeyboardButtonText):
     request_poll: Annotated["KeyboardButtonPollType", "requestPoll"]
@@ -2036,8 +2026,6 @@ class KeyboardButtonRequestPoll(KeyboardButtonText):
         self.request_poll = request_poll
         self.text = text
 
-    __discriminators__ = ["requestPoll"]
-
 
 class KeyboardButtonMiniApp(KeyboardButtonText):
     mini_app: Annotated["MiniAppInfo", "miniApp"]
@@ -2049,8 +2037,6 @@ class KeyboardButtonMiniApp(KeyboardButtonText):
     ):
         self.mini_app = mini_app
         self.text = text
-
-    __discriminators__ = ["miniApp"]
 
 
 KeyboardButton: TypeAlias = Union[
@@ -2584,6 +2570,10 @@ class User(_Type):
         if getattr(self, "last_name"):
             return "{f} {l}".format(f=self.first_name, l=self.last_name)
         return self.first_name
+
+    @property
+    def profile_link(self) -> Optional[str]:
+        return None if not self.username else f"https://t.me/{self.username}"
 
 
 class Venue(_Type):

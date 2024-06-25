@@ -70,6 +70,10 @@ class User(_User_):
             return "{f} {l}".format(f=self.first_name, l=self.last_name)
         return self.first_name
 
+    @property
+    def profile_link(self) -> Optional[str]:
+        return None if not self.username else f"https://t.me/{self.username}"
+
     # endextend
 
 
