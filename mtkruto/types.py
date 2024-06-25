@@ -5526,6 +5526,17 @@ class _MessageBase(_Type):
     ) -> None:
         return await self._client.remove_reaction(self.chat.id, self.id, reaction)
 
+    @property
+    def message_link(self) -> Optional[str]:
+        if self.chat.type == "private":
+            return None
+        elif not self.chat.username:
+            return "https://t.me/c/{}/{}".format(
+                str(self.chat.id).replace("-100", ""), self.id
+            )
+        else:
+            return f"https://t.me/{self.chat.username}/{self.id}"
+
 
 class _MessageMediaBase(_MessageBase):
     caption: Annotated[Optional[str], "caption"]
