@@ -28,6 +28,7 @@ from .types import (
     MessagePinnedMessage,
     MessagePoll,
     MessageSticker,
+    MessageSuccessfulPayment,
     MessageSupergroupCreated,
     MessageText,
     MessageUnsupported,
@@ -40,7 +41,6 @@ from .types import (
     MessageVideoNote,
     MessageVoice,
     MessageWriteAccessAllowed,
-    MessageSuccessfulPayment,
 )
 
 

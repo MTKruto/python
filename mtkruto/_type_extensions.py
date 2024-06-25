@@ -999,11 +999,11 @@ class _MessageBase(_MessageBase_):
     def message_link(self) -> Optional[str]:
         if self.chat.type == "private":
             return None
-        elif not self.chat.username:
+        elif not getattr(self.chat, "username", None):
             return "https://t.me/c/{}/{}".format(
                 str(self.chat.id).replace("-100", ""), self.id
             )
         else:
-            return f"https://t.me/{self.chat.username}/{self.id}"
+            return "https://t.me/{}/{}".format(getattr(self.chat, "username"), self.id)
 
     # endextend
