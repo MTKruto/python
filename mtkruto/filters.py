@@ -1,6 +1,7 @@
-from typing import Any, Callable, Union, List
+from typing import Any, Callable, List, Union
 
 from .types import (
+    ID,
     MessageAnimation,
     MessageAudio,
     MessageAutoDeleteTimerChanged,
@@ -41,7 +42,6 @@ from .types import (
     MessageVideoNote,
     MessageVoice,
     MessageWriteAccessAllowed,
-    ID,
 )
 
 
