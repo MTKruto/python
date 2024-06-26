@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, Union, List
 
 from .types import (
     MessageAnimation,
@@ -41,6 +41,7 @@ from .types import (
     MessageVideoNote,
     MessageVoice,
     MessageWriteAccessAllowed,
+    ID,
 )
 
 
@@ -339,3 +340,39 @@ group = Filter(lambda v: hasattr(v, "chat") and v.chat.type in {"group", "superg
 
 channel = Filter(lambda v: hasattr(v, "chat") and v.chat.type == "channel")
 """Updates from channels"""
+
+
+def user(ids: Union[ID, List[ID]]) -> Filter:
+    """Filter messages coming from one or more users"""
+    ids = (
+        {ids.lower() if isinstance(ids, str) else ids}
+        if not isinstance(ids, list)
+        else {i.lower() if isinstance(i, str) else i for i in ids}
+    )
+
+    def func(v):
+        if getattr(v, "from_") and (
+            v.from_.id in ids or (v.from_.username and v.from_.username.lower() in ids)
+        ):
+            return True
+        return False
+
+    return Filter(func)
+
+
+def chat(ids: Union[ID, List[ID]]) -> Filter:
+    """Filter messages coming from one or more chats"""
+    ids = (
+        {ids.lower() if isinstance(ids, str) else ids}
+        if not isinstance(ids, list)
+        else {i.lower() if isinstance(i, str) else i for i in ids}
+    )
+
+    def func(v):
+        if getattr(v, "chat") and (
+            v.chat.id in ids or (v.chat.username and v.chat.username.lower() in ids)
+        ):
+            return True
+        return False
+
+    return Filter(func)
