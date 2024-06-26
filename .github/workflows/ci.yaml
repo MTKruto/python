@@ -24,7 +24,7 @@ jobs:
 
       - run: poetry install
 
-      - run: poetry run mypy mtkruto
+      - run: poetry run mypy mtkruto examples
 
   format:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
 
       - run: poetry install
 
-      - run: poetry run ruff format --check mtkruto
+      - run: poetry run ruff format --check mtkruto examples
 
   lint:
     runs-on: ubuntu-latest
@@ -64,7 +64,7 @@ jobs:
 
       - run: poetry install
 
-      - run: poetry run ruff check mtkruto
+      - run: poetry run ruff check mtkruto examples
 
   test:
     runs-on: ubuntu-latest

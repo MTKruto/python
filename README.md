@@ -1,29 +1,17 @@
-# MTKruto API Client for Python
+# MTKruto Python
 
-- To get your endpoint url, please read [MTKruto Server Guide](https://github.com/MTKruto/server#mtkruto-server)
+> Python library for interacting with MTKruto Server
 
-## Example:
+## Installation
 
-```python
-import asyncio
-from mtkruto import Client, filters
-from mtkruto.types import Message, MessageText
-
-bot_token = "4839574812:AAFD39kkdpWt3ywyRZergyOLMaJhac60qc"
-client = Client(f"http://localhost:8000/bot{bot_token}")
-
-@client.on_new_message(filters.text)
-async def handle_text_message(_client: Client, message: MessageText) -> None:
-    await message.reply(message.text)
-
-@client.on_new_message(~filters.text)
-async def handle_non_text_message(_client: Client, message: Message) -> None:
-    await message.reply("Say what")
-
-async def main() -> None:
-    me = await client.get_me()
-    print("Running as", me.username)
-    await client.start()
-
-asyncio.get_event_loop().run_until_complete(main())
+```shell
+pip install mtkruto
 ```
+
+## Examples
+
+Be sure to check out the [examples/](./examples/) directory.
+
+## API Reference
+
+<https://python.mtkru.to>
