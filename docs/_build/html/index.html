@@ -1,0 +1,774 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="mtkruto" href="mtkruto.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
+        <title>MTKruto Python documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">MTKruto Python  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  
+  <span class="sidebar-brand-text">MTKruto Python  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.html">mtkruto</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.types.html">mtkruto.types</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.filters.html">mtkruto.filters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.errors.html">mtkruto.errors</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="mtkruto-python">
+<h1>MTKruto Python<a class="headerlink" href="#mtkruto-python" title="Link to this heading">¶</a></h1>
+<p>Welcome to the API reference of the official Python library for MTKruto Server!</p>
+<p>As you may have already noticed, all methods and fields of the API are in snake_case in this library.
+We did this for convenience and to make it consistent with your existing Python code.</p>
+<p>The package consists of four submodules:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mtkruto</span></code> (includes the <code class="docutils literal notranslate"><span class="pre">Client</span></code> class)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtkruto.types</span></code> (MTKruto types),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtkruto.filters</span></code> (update filters)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtkruto.errors</span></code> (MTKruto errors).</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.html">mtkruto</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.html#mtkruto.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.add_handler"><code class="docutils literal notranslate"><span class="pre">Client.add_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.add_reaction"><code class="docutils literal notranslate"><span class="pre">Client.add_reaction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.add_stories_to_highlights"><code class="docutils literal notranslate"><span class="pre">Client.add_stories_to_highlights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.add_story_to_highlights"><code class="docutils literal notranslate"><span class="pre">Client.add_story_to_highlights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.answer_callback_query"><code class="docutils literal notranslate"><span class="pre">Client.answer_callback_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.answer_inline_query"><code class="docutils literal notranslate"><span class="pre">Client.answer_inline_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.answer_pre_checkout_query"><code class="docutils literal notranslate"><span class="pre">Client.answer_pre_checkout_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.ban_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.ban_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.block_user"><code class="docutils literal notranslate"><span class="pre">Client.block_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.create_invite_link"><code class="docutils literal notranslate"><span class="pre">Client.create_invite_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.create_story"><code class="docutils literal notranslate"><span class="pre">Client.create_story()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_chat_member_messages"><code class="docutils literal notranslate"><span class="pre">Client.delete_chat_member_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_chat_photo"><code class="docutils literal notranslate"><span class="pre">Client.delete_chat_photo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_chat_sticker_set"><code class="docutils literal notranslate"><span class="pre">Client.delete_chat_sticker_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_message"><code class="docutils literal notranslate"><span class="pre">Client.delete_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_messages"><code class="docutils literal notranslate"><span class="pre">Client.delete_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_stories"><code class="docutils literal notranslate"><span class="pre">Client.delete_stories()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.delete_story"><code class="docutils literal notranslate"><span class="pre">Client.delete_story()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.disable_join_requests"><code class="docutils literal notranslate"><span class="pre">Client.disable_join_requests()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.download"><code class="docutils literal notranslate"><span class="pre">Client.download()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.download_live_stream_chunk"><code class="docutils literal notranslate"><span class="pre">Client.download_live_stream_chunk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_inline_message_live_location"><code class="docutils literal notranslate"><span class="pre">Client.edit_inline_message_live_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_inline_message_media"><code class="docutils literal notranslate"><span class="pre">Client.edit_inline_message_media()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_inline_message_reply_markup"><code class="docutils literal notranslate"><span class="pre">Client.edit_inline_message_reply_markup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_inline_message_text"><code class="docutils literal notranslate"><span class="pre">Client.edit_inline_message_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_message_live_location"><code class="docutils literal notranslate"><span class="pre">Client.edit_message_live_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_message_media"><code class="docutils literal notranslate"><span class="pre">Client.edit_message_media()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_message_reply_markup"><code class="docutils literal notranslate"><span class="pre">Client.edit_message_reply_markup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.edit_message_text"><code class="docutils literal notranslate"><span class="pre">Client.edit_message_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.enable_join_requests"><code class="docutils literal notranslate"><span class="pre">Client.enable_join_requests()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.forward_message"><code class="docutils literal notranslate"><span class="pre">Client.forward_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.forward_messages"><code class="docutils literal notranslate"><span class="pre">Client.forward_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_business_connection"><code class="docutils literal notranslate"><span class="pre">Client.get_business_connection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_chat"><code class="docutils literal notranslate"><span class="pre">Client.get_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_chat_administrators"><code class="docutils literal notranslate"><span class="pre">Client.get_chat_administrators()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.get_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_chats"><code class="docutils literal notranslate"><span class="pre">Client.get_chats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_created_invite_links"><code class="docutils literal notranslate"><span class="pre">Client.get_created_invite_links()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_custom_emoji_stickers"><code class="docutils literal notranslate"><span class="pre">Client.get_custom_emoji_stickers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_history"><code class="docutils literal notranslate"><span class="pre">Client.get_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_inactive_chats"><code class="docutils literal notranslate"><span class="pre">Client.get_inactive_chats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_live_stream_channels"><code class="docutils literal notranslate"><span class="pre">Client.get_live_stream_channels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_me"><code class="docutils literal notranslate"><span class="pre">Client.get_me()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_message"><code class="docutils literal notranslate"><span class="pre">Client.get_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_messages"><code class="docutils literal notranslate"><span class="pre">Client.get_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_my_commands"><code class="docutils literal notranslate"><span class="pre">Client.get_my_commands()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_my_description"><code class="docutils literal notranslate"><span class="pre">Client.get_my_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_my_name"><code class="docutils literal notranslate"><span class="pre">Client.get_my_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_my_short_description"><code class="docutils literal notranslate"><span class="pre">Client.get_my_short_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_network_statistics"><code class="docutils literal notranslate"><span class="pre">Client.get_network_statistics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_stories"><code class="docutils literal notranslate"><span class="pre">Client.get_stories()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_story"><code class="docutils literal notranslate"><span class="pre">Client.get_story()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_updates"><code class="docutils literal notranslate"><span class="pre">Client.get_updates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.get_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.get_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.hide_username"><code class="docutils literal notranslate"><span class="pre">Client.hide_username()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.hide_usernames"><code class="docutils literal notranslate"><span class="pre">Client.hide_usernames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.invoke"><code class="docutils literal notranslate"><span class="pre">Client.invoke()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.join_chat"><code class="docutils literal notranslate"><span class="pre">Client.join_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.join_live_stream"><code class="docutils literal notranslate"><span class="pre">Client.join_live_stream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.join_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.join_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.kick_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.kick_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.leave_chat"><code class="docutils literal notranslate"><span class="pre">Client.leave_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.leave_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.leave_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_business_connection"><code class="docutils literal notranslate"><span class="pre">Client.on_business_connection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_callback_query"><code class="docutils literal notranslate"><span class="pre">Client.on_callback_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.on_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_chosen_inline_result"><code class="docutils literal notranslate"><span class="pre">Client.on_chosen_inline_result()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_deleted_chat"><code class="docutils literal notranslate"><span class="pre">Client.on_deleted_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_deleted_messages"><code class="docutils literal notranslate"><span class="pre">Client.on_deleted_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_deleted_story"><code class="docutils literal notranslate"><span class="pre">Client.on_deleted_story()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_edited_chat"><code class="docutils literal notranslate"><span class="pre">Client.on_edited_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_edited_message"><code class="docutils literal notranslate"><span class="pre">Client.on_edited_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_inline_query"><code class="docutils literal notranslate"><span class="pre">Client.on_inline_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_message_interactions"><code class="docutils literal notranslate"><span class="pre">Client.on_message_interactions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_message_reaction_count"><code class="docutils literal notranslate"><span class="pre">Client.on_message_reaction_count()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_message_reactions"><code class="docutils literal notranslate"><span class="pre">Client.on_message_reactions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_my_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.on_my_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_new_chat"><code class="docutils literal notranslate"><span class="pre">Client.on_new_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_new_message"><code class="docutils literal notranslate"><span class="pre">Client.on_new_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_new_story"><code class="docutils literal notranslate"><span class="pre">Client.on_new_story()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_pre_checkout_query"><code class="docutils literal notranslate"><span class="pre">Client.on_pre_checkout_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_update"><code class="docutils literal notranslate"><span class="pre">Client.on_update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.on_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.on_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.pin_message"><code class="docutils literal notranslate"><span class="pre">Client.pin_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.refund_star_payment"><code class="docutils literal notranslate"><span class="pre">Client.refund_star_payment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.remove_reaction"><code class="docutils literal notranslate"><span class="pre">Client.remove_reaction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.remove_stories_from_highlights"><code class="docutils literal notranslate"><span class="pre">Client.remove_stories_from_highlights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.remove_story_from_highlights"><code class="docutils literal notranslate"><span class="pre">Client.remove_story_from_highlights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.reorder_usernames"><code class="docutils literal notranslate"><span class="pre">Client.reorder_usernames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.schedule_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.schedule_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.search_messages"><code class="docutils literal notranslate"><span class="pre">Client.search_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_animation"><code class="docutils literal notranslate"><span class="pre">Client.send_animation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_audio"><code class="docutils literal notranslate"><span class="pre">Client.send_audio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_callback_query"><code class="docutils literal notranslate"><span class="pre">Client.send_callback_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_chat_action"><code class="docutils literal notranslate"><span class="pre">Client.send_chat_action()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_contact"><code class="docutils literal notranslate"><span class="pre">Client.send_contact()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_dice"><code class="docutils literal notranslate"><span class="pre">Client.send_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_document"><code class="docutils literal notranslate"><span class="pre">Client.send_document()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_inline_query"><code class="docutils literal notranslate"><span class="pre">Client.send_inline_query()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_invoice"><code class="docutils literal notranslate"><span class="pre">Client.send_invoice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_location"><code class="docutils literal notranslate"><span class="pre">Client.send_location()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_message"><code class="docutils literal notranslate"><span class="pre">Client.send_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_photo"><code class="docutils literal notranslate"><span class="pre">Client.send_photo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_poll"><code class="docutils literal notranslate"><span class="pre">Client.send_poll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_sticker"><code class="docutils literal notranslate"><span class="pre">Client.send_sticker()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_venue"><code class="docutils literal notranslate"><span class="pre">Client.send_venue()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_video"><code class="docutils literal notranslate"><span class="pre">Client.send_video()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_video_note"><code class="docutils literal notranslate"><span class="pre">Client.send_video_note()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.send_voice"><code class="docutils literal notranslate"><span class="pre">Client.send_voice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_available_reactions"><code class="docutils literal notranslate"><span class="pre">Client.set_available_reactions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_boosts_required_to_circumvent_restrictions"><code class="docutils literal notranslate"><span class="pre">Client.set_boosts_required_to_circumvent_restrictions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_chat_member_rights"><code class="docutils literal notranslate"><span class="pre">Client.set_chat_member_rights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_chat_photo"><code class="docutils literal notranslate"><span class="pre">Client.set_chat_photo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_chat_sticker_set"><code class="docutils literal notranslate"><span class="pre">Client.set_chat_sticker_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_my_commands"><code class="docutils literal notranslate"><span class="pre">Client.set_my_commands()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_my_description"><code class="docutils literal notranslate"><span class="pre">Client.set_my_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_my_name"><code class="docutils literal notranslate"><span class="pre">Client.set_my_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_my_short_description"><code class="docutils literal notranslate"><span class="pre">Client.set_my_short_description()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.set_reactions"><code class="docutils literal notranslate"><span class="pre">Client.set_reactions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.show_username"><code class="docutils literal notranslate"><span class="pre">Client.show_username()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.start"><code class="docutils literal notranslate"><span class="pre">Client.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.start_video_chat"><code class="docutils literal notranslate"><span class="pre">Client.start_video_chat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.stop_poll"><code class="docutils literal notranslate"><span class="pre">Client.stop_poll()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.unban_chat_member"><code class="docutils literal notranslate"><span class="pre">Client.unban_chat_member()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.unblock_user"><code class="docutils literal notranslate"><span class="pre">Client.unblock_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.unpin_message"><code class="docutils literal notranslate"><span class="pre">Client.unpin_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mtkruto.html#mtkruto.Client.unpin_messages"><code class="docutils literal notranslate"><span class="pre">Client.unpin_messages()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.types.html">mtkruto.types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Animation"><code class="docutils literal notranslate"><span class="pre">Animation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Audio"><code class="docutils literal notranslate"><span class="pre">Audio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Birthday"><code class="docutils literal notranslate"><span class="pre">Birthday</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommand"><code class="docutils literal notranslate"><span class="pre">BotCommand</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllChatAdministrators"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeAllChatAdministrators</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllGroupChats"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeAllGroupChats</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllPrivateChats"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeAllPrivateChats</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeChat"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatAdministrators"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeChatAdministrators</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatMember"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeChatMember</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BotCommandScopeDefault"><code class="docutils literal notranslate"><span class="pre">BotCommandScopeDefault</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.BusinessConnection"><code class="docutils literal notranslate"><span class="pre">BusinessConnection</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.CallbackQuery"><code class="docutils literal notranslate"><span class="pre">CallbackQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.CallbackQueryAnswer"><code class="docutils literal notranslate"><span class="pre">CallbackQueryAnswer</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionButton"><code class="docutils literal notranslate"><span class="pre">CallbackQueryQuestionButton</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionGame"><code class="docutils literal notranslate"><span class="pre">CallbackQueryQuestionGame</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionPassword"><code class="docutils literal notranslate"><span class="pre">CallbackQueryQuestionPassword</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights"><code class="docutils literal notranslate"><span class="pre">ChatAdministratorRights</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatBase"><code class="docutils literal notranslate"><span class="pre">ChatBase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatChannel"><code class="docutils literal notranslate"><span class="pre">ChatChannel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatGroup"><code class="docutils literal notranslate"><span class="pre">ChatGroup</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatListItem"><code class="docutils literal notranslate"><span class="pre">ChatListItem</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberAdministrator"><code class="docutils literal notranslate"><span class="pre">ChatMemberAdministrator</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberBanned"><code class="docutils literal notranslate"><span class="pre">ChatMemberBanned</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberCreator"><code class="docutils literal notranslate"><span class="pre">ChatMemberCreator</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberLeft"><code class="docutils literal notranslate"><span class="pre">ChatMemberLeft</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberMember"><code class="docutils literal notranslate"><span class="pre">ChatMemberMember</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted"><code class="docutils literal notranslate"><span class="pre">ChatMemberRestricted</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberRights"><code class="docutils literal notranslate"><span class="pre">ChatMemberRights</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated"><code class="docutils literal notranslate"><span class="pre">ChatMemberUpdated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPChannel"><code class="docutils literal notranslate"><span class="pre">ChatPChannel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPChannelBase"><code class="docutils literal notranslate"><span class="pre">ChatPChannelBase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPGroup"><code class="docutils literal notranslate"><span class="pre">ChatPGroup</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPPrivate"><code class="docutils literal notranslate"><span class="pre">ChatPPrivate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPSupergroup"><code class="docutils literal notranslate"><span class="pre">ChatPSupergroup</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPhoto"><code class="docutils literal notranslate"><span class="pre">ChatPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatPrivate"><code class="docutils literal notranslate"><span class="pre">ChatPrivate</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChatSupergroup"><code class="docutils literal notranslate"><span class="pre">ChatSupergroup</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ChosenInlineResult"><code class="docutils literal notranslate"><span class="pre">ChosenInlineResult</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Contact"><code class="docutils literal notranslate"><span class="pre">Contact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Dice"><code class="docutils literal notranslate"><span class="pre">Dice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Document"><code class="docutils literal notranslate"><span class="pre">Document</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Game"><code class="docutils literal notranslate"><span class="pre">Game</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Giveaway"><code class="docutils literal notranslate"><span class="pre">Giveaway</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.GiveawayParameters"><code class="docutils literal notranslate"><span class="pre">GiveawayParameters</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InactiveChat"><code class="docutils literal notranslate"><span class="pre">InactiveChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonCallback"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonCallback</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonGame"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonGame</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonLogin"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonLogin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonMiniApp"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonMiniApp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonPay"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonPay</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInline"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonSwitchInline</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInlineCurrent"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonSwitchInlineCurrent</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonURL"><code class="docutils literal notranslate"><span class="pre">InlineKeyboardButtonURL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQuery"><code class="docutils literal notranslate"><span class="pre">InlineQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryAnswer"><code class="docutils literal notranslate"><span class="pre">InlineQueryAnswer</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultArticle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultAudio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultButton"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultButton</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedAudio"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedAudio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedDocument"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedDocument</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedGif"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedGif</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedMpeg4Gif"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedMpeg4Gif</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedSticker"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedSticker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVoice"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultCachedVoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultContact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultDocument"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultDocument</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultGame"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultGame</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultGif</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultLocation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultMpeg4Gif</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultVenue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice"><code class="docutils literal notranslate"><span class="pre">InlineQueryResultVoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputMediaAnimation"><code class="docutils literal notranslate"><span class="pre">InputMediaAnimation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputMediaAudio"><code class="docutils literal notranslate"><span class="pre">InputMediaAudio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputMediaDocument"><code class="docutils literal notranslate"><span class="pre">InputMediaDocument</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputMediaPhoto"><code class="docutils literal notranslate"><span class="pre">InputMediaPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputMediaVideo"><code class="docutils literal notranslate"><span class="pre">InputMediaVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputStoryContentPhoto"><code class="docutils literal notranslate"><span class="pre">InputStoryContentPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo"><code class="docutils literal notranslate"><span class="pre">InputStoryContentVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.InviteLink"><code class="docutils literal notranslate"><span class="pre">InviteLink</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Invoice"><code class="docutils literal notranslate"><span class="pre">Invoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonMiniApp"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonMiniApp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonPollType"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonPollType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestChat"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonRequestChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestContact"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonRequestContact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestLocation"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonRequestLocation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestPoll"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonRequestPoll</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestUser"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonRequestUser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.KeyboardButtonText"><code class="docutils literal notranslate"><span class="pre">KeyboardButtonText</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.LinkPreview"><code class="docutils literal notranslate"><span class="pre">LinkPreview</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.LiveStreamChannel"><code class="docutils literal notranslate"><span class="pre">LiveStreamChannel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Location"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.LoginUrl"><code class="docutils literal notranslate"><span class="pre">LoginUrl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MaskPosition"><code class="docutils literal notranslate"><span class="pre">MaskPosition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageAnimation"><code class="docutils literal notranslate"><span class="pre">MessageAnimation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageAudio"><code class="docutils literal notranslate"><span class="pre">MessageAudio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageAutoDeleteTimerChanged"><code class="docutils literal notranslate"><span class="pre">MessageAutoDeleteTimerChanged</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageChannelCreated"><code class="docutils literal notranslate"><span class="pre">MessageChannelCreated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageChatMigratedFrom"><code class="docutils literal notranslate"><span class="pre">MessageChatMigratedFrom</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageChatMigratedTo"><code class="docutils literal notranslate"><span class="pre">MessageChatMigratedTo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContact"><code class="docutils literal notranslate"><span class="pre">MessageContact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContentContact"><code class="docutils literal notranslate"><span class="pre">MessageContentContact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContentInvoice"><code class="docutils literal notranslate"><span class="pre">MessageContentInvoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContentLocation"><code class="docutils literal notranslate"><span class="pre">MessageContentLocation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContentText"><code class="docutils literal notranslate"><span class="pre">MessageContentText</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageContentVenue"><code class="docutils literal notranslate"><span class="pre">MessageContentVenue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageDeletedChatPhoto"><code class="docutils literal notranslate"><span class="pre">MessageDeletedChatPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageDice"><code class="docutils literal notranslate"><span class="pre">MessageDice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageDocument"><code class="docutils literal notranslate"><span class="pre">MessageDocument</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityBankCard"><code class="docutils literal notranslate"><span class="pre">MessageEntityBankCard</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityBlockquote"><code class="docutils literal notranslate"><span class="pre">MessageEntityBlockquote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityBold"><code class="docutils literal notranslate"><span class="pre">MessageEntityBold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityBotCommand"><code class="docutils literal notranslate"><span class="pre">MessageEntityBotCommand</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityCashtag"><code class="docutils literal notranslate"><span class="pre">MessageEntityCashtag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityCode"><code class="docutils literal notranslate"><span class="pre">MessageEntityCode</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityCustomEmoji"><code class="docutils literal notranslate"><span class="pre">MessageEntityCustomEmoji</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityEmailAddress"><code class="docutils literal notranslate"><span class="pre">MessageEntityEmailAddress</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityHashtag"><code class="docutils literal notranslate"><span class="pre">MessageEntityHashtag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityItalic"><code class="docutils literal notranslate"><span class="pre">MessageEntityItalic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityMention"><code class="docutils literal notranslate"><span class="pre">MessageEntityMention</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityPhoneNumber"><code class="docutils literal notranslate"><span class="pre">MessageEntityPhoneNumber</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityPre"><code class="docutils literal notranslate"><span class="pre">MessageEntityPre</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntitySpoiler"><code class="docutils literal notranslate"><span class="pre">MessageEntitySpoiler</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityStrikethrough"><code class="docutils literal notranslate"><span class="pre">MessageEntityStrikethrough</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityTextLink"><code class="docutils literal notranslate"><span class="pre">MessageEntityTextLink</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityTextMention"><code class="docutils literal notranslate"><span class="pre">MessageEntityTextMention</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityURL"><code class="docutils literal notranslate"><span class="pre">MessageEntityURL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageEntityUnderline"><code class="docutils literal notranslate"><span class="pre">MessageEntityUnderline</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageForumTopicClosed"><code class="docutils literal notranslate"><span class="pre">MessageForumTopicClosed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageForumTopicCreated"><code class="docutils literal notranslate"><span class="pre">MessageForumTopicCreated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageForumTopicEdited"><code class="docutils literal notranslate"><span class="pre">MessageForumTopicEdited</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageForumTopicReopened"><code class="docutils literal notranslate"><span class="pre">MessageForumTopicReopened</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageGame"><code class="docutils literal notranslate"><span class="pre">MessageGame</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageGiveaway"><code class="docutils literal notranslate"><span class="pre">MessageGiveaway</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageGroupCreated"><code class="docutils literal notranslate"><span class="pre">MessageGroupCreated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageInteractions"><code class="docutils literal notranslate"><span class="pre">MessageInteractions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageInvoice"><code class="docutils literal notranslate"><span class="pre">MessageInvoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageLeftChatMember"><code class="docutils literal notranslate"><span class="pre">MessageLeftChatMember</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageLink"><code class="docutils literal notranslate"><span class="pre">MessageLink</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageLocation"><code class="docutils literal notranslate"><span class="pre">MessageLocation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageNewChatMembers"><code class="docutils literal notranslate"><span class="pre">MessageNewChatMembers</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageNewChatPhoto"><code class="docutils literal notranslate"><span class="pre">MessageNewChatPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageNewChatTitle"><code class="docutils literal notranslate"><span class="pre">MessageNewChatTitle</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessagePhoto"><code class="docutils literal notranslate"><span class="pre">MessagePhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessagePinnedMessage"><code class="docutils literal notranslate"><span class="pre">MessagePinnedMessage</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessagePoll"><code class="docutils literal notranslate"><span class="pre">MessagePoll</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageReaction"><code class="docutils literal notranslate"><span class="pre">MessageReaction</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageReactionCount"><code class="docutils literal notranslate"><span class="pre">MessageReactionCount</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageReactions"><code class="docutils literal notranslate"><span class="pre">MessageReactions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageReference"><code class="docutils literal notranslate"><span class="pre">MessageReference</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageSticker"><code class="docutils literal notranslate"><span class="pre">MessageSticker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageSuccessfulPayment"><code class="docutils literal notranslate"><span class="pre">MessageSuccessfulPayment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageSupergroupCreated"><code class="docutils literal notranslate"><span class="pre">MessageSupergroupCreated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageText"><code class="docutils literal notranslate"><span class="pre">MessageText</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageUnsupported"><code class="docutils literal notranslate"><span class="pre">MessageUnsupported</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageUserShared"><code class="docutils literal notranslate"><span class="pre">MessageUserShared</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVenue"><code class="docutils literal notranslate"><span class="pre">MessageVenue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVideo"><code class="docutils literal notranslate"><span class="pre">MessageVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVideoChatEnded"><code class="docutils literal notranslate"><span class="pre">MessageVideoChatEnded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVideoChatScheduled"><code class="docutils literal notranslate"><span class="pre">MessageVideoChatScheduled</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVideoChatStarted"><code class="docutils literal notranslate"><span class="pre">MessageVideoChatStarted</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVideoNote"><code class="docutils literal notranslate"><span class="pre">MessageVideoNote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageVoice"><code class="docutils literal notranslate"><span class="pre">MessageVoice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MessageWriteAccessAllowed"><code class="docutils literal notranslate"><span class="pre">MessageWriteAccessAllowed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.MiniAppInfo"><code class="docutils literal notranslate"><span class="pre">MiniAppInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.NetworkStatistics"><code class="docutils literal notranslate"><span class="pre">NetworkStatistics</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.NetworkStatisticsEntry"><code class="docutils literal notranslate"><span class="pre">NetworkStatisticsEntry</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.OpeningHours"><code class="docutils literal notranslate"><span class="pre">OpeningHours</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.OrderInfo"><code class="docutils literal notranslate"><span class="pre">OrderInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Photo"><code class="docutils literal notranslate"><span class="pre">Photo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Poll"><code class="docutils literal notranslate"><span class="pre">Poll</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.PollOption"><code class="docutils literal notranslate"><span class="pre">PollOption</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery"><code class="docutils literal notranslate"><span class="pre">PreCheckoutQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.PriceTag"><code class="docutils literal notranslate"><span class="pre">PriceTag</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReactionCount"><code class="docutils literal notranslate"><span class="pre">ReactionCount</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReactionCustomEmoji"><code class="docutils literal notranslate"><span class="pre">ReactionCustomEmoji</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReactionEmoji"><code class="docutils literal notranslate"><span class="pre">ReactionEmoji</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReplyMarkupForceReply"><code class="docutils literal notranslate"><span class="pre">ReplyMarkupForceReply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReplyMarkupInlineKeyboard"><code class="docutils literal notranslate"><span class="pre">ReplyMarkupInlineKeyboard</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard"><code class="docutils literal notranslate"><span class="pre">ReplyMarkupKeyboard</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReplyMarkupRemoveKeyboard"><code class="docutils literal notranslate"><span class="pre">ReplyMarkupRemoveKeyboard</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ReplyQuote"><code class="docutils literal notranslate"><span class="pre">ReplyQuote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.RestrictionReason"><code class="docutils literal notranslate"><span class="pre">RestrictionReason</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.ShippingAddress"><code class="docutils literal notranslate"><span class="pre">ShippingAddress</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Sticker"><code class="docutils literal notranslate"><span class="pre">Sticker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Story"><code class="docutils literal notranslate"><span class="pre">Story</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryContentPhoto"><code class="docutils literal notranslate"><span class="pre">StoryContentPhoto</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryContentUnsupported"><code class="docutils literal notranslate"><span class="pre">StoryContentUnsupported</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryContentVideo"><code class="docutils literal notranslate"><span class="pre">StoryContentVideo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractions"><code class="docutils literal notranslate"><span class="pre">StoryInteractions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaLocation"><code class="docutils literal notranslate"><span class="pre">StoryInteractiveAreaLocation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaMessage"><code class="docutils literal notranslate"><span class="pre">StoryInteractiveAreaMessage</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition"><code class="docutils literal notranslate"><span class="pre">StoryInteractiveAreaPosition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction"><code class="docutils literal notranslate"><span class="pre">StoryInteractiveAreaReaction</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaVenue"><code class="docutils literal notranslate"><span class="pre">StoryInteractiveAreaVenue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryPrivacyCloseFriends"><code class="docutils literal notranslate"><span class="pre">StoryPrivacyCloseFriends</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryPrivacyConctacts"><code class="docutils literal notranslate"><span class="pre">StoryPrivacyConctacts</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryPrivacyEveryone"><code class="docutils literal notranslate"><span class="pre">StoryPrivacyEveryone</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryPrivacyOnly"><code class="docutils literal notranslate"><span class="pre">StoryPrivacyOnly</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryReaction"><code class="docutils literal notranslate"><span class="pre">StoryReaction</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.StoryReference"><code class="docutils literal notranslate"><span class="pre">StoryReference</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.SuccessfulPayment"><code class="docutils literal notranslate"><span class="pre">SuccessfulPayment</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Thumbnail"><code class="docutils literal notranslate"><span class="pre">Thumbnail</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateBusinessConnection"><code class="docutils literal notranslate"><span class="pre">UpdateBusinessConnection</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateCallbackQuery"><code class="docutils literal notranslate"><span class="pre">UpdateCallbackQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateChatMember"><code class="docutils literal notranslate"><span class="pre">UpdateChatMember</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateChosenInlineResult"><code class="docutils literal notranslate"><span class="pre">UpdateChosenInlineResult</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateDeletedChat"><code class="docutils literal notranslate"><span class="pre">UpdateDeletedChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateDeletedMessages"><code class="docutils literal notranslate"><span class="pre">UpdateDeletedMessages</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateDeletedStory"><code class="docutils literal notranslate"><span class="pre">UpdateDeletedStory</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateEditedChat"><code class="docutils literal notranslate"><span class="pre">UpdateEditedChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateEditedMessage"><code class="docutils literal notranslate"><span class="pre">UpdateEditedMessage</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateInlineQuery"><code class="docutils literal notranslate"><span class="pre">UpdateInlineQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateMessageInteractions"><code class="docutils literal notranslate"><span class="pre">UpdateMessageInteractions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateMessageReactionCount"><code class="docutils literal notranslate"><span class="pre">UpdateMessageReactionCount</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateMessageReactions"><code class="docutils literal notranslate"><span class="pre">UpdateMessageReactions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateMyChatMember"><code class="docutils literal notranslate"><span class="pre">UpdateMyChatMember</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateNewChat"><code class="docutils literal notranslate"><span class="pre">UpdateNewChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateNewMessage"><code class="docutils literal notranslate"><span class="pre">UpdateNewMessage</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateNewStory"><code class="docutils literal notranslate"><span class="pre">UpdateNewStory</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdatePreCheckoutQuery"><code class="docutils literal notranslate"><span class="pre">UpdatePreCheckoutQuery</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.UpdateVideoChat"><code class="docutils literal notranslate"><span class="pre">UpdateVideoChat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Venue"><code class="docutils literal notranslate"><span class="pre">Venue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Video"><code class="docutils literal notranslate"><span class="pre">Video</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.VideoChatActive"><code class="docutils literal notranslate"><span class="pre">VideoChatActive</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.VideoChatEnded"><code class="docutils literal notranslate"><span class="pre">VideoChatEnded</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.VideoChatScheduled"><code class="docutils literal notranslate"><span class="pre">VideoChatScheduled</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.VideoNote"><code class="docutils literal notranslate"><span class="pre">VideoNote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.types.html#mtkruto.types.Voice"><code class="docutils literal notranslate"><span class="pre">Voice</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.filters.html">mtkruto.filters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.Filter"><code class="docutils literal notranslate"><span class="pre">Filter</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.animation"><code class="docutils literal notranslate"><span class="pre">animation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.audio"><code class="docutils literal notranslate"><span class="pre">audio</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.auto_delete_timer_changed"><code class="docutils literal notranslate"><span class="pre">auto_delete_timer_changed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.bot"><code class="docutils literal notranslate"><span class="pre">bot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.channel"><code class="docutils literal notranslate"><span class="pre">channel</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.channel_created"><code class="docutils literal notranslate"><span class="pre">channel_created</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.chat_migrated_from"><code class="docutils literal notranslate"><span class="pre">chat_migrated_from</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.chat_migrated_to"><code class="docutils literal notranslate"><span class="pre">chat_migrated_to</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.contact"><code class="docutils literal notranslate"><span class="pre">contact</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.deleted_chat_photo"><code class="docutils literal notranslate"><span class="pre">deleted_chat_photo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.dice"><code class="docutils literal notranslate"><span class="pre">dice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.document"><code class="docutils literal notranslate"><span class="pre">document</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.forum_topic_closed"><code class="docutils literal notranslate"><span class="pre">forum_topic_closed</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.forum_topic_created"><code class="docutils literal notranslate"><span class="pre">forum_topic_created</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.forum_topic_edited"><code class="docutils literal notranslate"><span class="pre">forum_topic_edited</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.forum_topic_reopened"><code class="docutils literal notranslate"><span class="pre">forum_topic_reopened</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.forward"><code class="docutils literal notranslate"><span class="pre">forward</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.game"><code class="docutils literal notranslate"><span class="pre">game</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.giveaway"><code class="docutils literal notranslate"><span class="pre">giveaway</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.group"><code class="docutils literal notranslate"><span class="pre">group</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.group_created"><code class="docutils literal notranslate"><span class="pre">group_created</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.left_chat_member"><code class="docutils literal notranslate"><span class="pre">left_chat_member</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.location"><code class="docutils literal notranslate"><span class="pre">location</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.media_group"><code class="docutils literal notranslate"><span class="pre">media_group</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.new_chat_members"><code class="docutils literal notranslate"><span class="pre">new_chat_members</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.new_chat_photo"><code class="docutils literal notranslate"><span class="pre">new_chat_photo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.new_chat_title"><code class="docutils literal notranslate"><span class="pre">new_chat_title</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.out"><code class="docutils literal notranslate"><span class="pre">out</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.photo"><code class="docutils literal notranslate"><span class="pre">photo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.pinned_message"><code class="docutils literal notranslate"><span class="pre">pinned_message</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.poll"><code class="docutils literal notranslate"><span class="pre">poll</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.private"><code class="docutils literal notranslate"><span class="pre">private</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.reply"><code class="docutils literal notranslate"><span class="pre">reply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.reply_quote"><code class="docutils literal notranslate"><span class="pre">reply_quote</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.sender_chat"><code class="docutils literal notranslate"><span class="pre">sender_chat</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.service"><code class="docutils literal notranslate"><span class="pre">service</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.sticker"><code class="docutils literal notranslate"><span class="pre">sticker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.supergroup_created"><code class="docutils literal notranslate"><span class="pre">supergroup_created</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.text"><code class="docutils literal notranslate"><span class="pre">text</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.topic"><code class="docutils literal notranslate"><span class="pre">topic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.unsupported"><code class="docutils literal notranslate"><span class="pre">unsupported</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.user_chared"><code class="docutils literal notranslate"><span class="pre">user_chared</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.venue"><code class="docutils literal notranslate"><span class="pre">venue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.via_bot"><code class="docutils literal notranslate"><span class="pre">via_bot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.video"><code class="docutils literal notranslate"><span class="pre">video</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.video_chat_ended"><code class="docutils literal notranslate"><span class="pre">video_chat_ended</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.video_chat_scheduled"><code class="docutils literal notranslate"><span class="pre">video_chat_scheduled</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.video_chat_started"><code class="docutils literal notranslate"><span class="pre">video_chat_started</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.video_note"><code class="docutils literal notranslate"><span class="pre">video_note</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.voice"><code class="docutils literal notranslate"><span class="pre">voice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.filters.html#mtkruto.filters.write_access_allowed"><code class="docutils literal notranslate"><span class="pre">write_access_allowed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.errors.html">mtkruto.errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.errors.html#mtkruto.errors.InputError"><code class="docutils literal notranslate"><span class="pre">InputError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.errors.html#mtkruto.errors.InternalError"><code class="docutils literal notranslate"><span class="pre">InternalError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.errors.html#mtkruto.errors.MtkrutoError"><code class="docutils literal notranslate"><span class="pre">MtkrutoError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.errors.html#mtkruto.errors.StopPropagation"><code class="docutils literal notranslate"><span class="pre">StopPropagation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtkruto.errors.html#mtkruto.errors.TelegramError"><code class="docutils literal notranslate"><span class="pre">TelegramError</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="mtkruto.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">mtkruto</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, MTKruto
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

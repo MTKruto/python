@@ -1,0 +1,3155 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 --><title>Index - MTKruto Python documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">MTKruto Python  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">MTKruto Python  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.html">mtkruto</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.types.html">mtkruto.types</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.filters.html">mtkruto.filters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mtkruto.errors.html">mtkruto.errors</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#X"><strong>X</strong></a> | <a href="#Y"><strong>Y</strong></a></div>
+</section>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview.above_text">above_text (LinkPreview attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.actor_chat">actor_chat (MessageReactions attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.add_handler">add_handler() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.add_reaction">add_reaction() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.add_stories_to_highlights">add_stories_to_highlights() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.add_story_to_highlights">add_story_to_highlights() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.added_to_attachment_menu">added_to_attachment_menu (User attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters.additional_chat_ids">additional_chat_ids (GiveawayParameters attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPrivate.address">address (ChatPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.address">(InlineQueryResultVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.address">(MessageContentVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Venue.address">(Venue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryAnswer.alert">alert (CallbackQueryAnswer attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.allow_multiple_answers">allow_multiple_answers (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.also">also (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.also">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.also">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PriceTag.amount">amount (PriceTag attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation">Animation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Game.animation">animation (Game attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.filters.html#mtkruto.filters.animation">(in module mtkruto.filters)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.animation">(InputMediaAnimation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo.animation">(InputStoryContentVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageAnimation.animation">(MessageAnimation attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.answer">answer() (CallbackQuery method)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.answer">(InlineQuery method)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.answer_callback_query">answer_callback_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.answer_inline_query">answer_inline_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.answer_pre_checkout_query">answer_pre_checkout_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentPhoto.attached_sticker_file_ids">attached_sticker_file_ids (InputStoryContentPhoto attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo.attached_sticker_file_ids">(InputStoryContentVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Audio">Audio (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.audio">audio (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.audio">(InputMediaAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageAudio.audio">(MessageAudio attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio.audio_duration">audio_duration (InlineQueryResultAudio attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.auto_delete_timer_changed">auto_delete_timer_changed (in module mtkruto.filters)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.ban_chat_member">ban_chat_member() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.big_file_id">big_file_id (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.big_file_unique_id">big_file_unique_id (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPrivate.birthday">birthday (ChatPrivate attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Birthday">Birthday (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.block">block() (User method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.block_user">block_user() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters.boosted_chat_id">boosted_chat_id (GiveawayParameters attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.bot">bot (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LoginUrl.bot_username">bot_username (LoginUrl attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommand">BotCommand (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllChatAdministrators">BotCommandScopeAllChatAdministrators (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllGroupChats">BotCommandScopeAllGroupChats (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllPrivateChats">BotCommandScopeAllPrivateChats (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChat">BotCommandScopeChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatAdministrators">BotCommandScopeChatAdministrators (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatMember">BotCommandScopeChatMember (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeDefault">BotCommandScopeDefault (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateBusinessConnection.business_connection">business_connection (UpdateBusinessConnection attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedMessages.business_connection_id">business_connection_id (UpdateDeletedMessages attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection">BusinessConnection (class in mtkruto.types)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonCallback.callback_data">callback_data (InlineKeyboardButtonCallback attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonGame.callback_game">callback_game (InlineKeyboardButtonGame attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateCallbackQuery.callback_query">callback_query (UpdateCallbackQuery attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery">CallbackQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryAnswer">CallbackQueryAnswer (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionButton">CallbackQueryQuestionButton (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionGame">CallbackQueryQuestionGame (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionPassword">CallbackQueryQuestionPassword (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_add_web_page_previews">can_add_web_page_previews (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_change_info">can_change_info (ChatAdministratorRights attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_change_info">(ChatMemberRights attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_delete_messages">can_delete_messages (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_edit_messages">can_edit_messages (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_invite_users">can_invite_users (ChatAdministratorRights attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_invite_users">(ChatMemberRights attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_manage_chat">can_manage_chat (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_manage_topics">can_manage_topics (ChatAdministratorRights attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_manage_topics">(ChatMemberRights attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_manage_video_chats">can_manage_video_chats (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_pin_messages">can_pin_messages (ChatAdministratorRights attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_pin_messages">(ChatMemberRights attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_post_messages">can_post_messages (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_promote_members">can_promote_members (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection.can_reply">can_reply (BusinessConnection attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.can_restrict_members">can_restrict_members (ChatAdministratorRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_animations">can_send_animations (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_audio">can_send_audio (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_documents">can_send_documents (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_games">can_send_games (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_inline_bot_results">can_send_inline_bot_results (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_messages">can_send_messages (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_photos">can_send_photos (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_polls">can_send_polls (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_stickers">can_send_stickers (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_video_notes">can_send_video_notes (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_videos">can_send_videos (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights.can_send_voice">can_send_voice (ChatMemberRights attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.caption">caption (InputMediaAnimation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.caption">(InputMediaAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaDocument.caption">(InputMediaDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.caption">(InputMediaPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.caption">(InputMediaVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Story.caption">(Story attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.caption_entities">caption_entities (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatistics.cdn">cdn (NetworkStatistics attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.channel">channel (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.channel_created">channel_created (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageChannelCreated.channel_created">(MessageChannelCreated attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatListItem.chat">chat (ChatListItem attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.chat">(ChatMemberUpdated attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InactiveChat.chat">(InactiveChat attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactionCount.chat">(MessageReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.chat">(MessageReactions attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Story.chat">(Story attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChat.chat_id">chat_id (BotCommandScopeChat attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatAdministrators.chat_id">(BotCommandScopeChatAdministrators attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatMember.chat_id">(BotCommandScopeChatMember attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions.chat_id">(MessageInteractions attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReference.chat_id">(MessageReference attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryReference.chat_id">(StoryReference attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.chat_instance">chat_instance (CallbackQuery attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateChatMember.chat_member">chat_member (UpdateChatMember attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.chat_migrated_from">chat_migrated_from (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageChatMigratedFrom.chat_migrated_from">(MessageChatMigratedFrom attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.chat_migrated_to">chat_migrated_to (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageChatMigratedTo.chat_migrated_to">(MessageChatMigratedTo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.chat_type">chat_type (InlineQuery attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights">ChatAdministratorRights (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatBase">ChatBase (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatChannel">ChatChannel (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatGroup">ChatGroup (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatListItem">ChatListItem (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberAdministrator">ChatMemberAdministrator (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberBanned">ChatMemberBanned (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberCreator">ChatMemberCreator (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberLeft">ChatMemberLeft (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberMember">ChatMemberMember (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted">ChatMemberRestricted (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRights">ChatMemberRights (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated">ChatMemberUpdated (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannel">ChatPChannel (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase">ChatPChannelBase (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPGroup">ChatPGroup (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto">ChatPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate">ChatPPrivate (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPrivate">ChatPrivate (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPSupergroup">ChatPSupergroup (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatSupergroup">ChatSupergroup (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReaction.choosers">choosers (MessageReaction attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReaction.chosen">chosen (MessageReaction attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryReaction.chosen">(StoryReaction attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateChosenInlineResult.chosen_inline_result">chosen_inline_result (UpdateChosenInlineResult attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult">ChosenInlineResult (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.city">city (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client">Client (class in mtkruto)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.close_date">close_date (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyCloseFriends.close_friends">close_friends (StoryPrivacyCloseFriends attribute)</a>
+</li>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.TelegramError.code">code (TelegramError attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.color">color (User attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommand.command">command (BotCommand attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Contact">Contact (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.contact">contact (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContact.contact">(MessageContact attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyConctacts.contacts_except">contacts_except (StoryPrivacyConctacts attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.content">content (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.correct_option_index">correct_option_index (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReaction.count">count (MessageReaction attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionCount.count">(ReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction.count">(StoryInteractiveAreaReaction attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryReaction.count">(StoryReaction attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters.countries">countries (GiveawayParameters attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.country_code">country_code (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.create_invite_link">create_invite_link() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.create_story">create_story() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.creator">creator (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Invoice.currency">currency (Invoice attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.currency">(MessageContentInvoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.currency">(PreCheckoutQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.currency">(SuccessfulPayment attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCustomEmoji.custom_emoji_id">custom_emoji_id (MessageEntityCustomEmoji attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.custom_emoji_id">(Sticker attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction.dark">dark (StoryInteractiveAreaReaction attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.data">data (CallbackQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionButton.data">(CallbackQueryQuestionButton attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionPassword.data">(CallbackQueryQuestionPassword attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection.date">date (BusinessConnection attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.date">(ChatMemberUpdated attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactionCount.date">(MessageReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.date">(MessageReactions attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Story.date">(Story attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Birthday.day">day (Birthday attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_chat_member_messages">delete_chat_member_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_chat_photo">delete_chat_photo() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_chat_sticker_set">delete_chat_sticker_set() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_message">delete_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_messages">delete_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_stories">delete_stories() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.delete_story">delete_story() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedChat.deleted_chat">deleted_chat (UpdateDeletedChat attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.deleted_chat_photo">deleted_chat_photo (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageDeletedChatPhoto.deleted_chat_photo">(MessageDeletedChatPhoto attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedMessages.deleted_messages">deleted_messages (UpdateDeletedMessages attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedStory.deleted_story">deleted_story (UpdateDeletedStory attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommand.description">description (BotCommand attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Game.description">(Game attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.description">(InlineQueryResultArticle attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedDocument.description">(InlineQueryResultCachedDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto.description">(InlineQueryResultCachedPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo.description">(InlineQueryResultCachedVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.description">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.description">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Invoice.description">(Invoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.description">(MessageContentInvoice attribute)</a>
+</li>
+          <li><a href="mtkruto.errors.html#mtkruto.errors.TelegramError.description">(TelegramError attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Dice">Dice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.dice">dice (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageDice.dice">(MessageDice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview.disable">disable (LinkPreview attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.disable_join_requests">disable_join_requests() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Document">Document (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.document">document (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaDocument.document">(InputMediaDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageDocument.document">(MessageDocument attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.download">download() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.download_live_stream_chunk">download_live_stream_chunk() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.duration">duration (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.duration">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.duration">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.duration">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.duration">(InputMediaAnimation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.duration">(InputMediaAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.duration">(InputMediaVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo.duration">(InputStoryContentVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.duration">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoChatEnded.duration">(VideoChatEnded attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.duration">(VideoNote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Voice.duration">(Voice attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.edit_inline_message_live_location">edit_inline_message_live_location() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.edit_inline_message_media">edit_inline_message_media() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.edit_inline_message_reply_markup">edit_inline_message_reply_markup() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.edit_inline_message_text">edit_inline_message_text() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.edit_message_live_location">edit_message_live_location() (CallbackQuery method)</a>
+
+        <ul>
+          <li><a href="mtkruto.html#mtkruto.Client.edit_message_live_location">(Client method)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.edit_message_media">edit_message_media() (CallbackQuery method)</a>
+
+        <ul>
+          <li><a href="mtkruto.html#mtkruto.Client.edit_message_media">(Client method)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.edit_message_reply_markup">edit_message_reply_markup() (CallbackQuery method)</a>
+
+        <ul>
+          <li><a href="mtkruto.html#mtkruto.Client.edit_message_reply_markup">(Client method)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.edit_message_text">edit_message_text() (CallbackQuery method)</a>
+
+        <ul>
+          <li><a href="mtkruto.html#mtkruto.Client.edit_message_text">(Client method)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.edited">edited (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateEditedChat.edited_chat">edited_chat (UpdateEditedChat attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateEditedMessage.edited_message">edited_message (UpdateEditedMessage attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OrderInfo.email">email (OrderInfo attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Dice.emoji">emoji (Dice attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionEmoji.emoji">(ReactionEmoji attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.emoji">(Sticker attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.enable_join_requests">enable_join_requests() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText.entities">entities (MessageContentText attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageText.entities">(MessageText attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.PollOption.entities">(PollOption attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyQuote.entities">(ReplyQuote attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyEveryone.everyone_except">everyone_except (StoryPrivacyEveryone attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.expires_at">expires_at (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.explanation">explanation (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.explanation_entities">explanation_entities (Poll attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.file_id">file_id (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.file_id">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.file_id">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedAudio.file_id">(InlineQueryResultCachedAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedDocument.file_id">(InlineQueryResultCachedDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedGif.file_id">(InlineQueryResultCachedGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedMpeg4Gif.file_id">(InlineQueryResultCachedMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto.file_id">(InlineQueryResultCachedPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedSticker.file_id">(InlineQueryResultCachedSticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo.file_id">(InlineQueryResultCachedVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVoice.file_id">(InlineQueryResultCachedVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.file_id">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.file_id">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail.file_id">(Thumbnail attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.file_id">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.file_id">(VideoNote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Voice.file_id">(Voice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.file_name">file_name (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.file_name">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.file_name">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.file_name">(VideoNote attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.file_size">file_size (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.file_size">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.file_size">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.file_size">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.file_size">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail.file_size">(Thumbnail attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.file_size">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.file_size">(VideoNote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Voice.file_size">(Voice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.file_unique_id">file_unique_id (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.file_unique_id">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.file_unique_id">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.file_unique_id">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.file_unique_id">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail.file_unique_id">(Thumbnail attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.file_unique_id">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.file_unique_id">(VideoNote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Voice.file_unique_id">(Voice attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.Filter">Filter (class in mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.first_name">first_name (ChatPPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Contact.first_name">(Contact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact.first_name">(InlineQueryResultContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact.first_name">(MessageContentContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.first_name">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction.flipped">flipped (StoryInteractiveAreaReaction attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupForceReply.force_reply">force_reply (ReplyMarkupForceReply attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.forum_topic_closed">forum_topic_closed (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicClosed.forum_topic_closed">(MessageForumTopicClosed attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.forum_topic_created">forum_topic_created (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicCreated.forum_topic_created">(MessageForumTopicCreated attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.forum_topic_edited">forum_topic_edited (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicEdited.forum_topic_edited">(MessageForumTopicEdited attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.forum_topic_reopened">forum_topic_reopened (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicReopened.forum_topic_reopened">(MessageForumTopicReopened attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.forward">forward (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.forward_message">forward_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.forward_messages">forward_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LoginUrl.forward_text">forward_text (LoginUrl attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions.forwards">forwards (MessageInteractions attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractions.forwards">(StoryInteractions attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.foursquare_id">foursquare_id (InlineQueryResultVenue attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.foursquare_id">(MessageContentVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Venue.foursquare_id">(Venue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.foursquare_type">foursquare_type (InlineQueryResultVenue attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.foursquare_type">(MessageContentVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Venue.foursquare_type">(Venue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.from_">from_ (CallbackQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.from_">(ChatMemberUpdated attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult.from_">(ChosenInlineResult attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.from_">(InlineQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.from_">(PreCheckoutQuery attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.full_name">full_name (User property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Game">Game (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.game">game (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageGame.game">(MessageGame attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.game_short_name">game_short_name (CallbackQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGame.game_short_name">(InlineQueryResultGame attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_business_connection">get_business_connection() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_chat">get_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_chat_administrators">get_chat_administrators() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_chat_member">get_chat_member() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_chats">get_chats() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_created_invite_links">get_created_invite_links() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_custom_emoji_stickers">get_custom_emoji_stickers() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_history">get_history() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_inactive_chats">get_inactive_chats() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_live_stream_channels">get_live_stream_channels() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_me">get_me() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_message">get_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_messages">get_messages() (Client method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.get_my_commands">get_my_commands() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_my_description">get_my_description() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_my_name">get_my_name() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_my_short_description">get_my_short_description() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_network_statistics">get_network_statistics() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_stories">get_stories() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_story">get_story() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_updates">get_updates() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.get_video_chat">get_video_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Giveaway">Giveaway (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.giveaway">giveaway (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageGiveaway.giveaway">(MessageGiveaway attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters">GiveawayParameters (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.google_place_id">google_place_id (MessageContentVenue attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.google_place_type">google_place_type (MessageContentVenue attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.group">group (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.group_created">group_created (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageGroupCreated.group_created">(MessageGroupCreated attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.has_spoiler">has_spoiler (InputMediaAnimation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.has_spoiler">(InputMediaPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.has_spoiler">(InputMediaVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.has_video">has_video (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.heading">heading (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.heading">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.heading">(MessageContentLocation attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.height">height (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.height">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.height">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.height">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.height">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.height">(InputMediaAnimation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.height">(InputMediaPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.height">(InputMediaVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.height">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.height">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail.height">(Thumbnail attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.height">(Video attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition.height_percentage">height_percentage (StoryInteractiveAreaPosition attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.hide_url">hide_url (InlineQueryResultArticle attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.hide_username">hide_username() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.hide_usernames">hide_usernames() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.highlighted">highlighted (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.horizontal_accuracy">horizontal_accuracy (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.horizontal_accuracy">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.horizontal_accuracy">(MessageContentLocation attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection.id">id (BusinessConnection attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.id">(CallbackQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.id">(InlineQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryAnswer.id">(InlineQueryAnswer attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.LiveStreamChannel.id">(LiveStreamChannel attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Poll.id">(Poll attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.id">(PreCheckoutQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionCustomEmoji.id">(ReactionCustomEmoji attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Story.id">(Story attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.id">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InactiveChat">InactiveChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupInlineKeyboard.inline_keyboard">inline_keyboard (ReplyMarkupInlineKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.inline_message_id">inline_message_id (CallbackQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult.inline_message_id">(ChosenInlineResult attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateInlineQuery.inline_query">inline_query (UpdateInlineQuery attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonCallback">InlineKeyboardButtonCallback (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonGame">InlineKeyboardButtonGame (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonLogin">InlineKeyboardButtonLogin (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonMiniApp">InlineKeyboardButtonMiniApp (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonPay">InlineKeyboardButtonPay (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInline">InlineKeyboardButtonSwitchInline (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInlineCurrent">InlineKeyboardButtonSwitchInlineCurrent (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonURL">InlineKeyboardButtonURL (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery">InlineQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryAnswer">InlineQueryAnswer (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle">InlineQueryResultArticle (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio">InlineQueryResultAudio (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultButton">InlineQueryResultButton (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedAudio">InlineQueryResultCachedAudio (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedDocument">InlineQueryResultCachedDocument (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedGif">InlineQueryResultCachedGif (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedMpeg4Gif">InlineQueryResultCachedMpeg4Gif (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto">InlineQueryResultCachedPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedSticker">InlineQueryResultCachedSticker (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo">InlineQueryResultCachedVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVoice">InlineQueryResultCachedVoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact">InlineQueryResultContact (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultDocument">InlineQueryResultDocument (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGame">InlineQueryResultGame (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif">InlineQueryResultGif (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation">InlineQueryResultLocation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif">InlineQueryResultMpeg4Gif (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto">InlineQueryResultPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue">InlineQueryResultVenue (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo">InlineQueryResultVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice">InlineQueryResultVoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupForceReply.input_field_placeholder">input_field_placeholder (ReplyMarkupForceReply attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.input_field_placeholder">(ReplyMarkupKeyboard attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.InputError">InputError</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation">InputMediaAnimation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio">InputMediaAudio (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaDocument">InputMediaDocument (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto">InputMediaPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo">InputMediaVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentPhoto">InputStoryContentPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo">InputStoryContentVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.interactions">interactions (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.interactive_areas">interactive_areas (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.InternalError">InternalError</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OpeningHours.intervals">intervals (OpeningHours attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.invite_link">invite_link (ChatMemberUpdated attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.invite_link">(InviteLink attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink">InviteLink (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Invoice">Invoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInvoice.invoice">invoice (MessageInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.invoice_payload">invoice_payload (PreCheckoutQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.invoice_payload">(SuccessfulPayment attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.invoke">invoke() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.is_animated">is_animated (Sticker attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatAdministratorRights.is_anonymous">is_anonymous (ChatAdministratorRights attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberCreator.is_anonymous">(ChatMemberCreator attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Poll.is_anonymous">(Poll attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_bot">is_bot (ChatPPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.is_bot">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.is_closed">is_closed (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPGroup.is_creator">is_creator (ChatPGroup attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection.is_enabled">is_enabled (BusinessConnection attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.is_fake">is_fake (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_fake">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.is_fake">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.is_flexible">is_flexible (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPSupergroup.is_forum">is_forum (ChatPSupergroup attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted.is_member">is_member (ChatMemberRestricted attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.is_persistent">is_persistent (ReplyMarkupKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.is_premium">is_premium (User attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.is_restricted">is_restricted (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_restricted">(ChatPPrivate attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.is_scam">is_scam (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_scam">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.is_scam">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_support">is_support (ChatPPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.is_support">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.is_verified">is_verified (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.is_verified">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.is_verified">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.is_video">is_video (Sticker attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.join_chat">join_chat() (Client method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.join_live_stream">join_live_stream() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.join_video_chat">join_video_chat() (Client method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.keyboard">keyboard (ReplyMarkupKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonMiniApp">KeyboardButtonMiniApp (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonPollType">KeyboardButtonPollType (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestChat">KeyboardButtonRequestChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestContact">KeyboardButtonRequestContact (class in mtkruto.types)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestLocation">KeyboardButtonRequestLocation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestPoll">KeyboardButtonRequestPoll (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestUser">KeyboardButtonRequestUser (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonText">KeyboardButtonText (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.kick_chat_member">kick_chat_member() (Client method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.PriceTag.label">label (PriceTag attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityPre.language">language (MessageEntityPre attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.language_code">language_code (User attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview.large_media">large_media (LinkPreview attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InactiveChat.last_activity">last_activity (InactiveChat attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatListItem.last_message">last_message (ChatListItem attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.last_name">last_name (ChatPPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Contact.last_name">(Contact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact.last_name">(InlineQueryResultContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact.last_name">(MessageContentContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.last_name">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.latitude">latitude (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.latitude">(InlineQueryResultVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.latitude">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.latitude">(MessageContentLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.latitude">(MessageContentVenue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.leave_chat">leave_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.leave_video_chat">leave_video_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.left_chat_member">left_chat_member (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageLeftChatMember.left_chat_member">(MessageLeftChatMember attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.length">length (VideoNote attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.limit">limit (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.link">link (in module mtkruto.filters)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText.link_preview">link_preview (MessageContentText attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageLink.link_preview">(MessageLink attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageText.link_preview">(MessageText attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview">LinkPreview (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.live_period">live_period (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.live_period">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.live_period">(MessageContentLocation attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LiveStreamChannel">LiveStreamChannel (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPrivate.location">location (ChatPrivate attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult.location">(ChosenInlineResult attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Location">Location (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.location">location (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.location">(InlineQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageLocation.location">(MessageLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaLocation.location">(StoryInteractiveAreaLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Venue.location">(Venue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonLogin.login_url">login_url (InlineKeyboardButtonLogin attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LoginUrl">LoginUrl (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.longitude">longitude (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.longitude">(InlineQueryResultVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.longitude">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.longitude">(MessageContentLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.longitude">(MessageContentVenue attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.mask_position">mask_position (Sticker attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MaskPosition">MaskPosition (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.max_tip_amount">max_tip_amount (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.media_group">media_group (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.mention">mention (User property)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQuery.message">message (CallbackQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewMessage.message">(UpdateNewMessage attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.message_content">message_content (InlineQueryResultArticle attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions.message_id">message_id (MessageInteractions attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactionCount.message_id">(MessageReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.message_id">(MessageReactions attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReference.message_id">(MessageReference attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageInteractions.message_interactions">message_interactions (UpdateMessageInteractions attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageReactionCount.message_reaction_count">message_reaction_count (UpdateMessageReactionCount attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageReactions.message_reactions">message_reactions (UpdateMessageReactions attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaMessage.message_reference">message_reference (StoryInteractiveAreaMessage attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageAnimation">MessageAnimation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageAudio">MessageAudio (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageAutoDeleteTimerChanged">MessageAutoDeleteTimerChanged (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageChannelCreated">MessageChannelCreated (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageChatMigratedFrom">MessageChatMigratedFrom (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageChatMigratedTo">MessageChatMigratedTo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContact">MessageContact (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact">MessageContentContact (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice">MessageContentInvoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation">MessageContentLocation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText">MessageContentText (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue">MessageContentVenue (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageDeletedChatPhoto">MessageDeletedChatPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageDice">MessageDice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageDocument">MessageDocument (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBankCard">MessageEntityBankCard (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBlockquote">MessageEntityBlockquote (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBold">MessageEntityBold (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBotCommand">MessageEntityBotCommand (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCashtag">MessageEntityCashtag (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCode">MessageEntityCode (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCustomEmoji">MessageEntityCustomEmoji (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityEmailAddress">MessageEntityEmailAddress (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityHashtag">MessageEntityHashtag (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityItalic">MessageEntityItalic (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityMention">MessageEntityMention (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityPhoneNumber">MessageEntityPhoneNumber (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityPre">MessageEntityPre (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntitySpoiler">MessageEntitySpoiler (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityStrikethrough">MessageEntityStrikethrough (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextLink">MessageEntityTextLink (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextMention">MessageEntityTextMention (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityUnderline">MessageEntityUnderline (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityURL">MessageEntityURL (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicClosed">MessageForumTopicClosed (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicCreated">MessageForumTopicCreated (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicEdited">MessageForumTopicEdited (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageForumTopicReopened">MessageForumTopicReopened (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageGame">MessageGame (class in mtkruto.types)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageGiveaway">MessageGiveaway (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageGroupCreated">MessageGroupCreated (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions">MessageInteractions (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInvoice">MessageInvoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageLeftChatMember">MessageLeftChatMember (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageLink">MessageLink (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageLocation">MessageLocation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatMembers">MessageNewChatMembers (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatPhoto">MessageNewChatPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatTitle">MessageNewChatTitle (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessagePhoto">MessagePhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessagePinnedMessage">MessagePinnedMessage (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessagePoll">MessagePoll (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReaction">MessageReaction (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactionCount">MessageReactionCount (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions">MessageReactions (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReference">MessageReference (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatistics.messages">messages (NetworkStatistics attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageSticker">MessageSticker (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageSuccessfulPayment">MessageSuccessfulPayment (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageSupergroupCreated">MessageSupergroupCreated (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageText">MessageText (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageUnsupported">MessageUnsupported (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageUserShared">MessageUserShared (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVenue">MessageVenue (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVideo">MessageVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatEnded">MessageVideoChatEnded (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatScheduled">MessageVideoChatScheduled (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatStarted">MessageVideoChatStarted (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoNote">MessageVideoNote (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageVoice">MessageVoice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageWriteAccessAllowed">MessageWriteAccessAllowed (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.mime_type">mime_type (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.mime_type">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.mime_type">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.mime_type">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.mime_type">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Voice.mime_type">(Voice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonMiniApp.mini_app">mini_app (InlineKeyboardButtonMiniApp attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultButton.mini_app">(InlineQueryResultButton attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonMiniApp.mini_app">(KeyboardButtonMiniApp attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MiniAppInfo">MiniAppInfo (class in mtkruto.types)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="mtkruto.errors.html#module-mtkruto.errors">mtkruto.errors</a>
+</li>
+          <li><a href="mtkruto.filters.html#module-mtkruto.filters">mtkruto.filters</a>
+</li>
+          <li><a href="mtkruto.types.html#module-mtkruto.types">mtkruto.types</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Birthday.month">month (Birthday attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Giveaway.month_count">month_count (Giveaway attribute)</a>
+</li>
+        <li>
+    mtkruto.errors
+
+        <ul>
+          <li><a href="mtkruto.errors.html#module-mtkruto.errors">module</a>
+</li>
+        </ul></li>
+        <li>
+    mtkruto.filters
+
+        <ul>
+          <li><a href="mtkruto.filters.html#module-mtkruto.filters">module</a>
+</li>
+        </ul></li>
+        <li>
+    mtkruto.types
+
+        <ul>
+          <li><a href="mtkruto.types.html#module-mtkruto.types">module</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.MtkrutoError">MtkrutoError</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMyChatMember.my_chat_member">my_chat_member (UpdateMyChatMember attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.OrderInfo.name">name (OrderInfo attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.need_email">need_email (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.need_name">need_name (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.need_phone_number">need_phone_number (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.need_shipping_a_address">need_shipping_a_address (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.needs_repainting">needs_repainting (Sticker attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatistics">NetworkStatistics (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatisticsEntry">NetworkStatisticsEntry (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageAutoDeleteTimerChanged.new_auto_delete_time">new_auto_delete_time (MessageAutoDeleteTimerChanged attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewChat.new_chat">new_chat (UpdateNewChat attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.new_chat_member">new_chat_member (ChatMemberUpdated attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.new_chat_members">new_chat_members (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageGroupCreated.new_chat_members">(MessageGroupCreated attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatMembers.new_chat_members">(MessageNewChatMembers attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.new_chat_photo">new_chat_photo (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatPhoto.new_chat_photo">(MessageNewChatPhoto attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.new_chat_title">new_chat_title (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageNewChatTitle.new_chat_title">(MessageNewChatTitle attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.new_reactions">new_reactions (MessageReactions attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryAnswer.next_offset">next_offset (InlineQueryAnswer attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.offset">offset (InlineQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyQuote.offset">(ReplyQuote attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.old_chat_member">old_chat_member (ChatMemberUpdated attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.old_reactions">old_reactions (MessageReactions attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_business_connection">on_business_connection() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_callback_query">on_callback_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_chat_member">on_chat_member() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_chosen_inline_result">on_chosen_inline_result() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_deleted_chat">on_deleted_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_deleted_messages">on_deleted_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_deleted_story">on_deleted_story() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_edited_chat">on_edited_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_edited_message">on_edited_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_inline_query">on_inline_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_message_interactions">on_message_interactions() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_message_reaction_count">on_message_reaction_count() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_message_reactions">on_message_reactions() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_my_chat_member">on_my_chat_member() (Client method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.on_new_chat">on_new_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_new_message">on_new_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_new_story">on_new_story() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_pre_checkout_query">on_pre_checkout_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_update">on_update() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.on_video_chat">on_video_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.one_time_keyboard">one_time_keyboard (ReplyMarkupKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyOnly.only">only (StoryPrivacyOnly attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters.only_new_members">only_new_members (GiveawayParameters attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.open_period">open_period (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPrivate.opening_hours">opening_hours (ChatPrivate attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OpeningHours">OpeningHours (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.options">options (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatListItem.order">order (ChatListItem attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.order_info">order_info (PreCheckoutQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.order_info">(SuccessfulPayment attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OrderInfo">OrderInfo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.out">out (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Story.out">(Story attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Giveaway.parameters">parameters (Giveaway attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText.parse_mode">parse_mode (MessageContentText attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionPassword.password">password (CallbackQueryQuestionPassword attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonPay.pay">pay (InlineKeyboardButtonPay attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.payload">payload (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.pending_join_request_count">pending_join_request_count (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Audio.performer">performer (Audio attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio.performer">(InlineQueryResultAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.performer">(InputMediaAudio attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.personal">personal (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Contact.phone_number">phone_number (Contact attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact.phone_number">(InlineQueryResultContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact.phone_number">(MessageContentContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.OrderInfo.phone_number">(OrderInfo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatBase.photo">photo (ChatBase attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Photo">Photo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Game.photo">photo (Game attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.filters.html#mtkruto.filters.photo">(in module mtkruto.filters)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.photo">(InputMediaPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentPhoto.photo">(InputStoryContentPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessagePhoto.photo">(MessagePhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryContentPhoto.photo">(StoryContentPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.photo">(User attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.photo_height">photo_height (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.photo_size">photo_size (MessageContentInvoice attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.photo_url">photo_url (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.photo_width">photo_width (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.pin_message">pin_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatListItem.pinned">pinned (ChatListItem attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.pinned_message">pinned_message (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessagePinnedMessage.pinned_message">(MessagePinnedMessage attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.RestrictionReason.platform">platform (RestrictionReason attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MaskPosition.point">point (MaskPosition attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll">Poll (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.poll">poll (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessagePoll.poll">(MessagePoll attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PollOption">PollOption (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.post_code">post_code (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdatePreCheckoutQuery.pre_checkout_query">pre_checkout_query (UpdatePreCheckoutQuery attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery">PreCheckoutQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.premium_animation">premium_animation (Sticker attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.prices">prices (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PriceTag">PriceTag (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story.privacy">privacy (Story attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.private">private (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.provider_data">provider_data (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.provider_payment_charge_id">provider_payment_charge_id (SuccessfulPayment attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.provider_token">provider_token (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.proximity_alert_radius">proximity_alert_radius (InlineQueryResultLocation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Location.proximity_alert_radius">(Location attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.proximity_alert_radius">(MessageContentLocation attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult.query">query (ChosenInlineResult attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQuery.query">(InlineQuery attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.question">question (Poll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.question_entities">question_entities (Poll attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReaction.reaction">reaction (MessageReaction attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionCount.reaction">(ReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction.reaction">(StoryInteractiveAreaReaction attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryReaction.reaction">(StoryReaction attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractions.reaction_count">reaction_count (StoryInteractions attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReactionCount">ReactionCount (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReactionCustomEmoji">ReactionCustomEmoji (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReactionEmoji">ReactionEmoji (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions.reactions">reactions (MessageInteractions attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageReactionCount.reactions">(MessageReactionCount attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractions.reactions">(StoryInteractions attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.RestrictionReason.reason">reason (RestrictionReason attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatisticsEntry.received">received (NetworkStatisticsEntry attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoChatActive.recording">recording (VideoChatActive attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.refund_star_payment">refund_star_payment() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupRemoveKeyboard.remove_keyboard">remove_keyboard (ReplyMarkupRemoveKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.remove_reaction">remove_reaction() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.remove_stories_from_highlights">remove_stories_from_highlights() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.remove_story_from_highlights">remove_story_from_highlights() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.reorder_usernames">reorder_usernames() (Client method)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.reply">reply (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.reply_markup">reply_markup (InlineQueryResultArticle attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGame.reply_markup">(InlineQueryResultGame attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.reply_quote">reply_quote (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupForceReply">ReplyMarkupForceReply (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupInlineKeyboard">ReplyMarkupInlineKeyboard (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard">ReplyMarkupKeyboard (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupRemoveKeyboard">ReplyMarkupRemoveKeyboard (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyQuote">ReplyQuote (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestChat.request_chat">request_chat (KeyboardButtonRequestChat attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestContact.request_contact">request_contact (KeyboardButtonRequestContact attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestLocation.request_location">request_location (KeyboardButtonRequestLocation attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestPoll.request_poll">request_poll (KeyboardButtonRequestPoll attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonRequestUser.request_user">request_user (KeyboardButtonRequestUser attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LoginUrl.request_write_access">request_write_access (LoginUrl attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.requires_approval">requires_approval (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.resize_keyboard">resize_keyboard (ReplyMarkupKeyboard attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.restriction_reason">restriction_reason (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.restriction_reason">(ChatPPrivate attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.RestrictionReason">RestrictionReason (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChosenInlineResult.result_id">result_id (ChosenInlineResult attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryAnswer.results">results (InlineQueryAnswer attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.revoked">revoked (InviteLink attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberAdministrator.rights">rights (ChatMemberAdministrator attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted.rights">(ChatMemberRestricted attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition.rotation_angle">rotation_angle (StoryInteractiveAreaPosition attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.LiveStreamChannel.scale">scale (LiveStreamChannel attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MaskPosition.scale">(MaskPosition attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.schedule_video_chat">schedule_video_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoChatScheduled.scheduled_for">scheduled_for (VideoChatScheduled attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.search_messages">search_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupForceReply.selective">selective (ReplyMarkupForceReply attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupKeyboard.selective">(ReplyMarkupKeyboard attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyMarkupRemoveKeyboard.selective">(ReplyMarkupRemoveKeyboard attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.self_destruct">self_destruct (InputMediaPhoto attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.self_destruct">(InputMediaVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_animation">send_animation() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_audio">send_audio() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_callback_query">send_callback_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_chat_action">send_chat_action() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_contact">send_contact() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_dice">send_dice() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_document">send_document() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.send_email_to_provider">send_email_to_provider (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_inline_query">send_inline_query() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_invoice">send_invoice() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_location">send_location() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_message">send_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.send_phone_number_to_porvider">send_phone_number_to_porvider (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_photo">send_photo() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_poll">send_poll() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_sticker">send_sticker() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_venue">send_venue() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_video">send_video() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_video_note">send_video_note() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.send_voice">send_voice() (Client method)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.sender_chat">sender_chat (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.NetworkStatisticsEntry.sent">sent (NetworkStatisticsEntry attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.service">service (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_available_reactions">set_available_reactions() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_boosts_required_to_circumvent_restrictions">set_boosts_required_to_circumvent_restrictions() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_chat_member_rights">set_chat_member_rights() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_chat_photo">set_chat_photo() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_chat_sticker_set">set_chat_sticker_set() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_my_commands">set_my_commands() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_my_description">set_my_description() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_my_name">set_my_name() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_my_short_description">set_my_short_description() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker.set_name">set_name (Sticker attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.set_reactions">set_reactions() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OrderInfo.shipping_address">shipping_address (OrderInfo attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.shipping_option_id">shipping_option_id (PreCheckoutQuery attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.shipping_option_id">(SuccessfulPayment attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress">ShippingAddress (class in mtkruto.types)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.show_username">show_username() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.small_file_id">small_file_id (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPhoto.small_file_unique_id">small_file_unique_id (ChatPhoto attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview.small_media">small_media (LinkPreview attribute)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.start">start() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultButton.start_parameter">start_parameter (InlineQueryResultButton attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Invoice.start_parameter">(Invoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.start_video_chat">start_video_chat() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.state">state (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberAdministrator.status">status (ChatMemberAdministrator attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberBanned.status">(ChatMemberBanned attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberCreator.status">(ChatMemberCreator attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberLeft.status">(ChatMemberLeft attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberMember.status">(ChatMemberMember attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted.status">(ChatMemberRestricted attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Sticker">Sticker (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.sticker">sticker (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageSticker.sticker">(MessageSticker attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.html#mtkruto.Client.stop_poll">stop_poll() (Client method)</a>
+</li>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.StopPropagation">StopPropagation</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Story">Story (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewStory.story">story (UpdateNewStory attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryReference.story_id">story_id (StoryReference attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryContentPhoto">StoryContentPhoto (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryContentUnsupported">StoryContentUnsupported (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryContentVideo">StoryContentVideo (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractions">StoryInteractions (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaLocation">StoryInteractiveAreaLocation (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaMessage">StoryInteractiveAreaMessage (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition">StoryInteractiveAreaPosition (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaReaction">StoryInteractiveAreaReaction (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaVenue">StoryInteractiveAreaVenue (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyCloseFriends">StoryPrivacyCloseFriends (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyConctacts">StoryPrivacyConctacts (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyEveryone">StoryPrivacyEveryone (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryPrivacyOnly">StoryPrivacyOnly (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryReaction">StoryReaction (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryReference">StoryReference (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.street_line1">street_line1 (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ShippingAddress.street_line2">street_line2 (ShippingAddress attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageSuccessfulPayment.successful_payment">successful_payment (MessageSuccessfulPayment attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment">SuccessfulPayment (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.suggested_tip_amounts">suggested_tip_amounts (MessageContentInvoice attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.supergroup_created">supergroup_created (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageSupergroupCreated.supergroup_created">(MessageSupergroupCreated attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.supports_streaming">supports_streaming (InputMediaVideo attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInline.switch_inline_query">switch_inline_query (InlineKeyboardButtonSwitchInline attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonSwitchInlineCurrent.switch_inline_query_current_chat">switch_inline_query_current_chat (InlineKeyboardButtonSwitchInlineCurrent attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.telegram_payment_charge_id">telegram_payment_charge_id (SuccessfulPayment attribute)</a>
+</li>
+        <li><a href="mtkruto.errors.html#mtkruto.errors.TelegramError">TelegramError</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryAnswer.text">text (CallbackQueryAnswer attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Game.text">(Game attribute)</a>
+</li>
+          <li><a href="mtkruto.filters.html#mtkruto.filters.text">(in module mtkruto.filters)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultButton.text">(InlineQueryResultButton attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonText.text">(KeyboardButtonText attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText.text">(MessageContentText attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageText.text">(MessageText attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.PollOption.text">(PollOption attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReplyQuote.text">(ReplyQuote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.RestrictionReason.text">(RestrictionReason attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Game.text_entities">text_entities (Game attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail">Thumbnail (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.thumbnail">thumbnail (InputMediaAnimation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.thumbnail">(InputMediaAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaDocument.thumbnail">(InputMediaDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.thumbnail">(InputMediaVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.thumbnail_mime_type">thumbnail_mime_type (InlineQueryResultGif attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.thumbnail_mime_type">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.thumbnail_url">thumbnail_url (InlineQueryResultGif attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.thumbnail_url">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.thumbnail_url">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.thumbnail_url">(InlineQueryResultVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.thumbnails">thumbnails (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Audio.thumbnails">(Audio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Document.thumbnails">(Document attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto.thumbnails">(InlineQueryResultCachedPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.thumbnails">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.thumbnails">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.thumbnails">(Video attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoNote.thumbnails">(VideoNote attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.LiveStreamChannel.timestamp">timestamp (LiveStreamChannel attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.OpeningHours.timezone">timezone (OpeningHours attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Audio.title">title (Audio attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberAdministrator.title">(ChatMemberAdministrator attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberCreator.title">(ChatMemberCreator attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.title">(ChatPChannelBase attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPGroup.title">(ChatPGroup attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Game.title">(Game attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.title">(InlineQueryResultArticle attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio.title">(InlineQueryResultAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedGif.title">(InlineQueryResultCachedGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedMpeg4Gif.title">(InlineQueryResultCachedMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto.title">(InlineQueryResultCachedPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo.title">(InlineQueryResultCachedVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVoice.title">(InlineQueryResultCachedVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultDocument.title">(InlineQueryResultDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.title">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.title">(InlineQueryResultLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.title">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.title">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.title">(InlineQueryResultVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.title">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice.title">(InlineQueryResultVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAudio.title">(InputMediaAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InviteLink.title">(InviteLink attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Invoice.title">(Invoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.title">(MessageContentInvoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.title">(MessageContentVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Venue.title">(Venue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.topic">topic (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Invoice.total_amount">total_amount (Invoice attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.PreCheckoutQuery.total_amount">(PreCheckoutQuery attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.SuccessfulPayment.total_amount">(SuccessfulPayment attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Poll.total_voter_count">total_voter_count (Poll attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllChatAdministrators.type">type (BotCommandScopeAllChatAdministrators attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllGroupChats.type">(BotCommandScopeAllGroupChats attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeAllPrivateChats.type">(BotCommandScopeAllPrivateChats attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChat.type">(BotCommandScopeChat attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatAdministrators.type">(BotCommandScopeChatAdministrators attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatMember.type">(BotCommandScopeChatMember attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeDefault.type">(BotCommandScopeDefault attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionButton.type">(CallbackQueryQuestionButton attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionGame.type">(CallbackQueryQuestionGame attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryQuestionPassword.type">(CallbackQueryQuestionPassword attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannel.type">(ChatPChannel attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPGroup.type">(ChatPGroup attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.type">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPSupergroup.type">(ChatPSupergroup attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.type">(InlineQueryResultArticle attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio.type">(InlineQueryResultAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedAudio.type">(InlineQueryResultCachedAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedDocument.type">(InlineQueryResultCachedDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedGif.type">(InlineQueryResultCachedGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedMpeg4Gif.type">(InlineQueryResultCachedMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedPhoto.type">(InlineQueryResultCachedPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedSticker.type">(InlineQueryResultCachedSticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVideo.type">(InlineQueryResultCachedVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultCachedVoice.type">(InlineQueryResultCachedVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact.type">(InlineQueryResultContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultDocument.type">(InlineQueryResultDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGame.type">(InlineQueryResultGame attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.type">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultLocation.type">(InlineQueryResultLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.type">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.type">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVenue.type">(InlineQueryResultVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.type">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice.type">(InlineQueryResultVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.KeyboardButtonPollType.type">(KeyboardButtonPollType attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact.type">(MessageContentContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentInvoice.type">(MessageContentInvoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentLocation.type">(MessageContentLocation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentText.type">(MessageContentText attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentVenue.type">(MessageContentVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBankCard.type">(MessageEntityBankCard attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBlockquote.type">(MessageEntityBlockquote attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBold.type">(MessageEntityBold attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityBotCommand.type">(MessageEntityBotCommand attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCashtag.type">(MessageEntityCashtag attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCode.type">(MessageEntityCode attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityCustomEmoji.type">(MessageEntityCustomEmoji attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityEmailAddress.type">(MessageEntityEmailAddress attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityHashtag.type">(MessageEntityHashtag attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityItalic.type">(MessageEntityItalic attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityMention.type">(MessageEntityMention attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityPhoneNumber.type">(MessageEntityPhoneNumber attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityPre.type">(MessageEntityPre attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntitySpoiler.type">(MessageEntitySpoiler attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityStrikethrough.type">(MessageEntityStrikethrough attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextLink.type">(MessageEntityTextLink attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextMention.type">(MessageEntityTextMention attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityUnderline.type">(MessageEntityUnderline attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityURL.type">(MessageEntityURL attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Poll.type">(Poll attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionCustomEmoji.type">(ReactionCustomEmoji attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ReactionEmoji.type">(ReactionEmoji attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.type">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoChatActive.type">(VideoChatActive attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoChatEnded.type">(VideoChatEnded attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.VideoChatScheduled.type">(VideoChatScheduled attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.html#mtkruto.Client.unban_chat_member">unban_chat_member() (Client method)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User.unblock">unblock() (User method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.unblock_user">unblock_user() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.unpin_message">unpin_message() (Client method)</a>
+</li>
+        <li><a href="mtkruto.html#mtkruto.Client.unpin_messages">unpin_messages() (Client method)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.unsupported">unsupported (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageUnsupported.unsupported">(MessageUnsupported attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryContentUnsupported.unsupported">(StoryContentUnsupported attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberBanned.until_date">until_date (ChatMemberBanned attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberRestricted.until_date">(ChatMemberRestricted attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateBusinessConnection">UpdateBusinessConnection (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateCallbackQuery">UpdateCallbackQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateChatMember">UpdateChatMember (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateChosenInlineResult">UpdateChosenInlineResult (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedChat">UpdateDeletedChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedMessages">UpdateDeletedMessages (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateDeletedStory">UpdateDeletedStory (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateEditedChat">UpdateEditedChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateEditedMessage">UpdateEditedMessage (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateInlineQuery">UpdateInlineQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageInteractions">UpdateMessageInteractions (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageReactionCount">UpdateMessageReactionCount (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMessageReactions">UpdateMessageReactions (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateMyChatMember">UpdateMyChatMember (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewChat">UpdateNewChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewMessage">UpdateNewMessage (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateNewStory">UpdateNewStory (class in mtkruto.types)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdatePreCheckoutQuery">UpdatePreCheckoutQuery (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateVideoChat">UpdateVideoChat (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.CallbackQueryAnswer.url">url (CallbackQueryAnswer attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineKeyboardButtonURL.url">(InlineKeyboardButtonURL attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultArticle.url">(InlineQueryResultArticle attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultAudio.url">(InlineQueryResultAudio attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultDocument.url">(InlineQueryResultDocument attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.url">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.url">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.url">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.url">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice.url">(InlineQueryResultVoice attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.LinkPreview.url">(LinkPreview attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.LoginUrl.url">(LoginUrl attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextLink.url">(MessageEntityTextLink attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MiniAppInfo.url">(MiniAppInfo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BusinessConnection.user">user (BusinessConnection attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.User">User (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageReactions.user">user (MessageReactions attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.user_chared">user_chared (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.BotCommandScopeChatMember.user_id">user_id (BotCommandScopeChatMember attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.Contact.user_id">(Contact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageEntityTextMention.user_id">(MessageEntityTextMention attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageUserShared.user_shared">user_shared (MessageUserShared attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatPChannelBase.username">username (ChatPChannelBase attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatPPrivate.username">(ChatPPrivate attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.User.username">(User attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Dice.value">value (Dice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Contact.vcard">vcard (Contact attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultContact.vcard">(InlineQueryResultContact attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageContentContact.vcard">(MessageContentContact attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Venue">Venue (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.venue">venue (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVenue.venue">(MessageVenue attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaVenue.venue">(StoryInteractiveAreaVenue attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.via_bot">via_bot (in module mtkruto.filters)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatMemberUpdated.via_shared_folder">via_shared_folder (ChatMemberUpdated attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Video">Video (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.video">video (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.video">(InputMediaVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputStoryContentVideo.video">(InputStoryContentVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVideo.video">(MessageVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryContentVideo.video">(StoryContentVideo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.UpdateVideoChat.video_chat">video_chat (UpdateVideoChat attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.video_chat_ended">video_chat_ended (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatEnded.video_chat_ended">(MessageVideoChatEnded attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.ChatChannel.video_chat_id">video_chat_id (ChatChannel attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatGroup.video_chat_id">(ChatGroup attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.ChatSupergroup.video_chat_id">(ChatSupergroup attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.video_chat_scheduled">video_chat_scheduled (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatScheduled.video_chat_scheduled">(MessageVideoChatScheduled attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.video_chat_started">video_chat_started (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoChatStarted.video_chat_started">(MessageVideoChatStarted attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.video_duration">video_duration (InlineQueryResultVideo attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.video_note">video_note (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVideoNote.video_note">(MessageVideoNote attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoChatActive">VideoChatActive (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoChatEnded">VideoChatEnded (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoChatScheduled">VideoChatScheduled (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.VideoNote">VideoNote (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.MessageInteractions.views">views (MessageInteractions attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractions.views">(StoryInteractions attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Voice">Voice (class in mtkruto.types)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.voice">voice (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageVoice.voice">(MessageVoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVoice.voice_duration">voice_duration (InlineQueryResultVoice attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.PollOption.voter_count">voter_count (PollOption attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.Animation.width">width (Animation attribute)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultGif.width">(InlineQueryResultGif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultMpeg4Gif.width">(InlineQueryResultMpeg4Gif attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultPhoto.width">(InlineQueryResultPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InlineQueryResultVideo.width">(InlineQueryResultVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaAnimation.width">(InputMediaAnimation attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaPhoto.width">(InputMediaPhoto attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.InputMediaVideo.width">(InputMediaVideo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Photo.width">(Photo attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Sticker.width">(Sticker attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Thumbnail.width">(Thumbnail attribute)</a>
+</li>
+          <li><a href="mtkruto.types.html#mtkruto.types.Video.width">(Video attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition.width_percentage">width_percentage (StoryInteractiveAreaPosition attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Giveaway.winner_count">winner_count (Giveaway attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.GiveawayParameters.winner_selection_date">winner_selection_date (GiveawayParameters attribute)</a>
+</li>
+        <li><a href="mtkruto.filters.html#mtkruto.filters.write_access_allowed">write_access_allowed (in module mtkruto.filters)</a>
+
+        <ul>
+          <li><a href="mtkruto.types.html#mtkruto.types.MessageWriteAccessAllowed.write_access_allowed">(MessageWriteAccessAllowed attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="X" class="genindex-section">
+  <h2>X</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition.x_percentage">x_percentage (StoryInteractiveAreaPosition attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MaskPosition.x_shift">x_shift (MaskPosition attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Y" class="genindex-section">
+  <h2>Y</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.StoryInteractiveAreaPosition.y_percentage">y_percentage (StoryInteractiveAreaPosition attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="mtkruto.types.html#mtkruto.types.MaskPosition.y_shift">y_shift (MaskPosition attribute)</a>
+</li>
+        <li><a href="mtkruto.types.html#mtkruto.types.Birthday.year">year (Birthday attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, MTKruto
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
