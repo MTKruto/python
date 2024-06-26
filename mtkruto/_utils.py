@@ -62,7 +62,6 @@ def to(type_: Any, value: Any, client: Any) -> Any:
 
     # unions
     if get_origin(type_) is Union:
-        print("uni")
         args = get_args(type_)
 
         # optional
