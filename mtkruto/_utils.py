@@ -103,10 +103,13 @@ def satisfies_discriminators(of: Any, value: Any) -> bool:
     for d in of.__discriminators__:
         if d not in value:
             return False
-        annotation = [v for v in a.values() if v.__metadata__[0] == d][0].__args__[0]
-        if get_origin(annotation) is Literal:
-            if value[d] != annotation.__args__[0]:
-                return False
+        try:
+            annotation = [v for v in a.values() if v.__metadata__[0] == d][0].__args__[0]
+            if get_origin(annotation) is Literal:
+                if value[d] != annotation.__args__[0]:
+                    return False
+        except IndexError:
+            continue
     return True
 
 
