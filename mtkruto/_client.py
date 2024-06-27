@@ -195,8 +195,7 @@ class Client:
                         raise InputError(data)
                     elif "rpc" in error:
                         raise TelegramError(response.status, data)
-                    else:
-                        raise InternalError(data)
+                raise InternalError(data)
         return result
 
     def add_handler(self, handler: "AnyHandler") -> None:
