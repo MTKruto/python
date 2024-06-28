@@ -1966,6 +1966,8 @@ class KeyboardButtonText(_Type):
     ):
         self.text = text
 
+    __discriminators__ = ["text"]
+
 
 class KeyboardButtonRequestUser(KeyboardButtonText):
     request_user: Annotated[Any, "requestUser"]
@@ -1977,6 +1979,8 @@ class KeyboardButtonRequestUser(KeyboardButtonText):
     ):
         self.request_user = request_user
         self.text = text
+
+    __discriminators__ = ["requestUser"]
 
 
 class KeyboardButtonRequestChat(KeyboardButtonText):
@@ -1990,6 +1994,8 @@ class KeyboardButtonRequestChat(KeyboardButtonText):
         self.request_chat = request_chat
         self.text = text
 
+    __discriminators__ = ["requestChat"]
+
 
 class KeyboardButtonRequestContact(KeyboardButtonText):
     request_contact: Annotated[Literal[True], "requestContact"]
@@ -2001,6 +2007,8 @@ class KeyboardButtonRequestContact(KeyboardButtonText):
     ):
         self.request_contact = request_contact
         self.text = text
+
+    __discriminators__ = ["requestContact"]
 
 
 class KeyboardButtonRequestLocation(KeyboardButtonText):
@@ -2014,6 +2022,8 @@ class KeyboardButtonRequestLocation(KeyboardButtonText):
         self.request_location = request_location
         self.text = text
 
+    __discriminators__ = ["requestLocation"]
+
 
 class KeyboardButtonRequestPoll(KeyboardButtonText):
     request_poll: Annotated["KeyboardButtonPollType", "requestPoll"]
@@ -2026,6 +2036,8 @@ class KeyboardButtonRequestPoll(KeyboardButtonText):
         self.request_poll = request_poll
         self.text = text
 
+    __discriminators__ = ["requestPoll"]
+
 
 class KeyboardButtonMiniApp(KeyboardButtonText):
     mini_app: Annotated["MiniAppInfo", "miniApp"]
@@ -2037,6 +2049,8 @@ class KeyboardButtonMiniApp(KeyboardButtonText):
     ):
         self.mini_app = mini_app
         self.text = text
+
+    __discriminators__ = ["miniApp"]
 
 
 KeyboardButton: TypeAlias = Union[
@@ -3632,6 +3646,29 @@ class ChatMemberUpdated(_Type):
         self.new_chat_member = new_chat_member
         self.invite_link = invite_link
         self.via_shared_folder = via_shared_folder
+
+
+class JoinRequest(_Type):
+    chat: Annotated["ChatP", "chat"]
+    user: Annotated["User", "user"]
+    date: Annotated[datetime.datetime, "date"]
+    bio: Annotated[Optional[str], "bio"]
+    invite_link: Annotated[Optional["InviteLink"], "inviteLink"]
+
+    def __init__(
+        self,
+        chat: Annotated["ChatP", "chat"],
+        user: Annotated["User", "user"],
+        date: Annotated[datetime.datetime, "date"],
+        *,
+        bio: Annotated[Optional[str], "bio"] = None,
+        invite_link: Annotated[Optional["InviteLink"], "inviteLink"] = None,
+    ):
+        self.chat = chat
+        self.user = user
+        self.date = date
+        self.bio = bio
+        self.invite_link = invite_link
 
 
 class ReplyMarkupInlineKeyboard(_Type):
@@ -9164,6 +9201,18 @@ class UpdatePreCheckoutQuery(_Type):
     __discriminators__ = ["preCheckoutQuery"]
 
 
+class UpdateJoinRequest(_Type):
+    join_request: Annotated["JoinRequest", "joinRequest"]
+
+    def __init__(
+        self,
+        join_request: Annotated["JoinRequest", "joinRequest"],
+    ):
+        self.join_request = join_request
+
+    __discriminators__ = ["joinRequest"]
+
+
 Update: TypeAlias = Union[
     UpdateNewMessage,
     UpdateEditedMessage,
@@ -9184,4 +9233,5 @@ Update: TypeAlias = Union[
     UpdateBusinessConnection,
     UpdateVideoChat,
     UpdatePreCheckoutQuery,
+    UpdateJoinRequest,
 ]
