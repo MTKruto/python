@@ -2036,6 +2036,22 @@ class Client:
     async def set_chat_sticker_set(self, chat_id: ID, set_name: str) -> None:
         await self._request("setChatStickerSet", chat_id, set_name)
 
+    async def approve_join_request(self, chat_id: ID, user_id: ID) -> None:
+        await self._request("approveJoinRequest", chat_id, user_id)
+
+    async def approve_join_requests(
+        self, chat_id: ID, invite_link: Optional[str] = None
+    ) -> None:
+        await self._request("approveJoinRequests", chat_id, {"inviteLink": invite_link})
+
+    async def decline_join_request(self, chat_id: ID, user_id: ID) -> None:
+        await self._request("declineJoinRequest", chat_id, user_id)
+
+    async def decline_join_requests(
+        self, chat_id: ID, invite_link: Optional[str] = None
+    ) -> None:
+        await self._request("declineJoinRequests", chat_id, {"inviteLink": invite_link})
+
 
 T = TypeVar("T")
 HandlerCallback = Callable[[Client, T], Coroutine[Any, Any, None]]
