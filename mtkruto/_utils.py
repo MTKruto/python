@@ -104,7 +104,9 @@ def satisfies_discriminators(of: Any, value: Any) -> bool:
         if d not in value:
             return False
         try:
-            annotation = [v for v in a.values() if v.__metadata__[0] == d][0].__args__[0]
+            annotation = [v for v in a.values() if v.__metadata__[0] == d][0].__args__[
+                0
+            ]
             if get_origin(annotation) is Literal:
                 if value[d] != annotation.__args__[0]:
                     return False
