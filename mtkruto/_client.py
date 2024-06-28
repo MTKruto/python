@@ -45,6 +45,7 @@ from .types import (
     InputMedia,
     InputStoryContent,
     InviteLink,
+    JoinRequest,
     LinkPreview,
     LiveStreamChannel,
     Message,
@@ -93,6 +94,7 @@ from .types import (
     UpdateEditedChat,
     UpdateEditedMessage,
     UpdateInlineQuery,
+    UpdateJoinRequest,
     UpdateMessageInteractions,
     UpdateMessageReactionCount,
     UpdateMessageReactions,
@@ -338,6 +340,14 @@ class Client:
     ) -> Callable[["HandlerCallback[PreCheckoutQuery]"], None]:
         def decorator(callback: HandlerCallback[PreCheckoutQuery]) -> None:
             self.add_handler(PreCheckoutQueryHandler(callback))
+
+        return decorator
+
+    def on_join_request(
+        self,
+    ) -> Callable[["HandlerCallback[JoinRequest]"], None]:
+        def decorator(callback: HandlerCallback[JoinRequest]) -> None:
+            self.add_handler(JoinRequestHandler(callback))
 
         return decorator
 
@@ -2228,3 +2238,11 @@ class PreCheckoutQueryHandler(Handler[UpdatePreCheckoutQuery]):
         super().__init__(
             lambda update: isinstance(update, UpdatePreCheckoutQuery), callback
         )
+
+
+class JoinRequestHandler(Handler[UpdateJoinRequest]):
+    def __init__(self, callback_: HandlerCallback[JoinRequest]):
+        async def callback(client: Client, update: UpdateJoinRequest) -> None:
+            await callback_(client, update.join_request)
+
+        super().__init__(lambda update: isinstance(update, UpdateJoinRequest), callback)
