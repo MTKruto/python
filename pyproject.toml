@@ -3,7 +3,7 @@ extend-select = ["I"]
 
 [tool.poetry]
 name = "mtkruto"
-version = "0.2.1"
+version = "0.2.2"
 description = "Python client for MTKruto Server"
 authors = ["Roj", "Zaid"]
 readme = "README.md"
