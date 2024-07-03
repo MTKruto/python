@@ -36,6 +36,7 @@ from .types import (
     ChatMemberRights,
     ChatMemberUpdated,
     ChosenInlineResult,
+    FailedInvitation,
     FileSource,
     InactiveChat,
     InlineQuery,
@@ -108,7 +109,6 @@ from .types import (
     VideoChat,
     VideoChatActive,
     VideoChatScheduled,
-    FailedInvitation,
 )
 
 log = logging.getLogger(__name__)
@@ -925,6 +925,7 @@ class Client:
                     "businessConnectionId": business_connection_id,
                 },
             ),
+            self,
         )
 
     async def send_dice(
@@ -2124,6 +2125,7 @@ class Client:
             await self._request(
                 "addChatMember", chat_id, user_id, {"historyLimit": history_limit}
             ),
+            self,
         )
 
     async def add_chat_members(
@@ -2134,6 +2136,7 @@ class Client:
         return to(
             List[FailedInvitation],
             await self._request("addChatMembers", chat_id, user_ids),
+            self,
         )
 
 
