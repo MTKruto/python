@@ -310,6 +310,24 @@ class Dice(_Type):
         self.value = value
 
 
+class FailedInvitation(_Type):
+    user_id: Annotated[int, "userId"]
+    premium_required_to_invite: Annotated[bool, "premiumRequiredToInvite"]
+    premium_required_to_send_message: Annotated[bool, "premiumRequiredToSendMessage"]
+
+    def __init__(
+        self,
+        user_id: Annotated[int, "userId"],
+        premium_required_to_invite: Annotated[bool, "premiumRequiredToInvite"],
+        premium_required_to_send_message: Annotated[
+            bool, "premiumRequiredToSendMessage"
+        ],
+    ):
+        self.user_id = user_id
+        self.premium_required_to_invite = premium_required_to_invite
+        self.premium_required_to_send_message = premium_required_to_send_message
+
+
 class GiveawayParameters(_Type):
     boosted_chat_id: Annotated[int, "boostedChatId"]
     additional_chat_ids: Annotated[list[int], "additionalChatIds"]
@@ -1727,6 +1745,9 @@ class _InputMediaCommon(_Type):
     file_name: Annotated[Optional[str], "fileName"]
     mime_type: Annotated[Optional[str], "mimeType"]
     chunk_size: Annotated[Optional[int], "chunkSize"]
+    caption: Annotated[Optional[str], "caption"]
+    caption_entities: Annotated[Optional[list["MessageEntity"]], "captionEntities"]
+    parse_mode: Annotated[Optional["ParseMode"], "parseMode"]
 
     def __init__(
         self,
@@ -1734,16 +1755,23 @@ class _InputMediaCommon(_Type):
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
 
 
 class InputMediaAnimation(_InputMediaCommon):
     animation: Annotated["FileSource", "animation"]
     thumbnail: Annotated[Optional["FileSource"], "thumbnail"]
-    caption: Annotated[Optional[str], "caption"]
     duration: Annotated[Optional[int], "duration"]
     width: Annotated[Optional[int], "width"]
     height: Annotated[Optional[int], "height"]
@@ -1754,7 +1782,6 @@ class InputMediaAnimation(_InputMediaCommon):
         animation: Annotated["FileSource", "animation"],
         *,
         thumbnail: Annotated[Optional["FileSource"], "thumbnail"] = None,
-        caption: Annotated[Optional[str], "caption"] = None,
         duration: Annotated[Optional[int], "duration"] = None,
         width: Annotated[Optional[int], "width"] = None,
         height: Annotated[Optional[int], "height"] = None,
@@ -1762,10 +1789,14 @@ class InputMediaAnimation(_InputMediaCommon):
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.animation = animation
         self.thumbnail = thumbnail
-        self.caption = caption
         self.duration = duration
         self.width = width
         self.height = height
@@ -1773,12 +1804,16 @@ class InputMediaAnimation(_InputMediaCommon):
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
+
+    __discriminators__ = ["animation"]
 
 
 class InputMediaAudio(_InputMediaCommon):
     audio: Annotated["FileSource", "audio"]
     thumbnail: Annotated[Optional["FileSource"], "thumbnail"]
-    caption: Annotated[Optional[str], "caption"]
     duration: Annotated[Optional[int], "duration"]
     performer: Annotated[Optional[str], "performer"]
     title: Annotated[Optional[str], "title"]
@@ -1788,53 +1823,67 @@ class InputMediaAudio(_InputMediaCommon):
         audio: Annotated["FileSource", "audio"],
         *,
         thumbnail: Annotated[Optional["FileSource"], "thumbnail"] = None,
-        caption: Annotated[Optional[str], "caption"] = None,
         duration: Annotated[Optional[int], "duration"] = None,
         performer: Annotated[Optional[str], "performer"] = None,
         title: Annotated[Optional[str], "title"] = None,
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.audio = audio
         self.thumbnail = thumbnail
-        self.caption = caption
         self.duration = duration
         self.performer = performer
         self.title = title
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
+
+    __discriminators__ = ["audio"]
 
 
 class InputMediaDocument(_InputMediaCommon):
     document: Annotated["FileSource", "document"]
     thumbnail: Annotated[Optional["FileSource"], "thumbnail"]
-    caption: Annotated[Optional[str], "caption"]
 
     def __init__(
         self,
         document: Annotated["FileSource", "document"],
         *,
         thumbnail: Annotated[Optional["FileSource"], "thumbnail"] = None,
-        caption: Annotated[Optional[str], "caption"] = None,
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.document = document
         self.thumbnail = thumbnail
-        self.caption = caption
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
+
+    __discriminators__ = ["document"]
 
 
 class InputMediaPhoto(_InputMediaCommon):
     photo: Annotated["FileSource", "photo"]
     width: Annotated[Optional[int], "width"]
     height: Annotated[Optional[int], "height"]
-    caption: Annotated[Optional[str], "caption"]
     has_spoiler: Annotated[Optional[bool], "hasSpoiler"]
     self_destruct: Annotated[Optional["SelfDestructOption"], "selfDestruct"]
 
@@ -1844,22 +1893,30 @@ class InputMediaPhoto(_InputMediaCommon):
         *,
         width: Annotated[Optional[int], "width"] = None,
         height: Annotated[Optional[int], "height"] = None,
-        caption: Annotated[Optional[str], "caption"] = None,
         has_spoiler: Annotated[Optional[bool], "hasSpoiler"] = None,
         self_destruct: Annotated[Optional["SelfDestructOption"], "selfDestruct"] = None,
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.photo = photo
         self.width = width
         self.height = height
-        self.caption = caption
         self.has_spoiler = has_spoiler
         self.self_destruct = self_destruct
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
+
+    __discriminators__ = ["photo"]
 
 
 class InputMediaVideo(_InputMediaCommon):
@@ -1869,7 +1926,6 @@ class InputMediaVideo(_InputMediaCommon):
     width: Annotated[Optional[int], "width"]
     height: Annotated[Optional[int], "height"]
     supports_streaming: Annotated[Optional[bool], "supportsStreaming"]
-    caption: Annotated[Optional[str], "caption"]
     has_spoiler: Annotated[Optional[bool], "hasSpoiler"]
     self_destruct: Annotated[Optional["SelfDestructOption"], "selfDestruct"]
 
@@ -1882,12 +1938,16 @@ class InputMediaVideo(_InputMediaCommon):
         width: Annotated[Optional[int], "width"] = None,
         height: Annotated[Optional[int], "height"] = None,
         supports_streaming: Annotated[Optional[bool], "supportsStreaming"] = None,
-        caption: Annotated[Optional[str], "caption"] = None,
         has_spoiler: Annotated[Optional[bool], "hasSpoiler"] = None,
         self_destruct: Annotated[Optional["SelfDestructOption"], "selfDestruct"] = None,
         file_name: Annotated[Optional[str], "fileName"] = None,
         mime_type: Annotated[Optional[str], "mimeType"] = None,
         chunk_size: Annotated[Optional[int], "chunkSize"] = None,
+        caption: Annotated[Optional[str], "caption"] = None,
+        caption_entities: Annotated[
+            Optional[list["MessageEntity"]], "captionEntities"
+        ] = None,
+        parse_mode: Annotated[Optional["ParseMode"], "parseMode"] = None,
     ):
         self.video = video
         self.thumbnail = thumbnail
@@ -1895,12 +1955,16 @@ class InputMediaVideo(_InputMediaCommon):
         self.width = width
         self.height = height
         self.supports_streaming = supports_streaming
-        self.caption = caption
         self.has_spoiler = has_spoiler
         self.self_destruct = self_destruct
         self.file_name = file_name
         self.mime_type = mime_type
         self.chunk_size = chunk_size
+        self.caption = caption
+        self.caption_entities = caption_entities
+        self.parse_mode = parse_mode
+
+    __discriminators__ = ["video"]
 
 
 InputMedia: TypeAlias = Union[
