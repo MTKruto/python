@@ -376,6 +376,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageText:
         return to(
@@ -395,6 +396,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -442,6 +444,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageVoice:
         return to(
@@ -466,6 +469,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -493,6 +497,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageVideoNote:
         return to(
@@ -518,6 +523,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -549,6 +555,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageVideo:
         return to(
@@ -578,6 +585,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -601,6 +609,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageVenue:
         return to(
@@ -622,6 +631,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -644,6 +654,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageSticker:
         return to(
@@ -664,6 +675,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -696,6 +708,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessagePoll:
         return to(
@@ -726,6 +739,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -752,6 +766,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessagePhoto:
         return to(
@@ -776,6 +791,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -799,6 +815,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageLocation:
         return to(
@@ -820,6 +837,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -845,6 +863,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageDocument:
         return to(
@@ -868,6 +887,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -919,6 +939,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageDice:
         return to(
@@ -935,6 +956,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -956,6 +978,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageContact:
         return to(
@@ -975,6 +998,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -1013,6 +1037,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageAudio:
         return to(
@@ -1039,6 +1064,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -1068,6 +1094,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageAnimation:
         return to(
@@ -1095,6 +1122,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
@@ -1241,6 +1269,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         reply_markup: Optional[ReplyMarkup] = None,
+        message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
     ) -> MessageInvoice:
         return to(
@@ -1277,6 +1306,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "replyMarkup": reply_markup,
+                    "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                 },
             ),
