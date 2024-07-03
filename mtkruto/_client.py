@@ -108,6 +108,7 @@ from .types import (
     VideoChat,
     VideoChatActive,
     VideoChatScheduled,
+    FailedInvitation,
 )
 
 log = logging.getLogger(__name__)
@@ -871,6 +872,39 @@ class Client:
                 },
             ),
             self,
+        )
+
+    async def send_media_group(
+        self,
+        chat_id: ID,
+        media: List[InputMedia],
+        *,
+        disable_notifaction: Optional[bool] = None,
+        protect_content: Optional[bool] = None,
+        reply_to_message_id: Optional[int] = None,
+        reply_quote: Optional[ReplyQuote] = None,
+        message_thread_id: Optional[int] = None,
+        send_as: Optional[ID] = None,
+        message_effect_id: Optional[int] = None,
+        business_connection_id: Optional[str] = None,
+    ) -> List[Message]:
+        return to(
+            List[Message],
+            await self._request(
+                "sendMediaGroup",
+                chat_id,
+                media,
+                {
+                    "disableNotifaction": disable_notifaction,
+                    "protectContent": protect_content,
+                    "replyToMessageId": reply_to_message_id,
+                    "replyQuote": reply_quote,
+                    "messageThreadId": message_thread_id,
+                    "sendAs": send_as,
+                    "messageEffectId": message_effect_id,
+                    "businessConnectionId": business_connection_id,
+                },
+            ),
         )
 
     async def send_dice(
@@ -2051,6 +2085,26 @@ class Client:
         self, chat_id: ID, invite_link: Optional[str] = None
     ) -> None:
         await self._request("declineJoinRequests", chat_id, {"inviteLink": invite_link})
+
+    async def add_chat_member(
+        self, chat_id: ID, user_id: ID, history_limit: Optional[int] = None
+    ) -> FailedInvitation:
+        return to(
+            FailedInvitation,
+            await self._request(
+                "addChatMember", chat_id, user_id, {"historyLimit": history_limit}
+            ),
+        )
+
+    async def add_chat_members(
+        self,
+        chat_id: ID,
+        user_ids: List[ID],
+    ) -> List[FailedInvitation]:
+        return to(
+            List[FailedInvitation],
+            await self._request("addChatMembers", chat_id, user_ids),
+        )
 
 
 T = TypeVar("T")
