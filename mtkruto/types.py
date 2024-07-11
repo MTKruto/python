@@ -780,14 +780,18 @@ class MessageEntityStrikethrough(_MessageEntityBase):
 
 class MessageEntityBlockquote(_MessageEntityBase):
     type: Annotated[Literal["blockquote"], "type"]
+    collapsible: Annotated[Optional[Literal[True]], "collapsible"]
 
     def __init__(
         self,
         type: Annotated[Literal["blockquote"], "type"],
         offset: Annotated[int, "offset"],
         length: Annotated[int, "length"],
+        *,
+        collapsible: Annotated[Optional[Literal[True]], "collapsible"] = None,
     ):
         self.type = type
+        self.collapsible = collapsible
         self.offset = offset
         self.length = length
 
@@ -3495,6 +3499,40 @@ class PreCheckoutQuery(_Type):
         self.order_info = order_info
 
 
+class ReplyToMessage(_Type):
+    message_id: Annotated[int, "messageId"]
+    quote: Annotated[Optional["ReplyQuote"], "quote"]
+
+    def __init__(
+        self,
+        message_id: Annotated[int, "messageId"],
+        *,
+        quote: Annotated[Optional["ReplyQuote"], "quote"] = None,
+    ):
+        self.message_id = message_id
+        self.quote = quote
+
+    __discriminators__ = ["messageId"]
+
+
+class ReplyToStory(_Type):
+    chat_id: Annotated["ID", "chatId"]
+    story_id: Annotated[int, "storyId"]
+
+    def __init__(
+        self,
+        chat_id: Annotated["ID", "chatId"],
+        story_id: Annotated[int, "storyId"],
+    ):
+        self.chat_id = chat_id
+        self.story_id = story_id
+
+    __discriminators__ = ["storyId"]
+
+
+ReplyTo: TypeAlias = Union[ReplyToMessage, ReplyToStory]
+
+
 class StoryContentPhoto(_Type):
     photo: Annotated["Photo", "photo"]
 
@@ -4970,8 +5008,7 @@ class _MessageBase(_Type):
             link_preview=link_preview,
             disable_notification=disable_notification,
             protect_content=protect_content,
-            reply_to_message_id=self.id,
-            reply_quote=reply_quote,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5014,8 +5051,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5055,9 +5092,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5105,9 +5141,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5140,8 +5175,7 @@ class _MessageBase(_Type):
             foursquare_type=foursquare_type,
             disable_notifaction=disable_notifaction,
             protect_content=protect_content,
-            reply_to_message_id=self.id,
-            reply_quote=reply_quote,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5171,9 +5205,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5217,9 +5250,8 @@ class _MessageBase(_Type):
             close_date=close_date,
             is_closed=is_closed,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5257,9 +5289,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5291,9 +5322,8 @@ class _MessageBase(_Type):
             heading=heading,
             proximity_alert_radius=proximity_alert_radius,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5329,9 +5359,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5353,9 +5382,8 @@ class _MessageBase(_Type):
             self.chat.id,
             emoji,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5383,9 +5411,8 @@ class _MessageBase(_Type):
             last_name=last_name,
             vcard=vcard,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5436,9 +5463,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
@@ -5482,9 +5508,8 @@ class _MessageBase(_Type):
             mime_type=mime_type,
             chunk_size=chunk_size,
             disable_notifaction=disable_notifaction,
-            reply_to_message_id=self.id,
+            reply_to=ReplyToMessage(message_id=self.id, quote=reply_quote),
             protect_content=protect_content,
-            reply_quote=reply_quote,
             message_thread_id=message_thread_id,
             send_as=send_as,
             reply_markup=reply_markup,
