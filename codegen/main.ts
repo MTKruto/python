@@ -7,7 +7,7 @@ import {
 const nodes = JSON.parse(Deno.readTextFileSync("3_types.json")) as DocNode[];
 
 let code = `import datetime
-from typing import Annotated, Any, List, Literal, Optional, TypeAlias, Union
+from typing import Annotated, Any, List, Literal, Optional, Union
 
 
 FileSource = Union[str, bytes]
@@ -177,7 +177,7 @@ for (const node of nodes) {
     code += "\n";
   } else if (node.kind == "typeAlias") {
     if (node.typeAliasDef.tsType.kind == "union") {
-      code += `${node.name}: TypeAlias = Union[${
+      code += `${node.name} = Union[${
         node.typeAliasDef.tsType.union.map((v) => pythonize(v, false)).filter(
           (v) =>
             v != "UpdateAuthorizationState" && v != "UpdateConnectionState",
@@ -185,7 +185,7 @@ for (const node of nodes) {
       }]`;
       code += "\n\n";
     } else {
-      code += `${node.name}: TypeAlias = ${
+      code += `${node.name} = ${
         pythonize(node.typeAliasDef.tsType)
       }\n\n`;
     }

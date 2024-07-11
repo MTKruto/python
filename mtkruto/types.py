@@ -1,5 +1,5 @@
 import datetime
-from typing import Annotated, Any, List, Literal, Optional, TypeAlias, Union
+from typing import Annotated, Any, List, Literal, Optional, Union
 
 FileSource = Union[str, bytes]
 
@@ -114,13 +114,13 @@ class CallbackQueryQuestionButton(_Type):
     __discriminators__ = ["type"]
 
 
-CallbackQueryQuestion: TypeAlias = Union[
+CallbackQueryQuestion = Union[
     CallbackQueryQuestionGame,
     CallbackQueryQuestionPassword,
     CallbackQueryQuestionButton,
 ]
 
-ChatAction: TypeAlias = Union[
+ChatAction = Union[
     Literal["type"],
     Literal["uploadPhoto"],
     Literal["recordVideo"],
@@ -267,11 +267,11 @@ class ChatPhoto(_Type):
         self.personal = personal
 
 
-ConnectionStateNotConnected: TypeAlias = Literal["notConnected"]
+ConnectionStateNotConnected = Literal["notConnected"]
 
-ConnectionStateUpdating: TypeAlias = Literal["updating"]
+ConnectionStateUpdating = Literal["updating"]
 
-ConnectionStateReady: TypeAlias = Literal["ready"]
+ConnectionStateReady = Literal["ready"]
 
 
 class Contact(_Type):
@@ -350,7 +350,7 @@ class GiveawayParameters(_Type):
         self.countries = countries
 
 
-ID: TypeAlias = Union[int, str, Literal["me"]]
+ID = Union[int, str, Literal["me"]]
 
 
 class Invoice(_Type):
@@ -490,7 +490,7 @@ class MaskPosition(_Type):
         self.scale = scale
 
 
-MessageEntityType: TypeAlias = Union[
+MessageEntityType = Union[
     Literal["mention"],
     Literal["hashtag"],
     Literal["botCommand"],
@@ -849,7 +849,7 @@ class MessageEntityCustomEmoji(_MessageEntityBase):
     __discriminators__ = ["type"]
 
 
-MessageEntity: TypeAlias = Union[
+MessageEntity = Union[
     MessageEntityMention,
     MessageEntityHashtag,
     MessageEntityBotCommand,
@@ -885,7 +885,7 @@ class MessageReference(_Type):
         self.message_id = message_id
 
 
-MessageSearchFilter: TypeAlias = Union[
+MessageSearchFilter = Union[
     Literal["empty"],
     Literal["animations"],
     Literal["audios"],
@@ -939,7 +939,7 @@ class OpeningHours(_Type):
         self.intervals = intervals
 
 
-ParseMode: TypeAlias = Union[Literal["HTML"], Literal["Markdown"], None]
+ParseMode = Union[Literal["HTML"], Literal["Markdown"], None]
 
 
 class PriceTag(_Type):
@@ -981,7 +981,7 @@ class ReactionCustomEmoji(_Type):
         self.id = id
 
 
-Reaction: TypeAlias = Union[ReactionEmoji, ReactionCustomEmoji]
+Reaction = Union[ReactionEmoji, ReactionCustomEmoji]
 
 
 class RestrictionReason(_Type):
@@ -1000,11 +1000,11 @@ class RestrictionReason(_Type):
         self.text = text
 
 
-SelfDestructAfterOpen: TypeAlias = Literal["afterOpen"]
+SelfDestructAfterOpen = Literal["afterOpen"]
 
-SelfDestructAfterSeconds: TypeAlias = int
+SelfDestructAfterSeconds = int
 
-SelfDestructOption: TypeAlias = Union[SelfDestructAfterOpen, SelfDestructAfterSeconds]
+SelfDestructOption = Union[SelfDestructAfterOpen, SelfDestructAfterSeconds]
 
 
 class ShippingAddress(_Type):
@@ -1150,7 +1150,7 @@ class VideoChatEnded(_VideoChatCommon):
         self.id = id
 
 
-VideoChat: TypeAlias = Union[VideoChatActive, VideoChatScheduled, VideoChatEnded]
+VideoChat = Union[VideoChatActive, VideoChatScheduled, VideoChatEnded]
 
 
 class Voice(_Type):
@@ -1338,7 +1338,7 @@ class BotCommandScopeChatMember(_Type):
     __discriminators__ = ["type"]
 
 
-BotCommandScope: TypeAlias = Union[
+BotCommandScope = Union[
     BotCommandScopeDefault,
     BotCommandScopeAllPrivateChats,
     BotCommandScopeAllGroupChats,
@@ -1348,7 +1348,7 @@ BotCommandScope: TypeAlias = Union[
     BotCommandScopeChatMember,
 ]
 
-ChatType: TypeAlias = Union[
+ChatType = Union[
     Literal["private"], Literal["group"], Literal["supergroup"], Literal["channel"]
 ]
 
@@ -1684,7 +1684,7 @@ class ChatPSupergroup(ChatPChannelBase):
     __discriminators__ = ["type"]
 
 
-ChatP: TypeAlias = Union[ChatPPrivate, ChatPGroup, ChatPSupergroup, ChatPChannel]
+ChatP = Union[ChatPPrivate, ChatPGroup, ChatPSupergroup, ChatPChannel]
 
 
 class Document(_Type):
@@ -1971,7 +1971,7 @@ class InputMediaVideo(_InputMediaCommon):
     __discriminators__ = ["video"]
 
 
-InputMedia: TypeAlias = Union[
+InputMedia = Union[
     InputMediaAnimation,
     InputMediaAudio,
     InputMediaDocument,
@@ -2022,7 +2022,7 @@ class InputStoryContentVideo(_Type):
     __discriminators__ = ["video"]
 
 
-InputStoryContent: TypeAlias = Union[InputStoryContentPhoto, InputStoryContentVideo]
+InputStoryContent = Union[InputStoryContentPhoto, InputStoryContentVideo]
 
 
 class KeyboardButtonText(_Type):
@@ -2121,7 +2121,7 @@ class KeyboardButtonMiniApp(KeyboardButtonText):
     __discriminators__ = ["miniApp"]
 
 
-KeyboardButton: TypeAlias = Union[
+KeyboardButton = Union[
     KeyboardButtonText,
     KeyboardButtonRequestUser,
     KeyboardButtonRequestChat,
@@ -2321,7 +2321,7 @@ class MessageContentInvoice(_Type):
         self.is_flexible = is_flexible
 
 
-MessageContent: TypeAlias = Union[
+MessageContent = Union[
     MessageContentText,
     MessageContentLocation,
     MessageContentVenue,
@@ -2555,7 +2555,7 @@ class StoryPrivacyOnly(_Type):
     __discriminators__ = ["only"]
 
 
-StoryPrivacy: TypeAlias = Union[
+StoryPrivacy = Union[
     StoryPrivacyEveryone,
     StoryPrivacyConctacts,
     StoryPrivacyCloseFriends,
@@ -2929,9 +2929,9 @@ class ChatPrivate(ChatBase, ChatPPrivate):
         self.color = color
 
 
-Chat: TypeAlias = Union[ChatChannel, ChatSupergroup, ChatGroup, ChatPrivate]
+Chat = Union[ChatChannel, ChatSupergroup, ChatGroup, ChatPrivate]
 
-ChatMemberStatus: TypeAlias = Union[
+ChatMemberStatus = Union[
     Literal["creator"],
     Literal["administrator"],
     Literal["member"],
@@ -3054,7 +3054,7 @@ class ChatMemberBanned(_ChatMemberBase):
         self.user = user
 
 
-ChatMember: TypeAlias = Union[
+ChatMember = Union[
     ChatMemberCreator,
     ChatMemberAdministrator,
     ChatMemberMember,
@@ -3252,7 +3252,7 @@ class InlineKeyboardButtonPay(_InlineKeyboardButtonBase):
     __discriminators__ = ["pay"]
 
 
-InlineKeyboardButton: TypeAlias = Union[
+InlineKeyboardButton = Union[
     InlineKeyboardButtonURL,
     InlineKeyboardButtonCallback,
     InlineKeyboardButtonMiniApp,
@@ -3530,7 +3530,7 @@ class ReplyToStory(_Type):
     __discriminators__ = ["storyId"]
 
 
-ReplyTo: TypeAlias = Union[ReplyToMessage, ReplyToStory]
+ReplyTo = Union[ReplyToMessage, ReplyToStory]
 
 
 class StoryContentPhoto(_Type):
@@ -3569,9 +3569,7 @@ class StoryContentUnsupported(_Type):
     __discriminators__ = ["unsupported"]
 
 
-StoryContent: TypeAlias = Union[
-    StoryContentPhoto, StoryContentVideo, StoryContentUnsupported
-]
+StoryContent = Union[StoryContentPhoto, StoryContentVideo, StoryContentUnsupported]
 
 
 class StoryInteractions(_Type):
@@ -3684,7 +3682,7 @@ class StoryInteractiveAreaMessage(_StoryInteractiveAreaPositionCommon):
         self.position = position
 
 
-StoryInteractiveArea: TypeAlias = Union[
+StoryInteractiveArea = Union[
     StoryInteractiveAreaLocation,
     StoryInteractiveAreaVenue,
     StoryInteractiveAreaReaction,
@@ -3854,7 +3852,7 @@ class ReplyMarkupForceReply(_Type):
     __discriminators__ = ["forceReply"]
 
 
-ReplyMarkup: TypeAlias = Union[
+ReplyMarkup = Union[
     ReplyMarkupInlineKeyboard,
     ReplyMarkupKeyboard,
     ReplyMarkupRemoveKeyboard,
@@ -3908,7 +3906,7 @@ class Story(_Type):
         self.caption_entities = caption_entities
 
 
-InlineQueryResultType: TypeAlias = Union[
+InlineQueryResultType = Union[
     Literal["article"],
     Literal["audio"],
     Literal["document"],
@@ -4862,7 +4860,7 @@ class InlineQueryResultVoice(
     __discriminators__ = ["type", "url"]
 
 
-InlineQueryResult: TypeAlias = Union[
+InlineQueryResult = Union[
     InlineQueryResultCachedAudio,
     InlineQueryResultCachedDocument,
     InlineQueryResultCachedGif,
@@ -8877,7 +8875,7 @@ class MessageSuccessfulPayment(_MessageBase):
     __discriminators__ = ["successfulPayment"]
 
 
-Message: TypeAlias = Union[
+Message = Union[
     MessageText,
     MessageLink,
     MessagePhoto,
@@ -9302,7 +9300,7 @@ class UpdateJoinRequest(_Type):
     __discriminators__ = ["joinRequest"]
 
 
-Update: TypeAlias = Union[
+Update = Union[
     UpdateNewMessage,
     UpdateEditedMessage,
     UpdateDeletedMessages,
