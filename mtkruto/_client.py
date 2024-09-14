@@ -2106,6 +2106,18 @@ class Client:
             self,
         )
 
+    async def open_chat(
+        self,
+        chat_id: ID,
+    ) -> None:
+        await self._request("openChat", chat_id)
+
+    async def close_chat(
+        self,
+        chat_id: ID,
+    ) -> None:
+        await self._request("closeChat", chat_id)
+
 
 T = TypeVar("T")
 HandlerCallback = Callable[[Client, T], Coroutine[Any, Any, None]]
