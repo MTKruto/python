@@ -91,15 +91,15 @@ from .types import (
     UpdateChatMember,
     UpdateChosenInlineResult,
     UpdateDeletedChat,
-    UpdateDeletedMessages,
     UpdateDeletedStory,
     UpdateEditedChat,
-    UpdateEditedMessage,
     UpdateInlineQuery,
     UpdateJoinRequest,
+    UpdateMessageEdited,
     UpdateMessageInteractions,
     UpdateMessageReactionCount,
     UpdateMessageReactions,
+    UpdateMessagesDeleted,
     UpdateMyChatMember,
     UpdateNewChat,
     UpdateNewMessage,
@@ -229,8 +229,8 @@ class Client:
 
     def on_deleted_messages(
         self,
-    ) -> Callable[["HandlerCallback[UpdateDeletedMessages]"], None]:
-        def decorator(callback: HandlerCallback[UpdateDeletedMessages]) -> None:
+    ) -> Callable[["HandlerCallback[UpdateMessagesDeleted]"], None]:
+        def decorator(callback: HandlerCallback[UpdateMessagesDeleted]) -> None:
             self.add_handler(DeletedMessagesHandler(callback))
 
         return decorator
@@ -2149,30 +2149,30 @@ class NewMessageHandler(Handler[UpdateNewMessage]):
         )
 
 
-class EditedMessageHandler(Handler[UpdateEditedMessage]):
+class EditedMessageHandler(Handler[UpdateMessageEdited]):
     def __init__(
         self, callback_: HandlerCallback[Any], filter_: Optional[Filter] = None
     ):
-        async def callback(client: Client, update: UpdateEditedMessage) -> None:
+        async def callback(client: Client, update: UpdateMessageEdited) -> None:
             await callback_(client, update.edited_message)
 
         super().__init__(
             lambda update: (
-                isinstance(update, UpdateEditedMessage) and True
+                isinstance(update, UpdateMessageEdited) and True
                 if filter_ is None
-                else filter_(cast(UpdateEditedMessage, update).edited_message)
+                else filter_(cast(UpdateMessageEdited, update).edited_message)
             ),
             callback,
         )
 
 
-class DeletedMessagesHandler(Handler[UpdateDeletedMessages]):
-    def __init__(self, callback_: HandlerCallback[UpdateDeletedMessages]):
-        async def callback(client: Client, update: UpdateDeletedMessages) -> None:
+class DeletedMessagesHandler(Handler[UpdateMessagesDeleted]):
+    def __init__(self, callback_: HandlerCallback[UpdateMessagesDeleted]):
+        async def callback(client: Client, update: UpdateMessagesDeleted) -> None:
             await callback_(client, update)
 
         super().__init__(
-            lambda update: isinstance(update, UpdateDeletedMessages), callback
+            lambda update: isinstance(update, UpdateMessagesDeleted), callback
         )
 
 
