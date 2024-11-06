@@ -551,6 +551,7 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        star_count: Optional[int] = None,
     ) -> MessageVideo:
         return to(
             MessageVideo,
@@ -580,6 +581,7 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "starCount": star_count,
                 },
             ),
             self,
@@ -754,6 +756,7 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        star_count: Optional[int] = None,
     ) -> MessagePhoto:
         return to(
             MessagePhoto,
@@ -778,6 +781,7 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "starCount": star_count,
                 },
             ),
             self,
