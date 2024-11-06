@@ -955,6 +955,31 @@ class PriceTag(_Type):
         self.amount = amount
 
 
+class RefundedPayment(_Type):
+    currency: Annotated[str, "currency"]
+    total_amount: Annotated[int, "totalAmount"]
+    invoice_payload: Annotated[str, "invoicePayload"]
+    telegram_payment_charge_id: Annotated[str, "telegramPaymentChargeId"]
+    provider_payment_charge_id: Annotated[Optional[str], "providerPaymentChargeId"]
+
+    def __init__(
+        self,
+        currency: Annotated[str, "currency"],
+        total_amount: Annotated[int, "totalAmount"],
+        invoice_payload: Annotated[str, "invoicePayload"],
+        telegram_payment_charge_id: Annotated[str, "telegramPaymentChargeId"],
+        *,
+        provider_payment_charge_id: Annotated[
+            Optional[str], "providerPaymentChargeId"
+        ] = None,
+    ):
+        self.currency = currency
+        self.total_amount = total_amount
+        self.invoice_payload = invoice_payload
+        self.telegram_payment_charge_id = telegram_payment_charge_id
+        self.provider_payment_charge_id = provider_payment_charge_id
+
+
 class ReactionEmoji(_Type):
     type: Annotated[Literal["emoji"], "type"]
     emoji: Annotated[str, "emoji"]
@@ -968,20 +993,30 @@ class ReactionEmoji(_Type):
         self.emoji = emoji
 
 
-class ReactionCustomEmoji(_Type):
-    type: Annotated[Literal["customEmoji"], "type"]
+class ReactionCustom(_Type):
+    type: Annotated[Literal["custom"], "type"]
     id: Annotated[str, "id"]
 
     def __init__(
         self,
-        type: Annotated[Literal["customEmoji"], "type"],
+        type: Annotated[Literal["custom"], "type"],
         id: Annotated[str, "id"],
     ):
         self.type = type
         self.id = id
 
 
-Reaction = Union[ReactionEmoji, ReactionCustomEmoji]
+class ReactionPaid(_Type):
+    type: Annotated[Literal["paid"], "type"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["paid"], "type"],
+    ):
+        self.type = type
+
+
+Reaction = Union[ReactionEmoji, ReactionCustom, ReactionPaid]
 
 
 class RestrictionReason(_Type):
@@ -1043,6 +1078,29 @@ class StoryReference(_Type):
     ):
         self.chat_id = chat_id
         self.story_id = story_id
+
+
+class SwitchInlineQueryChosenChats(_Type):
+    query: Annotated[str, "query"]
+    allow_users: Annotated[Optional[bool], "allowUsers"]
+    allow_bots: Annotated[Optional[bool], "allowBots"]
+    allow_groups: Annotated[Optional[bool], "allowGroups"]
+    allow_channels: Annotated[Optional[bool], "allowChannels"]
+
+    def __init__(
+        self,
+        query: Annotated[str, "query"],
+        *,
+        allow_users: Annotated[Optional[bool], "allowUsers"] = None,
+        allow_bots: Annotated[Optional[bool], "allowBots"] = None,
+        allow_groups: Annotated[Optional[bool], "allowGroups"] = None,
+        allow_channels: Annotated[Optional[bool], "allowChannels"] = None,
+    ):
+        self.query = query
+        self.allow_users = allow_users
+        self.allow_bots = allow_bots
+        self.allow_groups = allow_groups
+        self.allow_channels = allow_channels
 
 
 class Thumbnail(_Type):
@@ -1715,17 +1773,21 @@ class Document(_Type):
 class Giveaway(_Type):
     parameters: Annotated["GiveawayParameters", "parameters"]
     winner_count: Annotated[int, "winnerCount"]
-    month_count: Annotated[int, "monthCount"]
+    premium_month_count: Annotated[Optional[int], "premiumMonthCount"]
+    star_count: Annotated[Optional[int], "starCount"]
 
     def __init__(
         self,
         parameters: Annotated["GiveawayParameters", "parameters"],
         winner_count: Annotated[int, "winnerCount"],
-        month_count: Annotated[int, "monthCount"],
+        *,
+        premium_month_count: Annotated[Optional[int], "premiumMonthCount"] = None,
+        star_count: Annotated[Optional[int], "starCount"] = None,
     ):
         self.parameters = parameters
         self.winner_count = winner_count
-        self.month_count = month_count
+        self.premium_month_count = premium_month_count
+        self.star_count = star_count
 
 
 class InlineQueryResultButton(_Type):
@@ -2882,6 +2944,7 @@ class ChatPrivate(ChatBase, ChatPPrivate):
     address: Annotated[Optional[str], "address"]
     location: Annotated[Optional["Location"], "location"]
     opening_hours: Annotated[Optional["OpeningHours"], "openingHours"]
+    has_main_mini_app: Annotated[Optional[bool], "hasMainMiniApp"]
 
     def __init__(
         self,
@@ -2898,6 +2961,7 @@ class ChatPrivate(ChatBase, ChatPPrivate):
         address: Annotated[Optional[str], "address"] = None,
         location: Annotated[Optional["Location"], "location"] = None,
         opening_hours: Annotated[Optional["OpeningHours"], "openingHours"] = None,
+        has_main_mini_app: Annotated[Optional[bool], "hasMainMiniApp"] = None,
         photo: Annotated[Optional["Photo"], "photo"] = None,
         is_bot: Annotated[Optional[bool], "isBot"] = None,
         last_name: Annotated[Optional[str], "lastName"] = None,
@@ -2912,6 +2976,7 @@ class ChatPrivate(ChatBase, ChatPPrivate):
         self.address = address
         self.location = location
         self.opening_hours = opening_hours
+        self.has_main_mini_app = has_main_mini_app
         self.photo = photo
         self.type = type
         self.is_bot = is_bot
@@ -3087,6 +3152,112 @@ class ChosenInlineResult(_Type):
         self.query = query
 
 
+class _ForwardHeaderCommon(_Type):
+    date: Annotated[datetime.datetime, "date"]
+
+    def __init__(
+        self,
+        date: Annotated[datetime.datetime, "date"],
+    ):
+        self.date = date
+
+
+class ForwardHeaderUser(_ForwardHeaderCommon):
+    type: Annotated[Literal["user"], "type"]
+    user: Annotated["User", "user"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["user"], "type"],
+        user: Annotated["User", "user"],
+        date: Annotated[datetime.datetime, "date"],
+    ):
+        self.type = type
+        self.user = user
+        self.date = date
+
+    __discriminators__ = ["type"]
+
+
+class ForwardHeaderChannel(_ForwardHeaderCommon):
+    type: Annotated[Literal["channel"], "type"]
+    chat: Annotated["ChatPChannel", "chat"]
+    message_id: Annotated[int, "messageId"]
+    author_signature: Annotated[Optional[str], "authorSignature"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["channel"], "type"],
+        chat: Annotated["ChatPChannel", "chat"],
+        message_id: Annotated[int, "messageId"],
+        date: Annotated[datetime.datetime, "date"],
+        *,
+        author_signature: Annotated[Optional[str], "authorSignature"] = None,
+    ):
+        self.type = type
+        self.chat = chat
+        self.message_id = message_id
+        self.author_signature = author_signature
+        self.date = date
+
+    __discriminators__ = ["type"]
+
+
+class ForwardHeaderSupergroup(_ForwardHeaderCommon):
+    type: Annotated[Literal["supergroup"], "type"]
+    chat: Annotated["ChatPSupergroup", "chat"]
+    title: Annotated[Optional[str], "title"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["supergroup"], "type"],
+        chat: Annotated["ChatPSupergroup", "chat"],
+        date: Annotated[datetime.datetime, "date"],
+        *,
+        title: Annotated[Optional[str], "title"] = None,
+    ):
+        self.type = type
+        self.chat = chat
+        self.title = title
+        self.date = date
+
+
+class ForwardHeaderHidden(_ForwardHeaderCommon):
+    type: Annotated[Literal["hidden"], "type"]
+    name: Annotated[str, "name"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["hidden"], "type"],
+        name: Annotated[str, "name"],
+        date: Annotated[datetime.datetime, "date"],
+    ):
+        self.type = type
+        self.name = name
+        self.date = date
+
+
+class ForwardHeaderUnsupported(_ForwardHeaderCommon):
+    type: Annotated[Literal["unsupported"], "type"]
+
+    def __init__(
+        self,
+        type: Annotated[Literal["unsupported"], "type"],
+        date: Annotated[datetime.datetime, "date"],
+    ):
+        self.type = type
+        self.date = date
+
+
+ForwardHeader = Union[
+    ForwardHeaderUser,
+    ForwardHeaderChannel,
+    ForwardHeaderSupergroup,
+    ForwardHeaderHidden,
+    ForwardHeaderUnsupported,
+]
+
+
 class Game(_Type):
     title: Annotated[str, "title"]
     description: Annotated[str, "description"]
@@ -3224,6 +3395,22 @@ class InlineKeyboardButtonSwitchInlineCurrent(_InlineKeyboardButtonBase):
     __discriminators__ = ["switchInlineQueryCurrentChat"]
 
 
+class InlineKeyboardButtonSwitchInlineChosen(_InlineKeyboardButtonBase):
+    switch_inline_query_chosen_chats: Annotated[Any, "switchInlineQueryChosenChats"]
+
+    def __init__(
+        self,
+        switch_inline_query_chosen_chats: Annotated[
+            Any, "switchInlineQueryChosenChats"
+        ],
+        text: Annotated[str, "text"],
+    ):
+        self.switch_inline_query_chosen_chats = switch_inline_query_chosen_chats
+        self.text = text
+
+    __discriminators__ = ["switchInlineQueryChosenChats"]
+
+
 class InlineKeyboardButtonGame(_InlineKeyboardButtonBase):
     callback_game: Annotated[dict[str, Any], "callbackGame"]
 
@@ -3252,6 +3439,20 @@ class InlineKeyboardButtonPay(_InlineKeyboardButtonBase):
     __discriminators__ = ["pay"]
 
 
+class InlineKeyboardButtonCopy(_InlineKeyboardButtonBase):
+    copy: Annotated[str, "copy"]
+
+    def __init__(
+        self,
+        copy: Annotated[str, "copy"],
+        text: Annotated[str, "text"],
+    ):
+        self.copy = copy
+        self.text = text
+
+    __discriminators__ = ["copy"]
+
+
 InlineKeyboardButton = Union[
     InlineKeyboardButtonURL,
     InlineKeyboardButtonCallback,
@@ -3259,8 +3460,10 @@ InlineKeyboardButton = Union[
     InlineKeyboardButtonLogin,
     InlineKeyboardButtonSwitchInline,
     InlineKeyboardButtonSwitchInlineCurrent,
+    InlineKeyboardButtonSwitchInlineChosen,
     InlineKeyboardButtonGame,
     InlineKeyboardButtonPay,
+    InlineKeyboardButtonCopy,
 ]
 
 
@@ -3319,6 +3522,8 @@ class InviteLink(_Type):
     expires_at: Annotated[Optional[datetime.datetime], "expiresAt"]
     limit: Annotated[Optional[int], "limit"]
     pending_join_request_count: Annotated[Optional[int], "pendingJoinRequestCount"]
+    subscription_price: Annotated[Optional[int], "subscriptionPrice"]
+    subscription_expires_in: Annotated[Optional[int], "subscriptionExpiresIn"]
 
     def __init__(
         self,
@@ -3333,6 +3538,10 @@ class InviteLink(_Type):
         pending_join_request_count: Annotated[
             Optional[int], "pendingJoinRequestCount"
         ] = None,
+        subscription_price: Annotated[Optional[int], "subscriptionPrice"] = None,
+        subscription_expires_in: Annotated[
+            Optional[int], "subscriptionExpiresIn"
+        ] = None,
     ):
         self.invite_link = invite_link
         self.creator = creator
@@ -3342,6 +3551,8 @@ class InviteLink(_Type):
         self.expires_at = expires_at
         self.limit = limit
         self.pending_join_request_count = pending_join_request_count
+        self.subscription_price = subscription_price
+        self.subscription_expires_in = subscription_expires_in
 
 
 class MessageInteractions(_Type):
@@ -4893,12 +5104,7 @@ class _MessageBase(_Type):
     date: Annotated[datetime.datetime, "date"]
     chat: Annotated["ChatP", "chat"]
     link: Annotated[Optional[str], "link"]
-    forward_from: Annotated[Optional["User"], "forwardFrom"]
-    forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"]
-    forward_id: Annotated[Optional[int], "forwardId"]
-    forward_signature: Annotated[Optional[str], "forwardSignature"]
-    forward_sender_name: Annotated[Optional[str], "forwardSenderName"]
-    forward_date: Annotated[Optional[datetime.datetime], "forwardDate"]
+    forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"]
     is_topic_message: Annotated[bool, "isTopicMessage"]
     is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"]
     reply_to_message: Annotated[Optional["Message"], "replyToMessage"]
@@ -4916,6 +5122,8 @@ class _MessageBase(_Type):
     business_connection_id: Annotated[Optional[str], "businessConnectionId"]
     sender_boost_count: Annotated[Optional[int], "senderBoostCount"]
     via_business_bot: Annotated[Optional["User"], "viaBusinessBot"]
+    effect_id: Annotated[Optional[str], "effectId"]
+    scheduled: Annotated[Optional[bool], "scheduled"]
 
     def __init__(
         self,
@@ -4929,12 +5137,7 @@ class _MessageBase(_Type):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -4951,6 +5154,8 @@ class _MessageBase(_Type):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.out = out
         self.id = id
@@ -4961,11 +5166,6 @@ class _MessageBase(_Type):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -4983,6 +5183,8 @@ class _MessageBase(_Type):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     async def reply(
         self,
@@ -5684,12 +5886,7 @@ class _MessageMediaBase(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -5706,6 +5903,8 @@ class _MessageMediaBase(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.caption = caption
         self.caption_entities = caption_entities
@@ -5719,11 +5918,6 @@ class _MessageMediaBase(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -5741,6 +5935,8 @@ class _MessageMediaBase(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
 
 class MessageText(_MessageBase):
@@ -5763,12 +5959,7 @@ class MessageText(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -5785,6 +5976,8 @@ class MessageText(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.text = text
         self.entities = entities
@@ -5798,11 +5991,6 @@ class MessageText(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -5820,6 +6008,8 @@ class MessageText(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["text", "entities"]
 
@@ -5840,12 +6030,7 @@ class MessageLink(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -5862,6 +6047,8 @@ class MessageLink(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.link_preview = link_preview
         self.out = out
@@ -5873,11 +6060,6 @@ class MessageLink(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -5895,6 +6077,8 @@ class MessageLink(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["linkPreview"]
 
@@ -5920,12 +6104,7 @@ class MessagePhoto(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -5942,6 +6121,8 @@ class MessagePhoto(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.photo = photo
         self.caption = caption
@@ -5956,11 +6137,6 @@ class MessagePhoto(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -5978,6 +6154,8 @@ class MessagePhoto(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["photo"]
 
@@ -6003,12 +6181,7 @@ class MessageDocument(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6025,6 +6198,8 @@ class MessageDocument(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.document = document
         self.caption = caption
@@ -6039,11 +6214,6 @@ class MessageDocument(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6061,6 +6231,8 @@ class MessageDocument(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["document"]
 
@@ -6086,12 +6258,7 @@ class MessageVideo(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6108,6 +6275,8 @@ class MessageVideo(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.video = video
         self.caption = caption
@@ -6122,11 +6291,6 @@ class MessageVideo(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6144,6 +6308,8 @@ class MessageVideo(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["video"]
 
@@ -6164,12 +6330,7 @@ class MessageSticker(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6186,6 +6347,8 @@ class MessageSticker(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.sticker = sticker
         self.out = out
@@ -6197,11 +6360,6 @@ class MessageSticker(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6219,6 +6377,8 @@ class MessageSticker(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["sticker"]
 
@@ -6244,12 +6404,7 @@ class MessageAnimation(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6266,6 +6421,8 @@ class MessageAnimation(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.animation = animation
         self.caption = caption
@@ -6280,11 +6437,6 @@ class MessageAnimation(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6302,6 +6454,8 @@ class MessageAnimation(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["animation"]
 
@@ -6327,12 +6481,7 @@ class MessageVoice(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6349,6 +6498,8 @@ class MessageVoice(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.voice = voice
         self.caption = caption
@@ -6363,11 +6514,6 @@ class MessageVoice(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6385,6 +6531,8 @@ class MessageVoice(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["voice"]
 
@@ -6410,12 +6558,7 @@ class MessageAudio(_MessageMediaBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6432,6 +6575,8 @@ class MessageAudio(_MessageMediaBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.audio = audio
         self.caption = caption
@@ -6446,11 +6591,6 @@ class MessageAudio(_MessageMediaBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6468,6 +6608,8 @@ class MessageAudio(_MessageMediaBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["audio"]
 
@@ -6488,12 +6630,7 @@ class MessageDice(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6510,6 +6647,8 @@ class MessageDice(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.dice = dice
         self.out = out
@@ -6521,11 +6660,6 @@ class MessageDice(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6543,6 +6677,8 @@ class MessageDice(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["dice"]
 
@@ -6563,12 +6699,7 @@ class MessageVideoNote(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6585,6 +6716,8 @@ class MessageVideoNote(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.video_note = video_note
         self.out = out
@@ -6596,11 +6729,6 @@ class MessageVideoNote(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6618,6 +6746,8 @@ class MessageVideoNote(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["videoNote"]
 
@@ -6638,12 +6768,7 @@ class MessageContact(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6660,6 +6785,8 @@ class MessageContact(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.contact = contact
         self.out = out
@@ -6671,11 +6798,6 @@ class MessageContact(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6693,6 +6815,8 @@ class MessageContact(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["contact"]
 
@@ -6713,12 +6837,7 @@ class MessageGame(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6735,6 +6854,8 @@ class MessageGame(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.game = game
         self.out = out
@@ -6746,11 +6867,6 @@ class MessageGame(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6768,6 +6884,8 @@ class MessageGame(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["game"]
 
@@ -6788,12 +6906,7 @@ class MessagePoll(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6810,6 +6923,8 @@ class MessagePoll(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.poll = poll
         self.out = out
@@ -6821,11 +6936,6 @@ class MessagePoll(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6843,6 +6953,8 @@ class MessagePoll(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["poll"]
 
@@ -6863,12 +6975,7 @@ class MessageInvoice(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6885,6 +6992,8 @@ class MessageInvoice(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.invoice = invoice
         self.out = out
@@ -6896,11 +7005,6 @@ class MessageInvoice(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6918,6 +7022,8 @@ class MessageInvoice(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["invoice"]
 
@@ -6938,12 +7044,7 @@ class MessageVenue(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -6960,6 +7061,8 @@ class MessageVenue(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.venue = venue
         self.out = out
@@ -6971,11 +7074,6 @@ class MessageVenue(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -6993,6 +7091,8 @@ class MessageVenue(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["venue"]
 
@@ -7013,12 +7113,7 @@ class MessageLocation(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7035,6 +7130,8 @@ class MessageLocation(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.location = location
         self.out = out
@@ -7046,11 +7143,6 @@ class MessageLocation(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7068,6 +7160,8 @@ class MessageLocation(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["location"]
 
@@ -7088,12 +7182,7 @@ class MessageNewChatMembers(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7110,6 +7199,8 @@ class MessageNewChatMembers(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.new_chat_members = new_chat_members
         self.out = out
@@ -7121,11 +7212,6 @@ class MessageNewChatMembers(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7143,6 +7229,8 @@ class MessageNewChatMembers(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["newChatMembers"]
 
@@ -7163,12 +7251,7 @@ class MessageLeftChatMember(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7185,6 +7268,8 @@ class MessageLeftChatMember(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.left_chat_member = left_chat_member
         self.out = out
@@ -7196,11 +7281,6 @@ class MessageLeftChatMember(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7218,6 +7298,8 @@ class MessageLeftChatMember(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["leftChatMember"]
 
@@ -7238,12 +7320,7 @@ class MessageNewChatTitle(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7260,6 +7337,8 @@ class MessageNewChatTitle(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.new_chat_title = new_chat_title
         self.out = out
@@ -7271,11 +7350,6 @@ class MessageNewChatTitle(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7293,6 +7367,8 @@ class MessageNewChatTitle(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["newChatTitle"]
 
@@ -7313,12 +7389,7 @@ class MessageNewChatPhoto(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7335,6 +7406,8 @@ class MessageNewChatPhoto(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.new_chat_photo = new_chat_photo
         self.out = out
@@ -7346,11 +7419,6 @@ class MessageNewChatPhoto(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7368,6 +7436,8 @@ class MessageNewChatPhoto(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["newChatPhoto"]
 
@@ -7388,12 +7458,7 @@ class MessageDeletedChatPhoto(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7410,6 +7475,8 @@ class MessageDeletedChatPhoto(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.deleted_chat_photo = deleted_chat_photo
         self.out = out
@@ -7421,11 +7488,6 @@ class MessageDeletedChatPhoto(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7443,6 +7505,8 @@ class MessageDeletedChatPhoto(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["deletedChatPhoto"]
 
@@ -7465,12 +7529,7 @@ class MessageGroupCreated(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7487,6 +7546,8 @@ class MessageGroupCreated(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.group_created = group_created
         self.new_chat_members = new_chat_members
@@ -7499,11 +7560,6 @@ class MessageGroupCreated(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7521,6 +7577,8 @@ class MessageGroupCreated(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["groupCreated", "newChatMembers"]
 
@@ -7541,12 +7599,7 @@ class MessageSupergroupCreated(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7563,6 +7616,8 @@ class MessageSupergroupCreated(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.supergroup_created = supergroup_created
         self.out = out
@@ -7574,11 +7629,6 @@ class MessageSupergroupCreated(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7596,6 +7646,8 @@ class MessageSupergroupCreated(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["supergroupCreated"]
 
@@ -7616,12 +7668,7 @@ class MessageChannelCreated(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7638,6 +7685,8 @@ class MessageChannelCreated(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.channel_created = channel_created
         self.out = out
@@ -7649,11 +7698,6 @@ class MessageChannelCreated(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7671,6 +7715,8 @@ class MessageChannelCreated(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["channelCreated"]
 
@@ -7691,12 +7737,7 @@ class MessageAutoDeleteTimerChanged(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7713,6 +7754,8 @@ class MessageAutoDeleteTimerChanged(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.new_auto_delete_time = new_auto_delete_time
         self.out = out
@@ -7724,11 +7767,6 @@ class MessageAutoDeleteTimerChanged(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7746,6 +7784,8 @@ class MessageAutoDeleteTimerChanged(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["newAutoDeleteTime"]
 
@@ -7766,12 +7806,7 @@ class MessageChatMigratedTo(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7788,6 +7823,8 @@ class MessageChatMigratedTo(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.chat_migrated_to = chat_migrated_to
         self.out = out
@@ -7799,11 +7836,6 @@ class MessageChatMigratedTo(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7821,6 +7853,8 @@ class MessageChatMigratedTo(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["chatMigratedTo"]
 
@@ -7841,12 +7875,7 @@ class MessageChatMigratedFrom(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7863,6 +7892,8 @@ class MessageChatMigratedFrom(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.chat_migrated_from = chat_migrated_from
         self.out = out
@@ -7874,11 +7905,6 @@ class MessageChatMigratedFrom(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7896,6 +7922,8 @@ class MessageChatMigratedFrom(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["chatMigratedFrom"]
 
@@ -7916,12 +7944,7 @@ class MessagePinnedMessage(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -7938,6 +7961,8 @@ class MessagePinnedMessage(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.pinned_message = pinned_message
         self.out = out
@@ -7949,11 +7974,6 @@ class MessagePinnedMessage(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -7971,6 +7991,8 @@ class MessagePinnedMessage(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["pinnedMessage"]
 
@@ -7991,12 +8013,7 @@ class MessageUserShared(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8013,6 +8030,8 @@ class MessageUserShared(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.user_shared = user_shared
         self.out = out
@@ -8024,11 +8043,6 @@ class MessageUserShared(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8046,6 +8060,8 @@ class MessageUserShared(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["userShared"]
 
@@ -8066,12 +8082,7 @@ class MessageWriteAccessAllowed(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8088,6 +8099,8 @@ class MessageWriteAccessAllowed(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.write_access_allowed = write_access_allowed
         self.out = out
@@ -8099,11 +8112,6 @@ class MessageWriteAccessAllowed(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8121,6 +8129,8 @@ class MessageWriteAccessAllowed(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["writeAccessAllowed"]
 
@@ -8141,12 +8151,7 @@ class MessageForumTopicCreated(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8163,6 +8168,8 @@ class MessageForumTopicCreated(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.forum_topic_created = forum_topic_created
         self.out = out
@@ -8174,11 +8181,6 @@ class MessageForumTopicCreated(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8196,6 +8198,8 @@ class MessageForumTopicCreated(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["forumTopicCreated"]
 
@@ -8216,12 +8220,7 @@ class MessageForumTopicEdited(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8238,6 +8237,8 @@ class MessageForumTopicEdited(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.forum_topic_edited = forum_topic_edited
         self.out = out
@@ -8249,11 +8250,6 @@ class MessageForumTopicEdited(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8271,6 +8267,8 @@ class MessageForumTopicEdited(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["forumTopicEdited"]
 
@@ -8291,12 +8289,7 @@ class MessageForumTopicClosed(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8313,6 +8306,8 @@ class MessageForumTopicClosed(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.forum_topic_closed = forum_topic_closed
         self.out = out
@@ -8324,11 +8319,6 @@ class MessageForumTopicClosed(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8346,6 +8336,8 @@ class MessageForumTopicClosed(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["forumTopicClosed"]
 
@@ -8366,12 +8358,7 @@ class MessageForumTopicReopened(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8388,6 +8375,8 @@ class MessageForumTopicReopened(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.forum_topic_reopened = forum_topic_reopened
         self.out = out
@@ -8399,11 +8388,6 @@ class MessageForumTopicReopened(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8421,6 +8405,8 @@ class MessageForumTopicReopened(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["forumTopicReopened"]
 
@@ -8441,12 +8427,7 @@ class MessageVideoChatScheduled(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8463,6 +8444,8 @@ class MessageVideoChatScheduled(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.video_chat_scheduled = video_chat_scheduled
         self.out = out
@@ -8474,11 +8457,6 @@ class MessageVideoChatScheduled(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8496,6 +8474,8 @@ class MessageVideoChatScheduled(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["videoChatScheduled"]
 
@@ -8516,12 +8496,7 @@ class MessageVideoChatStarted(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8538,6 +8513,8 @@ class MessageVideoChatStarted(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.video_chat_started = video_chat_started
         self.out = out
@@ -8549,11 +8526,6 @@ class MessageVideoChatStarted(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8571,6 +8543,8 @@ class MessageVideoChatStarted(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["videoChatStarted"]
 
@@ -8591,12 +8565,7 @@ class MessageVideoChatEnded(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8613,6 +8582,8 @@ class MessageVideoChatEnded(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.video_chat_ended = video_chat_ended
         self.out = out
@@ -8624,11 +8595,6 @@ class MessageVideoChatEnded(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8646,6 +8612,8 @@ class MessageVideoChatEnded(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["videoChatEnded"]
 
@@ -8666,12 +8634,7 @@ class MessageGiveaway(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8688,6 +8651,8 @@ class MessageGiveaway(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.giveaway = giveaway
         self.out = out
@@ -8699,11 +8664,6 @@ class MessageGiveaway(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8721,6 +8681,8 @@ class MessageGiveaway(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["giveaway"]
 
@@ -8741,12 +8703,7 @@ class MessageUnsupported(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8763,6 +8720,8 @@ class MessageUnsupported(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.unsupported = unsupported
         self.out = out
@@ -8774,11 +8733,6 @@ class MessageUnsupported(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8796,6 +8750,8 @@ class MessageUnsupported(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["unsupported"]
 
@@ -8816,12 +8772,7 @@ class MessageSuccessfulPayment(_MessageBase):
         from_: Annotated[Optional["User"], "from"] = None,
         sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
         link: Annotated[Optional[str], "link"] = None,
-        forward_from: Annotated[Optional["User"], "forwardFrom"] = None,
-        forward_from_chat: Annotated[Optional["ChatP"], "forwardFromChat"] = None,
-        forward_id: Annotated[Optional[int], "forwardId"] = None,
-        forward_signature: Annotated[Optional[str], "forwardSignature"] = None,
-        forward_sender_name: Annotated[Optional[str], "forwardSenderName"] = None,
-        forward_date: Annotated[Optional[datetime.datetime], "forwardDate"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
         is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
         reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
         reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
@@ -8838,6 +8789,8 @@ class MessageSuccessfulPayment(_MessageBase):
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
         sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
         via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
     ):
         self.successful_payment = successful_payment
         self.out = out
@@ -8849,11 +8802,6 @@ class MessageSuccessfulPayment(_MessageBase):
         self.chat = chat
         self.link = link
         self.forward_from = forward_from
-        self.forward_from_chat = forward_from_chat
-        self.forward_id = forward_id
-        self.forward_signature = forward_signature
-        self.forward_sender_name = forward_sender_name
-        self.forward_date = forward_date
         self.is_topic_message = is_topic_message
         self.is_automatic_forward = is_automatic_forward
         self.reply_to_message = reply_to_message
@@ -8871,8 +8819,79 @@ class MessageSuccessfulPayment(_MessageBase):
         self.business_connection_id = business_connection_id
         self.sender_boost_count = sender_boost_count
         self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
 
     __discriminators__ = ["successfulPayment"]
+
+
+class MessageRefundedPayment(_MessageBase):
+    refunded_payment: Annotated["RefundedPayment", "refundedPayment"]
+
+    def __init__(
+        self,
+        refunded_payment: Annotated["RefundedPayment", "refundedPayment"],
+        out: Annotated[bool, "out"],
+        id: Annotated[int, "id"],
+        date: Annotated[datetime.datetime, "date"],
+        chat: Annotated["ChatP", "chat"],
+        is_topic_message: Annotated[bool, "isTopicMessage"],
+        *,
+        thread_id: Annotated[Optional[int], "threadId"] = None,
+        from_: Annotated[Optional["User"], "from"] = None,
+        sender_chat: Annotated[Optional["ChatP"], "senderChat"] = None,
+        link: Annotated[Optional[str], "link"] = None,
+        forward_from: Annotated[Optional["ForwardHeader"], "forwardFrom"] = None,
+        is_automatic_forward: Annotated[Optional[bool], "isAutomaticForward"] = None,
+        reply_to_message: Annotated[Optional["Message"], "replyToMessage"] = None,
+        reply_to_message_id: Annotated[Optional[int], "replyToMessageId"] = None,
+        reactions: Annotated[Optional[list["MessageReaction"]], "reactions"] = None,
+        reply_quote: Annotated[Optional["ReplyQuote"], "replyQuote"] = None,
+        via_bot: Annotated[Optional["User"], "viaBot"] = None,
+        edit_date: Annotated[Optional[datetime.datetime], "editDate"] = None,
+        has_protected_content: Annotated[Optional[bool], "hasProtectedContent"] = None,
+        media_group_id: Annotated[Optional[str], "mediaGroupId"] = None,
+        author_signature: Annotated[Optional[str], "authorSignature"] = None,
+        views: Annotated[Optional[int], "views"] = None,
+        forwards: Annotated[Optional[int], "forwards"] = None,
+        reply_markup: Annotated[Optional["ReplyMarkup"], "replyMarkup"] = None,
+        business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
+        sender_boost_count: Annotated[Optional[int], "senderBoostCount"] = None,
+        via_business_bot: Annotated[Optional["User"], "viaBusinessBot"] = None,
+        effect_id: Annotated[Optional[str], "effectId"] = None,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
+    ):
+        self.refunded_payment = refunded_payment
+        self.out = out
+        self.id = id
+        self.thread_id = thread_id
+        self.from_ = from_
+        self.sender_chat = sender_chat
+        self.date = date
+        self.chat = chat
+        self.link = link
+        self.forward_from = forward_from
+        self.is_topic_message = is_topic_message
+        self.is_automatic_forward = is_automatic_forward
+        self.reply_to_message = reply_to_message
+        self.reply_to_message_id = reply_to_message_id
+        self.reactions = reactions
+        self.reply_quote = reply_quote
+        self.via_bot = via_bot
+        self.edit_date = edit_date
+        self.has_protected_content = has_protected_content
+        self.media_group_id = media_group_id
+        self.author_signature = author_signature
+        self.views = views
+        self.forwards = forwards
+        self.reply_markup = reply_markup
+        self.business_connection_id = business_connection_id
+        self.sender_boost_count = sender_boost_count
+        self.via_business_bot = via_business_bot
+        self.effect_id = effect_id
+        self.scheduled = scheduled
+
+    __discriminators__ = ["refundedPayment"]
 
 
 Message = Union[
@@ -8917,6 +8936,7 @@ Message = Union[
     MessageGiveaway,
     MessageUnsupported,
     MessageSuccessfulPayment,
+    MessageRefundedPayment,
 ]
 
 
@@ -9066,7 +9086,7 @@ class UpdateNewMessage(_Type):
     __discriminators__ = ["message"]
 
 
-class UpdateEditedMessage(_Type):
+class UpdateMessageEdited(_Type):
     edited_message: Annotated["Message", "editedMessage"]
 
     def __init__(
@@ -9078,17 +9098,32 @@ class UpdateEditedMessage(_Type):
     __discriminators__ = ["editedMessage"]
 
 
-class UpdateDeletedMessages(_Type):
+class UpdateMessageScheduled(_Type):
+    scheduled_message: Annotated["Message", "scheduledMessage"]
+
+    def __init__(
+        self,
+        scheduled_message: Annotated["Message", "scheduledMessage"],
+    ):
+        self.scheduled_message = scheduled_message
+
+    __discriminators__ = ["scheduledMessage"]
+
+
+class UpdateMessagesDeleted(_Type):
     deleted_messages: Annotated[list["MessageReference"], "deletedMessages"]
+    scheduled: Annotated[Optional[bool], "scheduled"]
     business_connection_id: Annotated[Optional[str], "businessConnectionId"]
 
     def __init__(
         self,
         deleted_messages: Annotated[list["MessageReference"], "deletedMessages"],
         *,
+        scheduled: Annotated[Optional[bool], "scheduled"] = None,
         business_connection_id: Annotated[Optional[str], "businessConnectionId"] = None,
     ):
         self.deleted_messages = deleted_messages
+        self.scheduled = scheduled
         self.business_connection_id = business_connection_id
 
     __discriminators__ = ["deletedMessages"]
@@ -9302,8 +9337,9 @@ class UpdateJoinRequest(_Type):
 
 Update = Union[
     UpdateNewMessage,
-    UpdateEditedMessage,
-    UpdateDeletedMessages,
+    UpdateMessageEdited,
+    UpdateMessageScheduled,
+    UpdateMessagesDeleted,
     UpdateCallbackQuery,
     UpdateInlineQuery,
     UpdateChosenInlineResult,
