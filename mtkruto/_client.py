@@ -1109,7 +1109,7 @@ class Client:
         from_user: Optional[ID] = None,
         filter: Optional[MessageSearchFilter] = None,
         after: Optional[int] = None,
-        message_thread_id: Optional[int] = None,
+        thread_id: Optional[int] = None,
         limit: Optional[int] = 100,
     ) -> List[Message]:
         return to(
@@ -1122,7 +1122,7 @@ class Client:
                     "from": from_user,
                     "filter": filter,
                     "after": after,
-                    "messageThreadId": message_thread_id,
+                    "threadId": thread_id,
                     "limit": limit,
                 },
             ),
