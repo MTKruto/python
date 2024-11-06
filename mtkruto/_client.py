@@ -2118,6 +2118,17 @@ class Client:
     ) -> None:
         await self._request("closeChat", chat_id)
 
+    async def get_chat_members(
+        self, chat_id: ID, *, offset: Optional[int] = None, limit: Optional[int] = None
+    ) -> List[ChatMember]:
+        return to(
+            List[ChatMember],
+            await self._request(
+                "getChatMembers", chat_id, {"offset": offset, "limit": limit}
+            ),
+            self,
+        )
+
 
 T = TypeVar("T")
 HandlerCallback = Callable[[Client, T], Coroutine[Any, Any, None]]
