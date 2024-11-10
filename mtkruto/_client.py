@@ -35,6 +35,7 @@ from .types import (
     ChatMember,
     ChatMemberRights,
     ChatMemberUpdated,
+    ChatPGroup,
     ChosenInlineResult,
     FailedInvitation,
     FileSource,
@@ -183,10 +184,12 @@ class Client:
             result = await self._http_client.post(
                 url,
                 data=form_data,
-                timeout=timeout,
+                timeout=aiohttp.ClientTimeout(total=timeout),
             )
         else:
-            response = await self._http_client.post(url, json=args, timeout=timeout)
+            response = await self._http_client.post(
+                url, json=args, timeout=aiohttp.ClientTimeout(total=timeout)
+            )
             if response.status == 200:
                 if response.headers.get("content-type") == "application/json":
                     return transform(await response.json())
@@ -362,6 +365,30 @@ class Client:
         return await self._request("invoke", payload)
 
     ########################### MESSAGES ########################
+    async def send_scheduled_messages(
+        self, chat_id: ID, message_ids: List[int]
+    ) -> List[Message]:
+        return to(
+            List[Message],
+            await self._request("sendScheduledMessages", chat_id, message_ids),
+            self,
+        )
+
+    async def send_scheduled_message(self, chat_id: ID, message_id: int) -> Message:
+        return to(
+            Message,
+            await self._request("sendScheduledMessage", chat_id, message_id),
+            self,
+        )
+
+    async def delete_scheduled_messages(
+        self, chat_id: ID, message_ids: List[int]
+    ) -> None:
+        await self._request("deleteScheduledMessages", chat_id, message_ids)
+
+    async def delete_scheduled_message(self, chat_id: ID, message_id: int) -> None:
+        await self._request("deleteScheduledMessage", chat_id, message_id)
+
     async def send_message(
         self,
         chat_id: ID,
@@ -378,6 +405,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageText:
         return to(
             MessageText,
@@ -397,6 +426,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -444,6 +475,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageVoice:
         return to(
             MessageVoice,
@@ -468,6 +501,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -495,6 +530,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageVideoNote:
         return to(
             MessageVideoNote,
@@ -520,6 +557,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -552,6 +591,8 @@ class Client:
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
         star_count: Optional[int] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageVideo:
         return to(
             MessageVideo,
@@ -582,6 +623,8 @@ class Client:
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                     "starCount": star_count,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -605,6 +648,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageVenue:
         return to(
             MessageVenue,
@@ -626,6 +671,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -648,6 +695,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageSticker:
         return to(
             MessageSticker,
@@ -668,6 +717,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -700,6 +751,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessagePoll:
         return to(
             MessagePoll,
@@ -730,6 +783,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -757,6 +812,8 @@ class Client:
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
         star_count: Optional[int] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessagePhoto:
         return to(
             MessagePhoto,
@@ -782,6 +839,8 @@ class Client:
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
                     "starCount": star_count,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -805,6 +864,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageLocation:
         return to(
             MessageLocation,
@@ -826,6 +887,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -851,6 +914,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageDocument:
         return to(
             MessageDocument,
@@ -874,6 +939,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -891,6 +958,8 @@ class Client:
         send_as: Optional[ID] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> List[Message]:
         return to(
             List[Message],
@@ -906,6 +975,8 @@ class Client:
                     "sendAs": send_as,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -924,6 +995,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageDice:
         return to(
             MessageDice,
@@ -940,6 +1013,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -961,6 +1036,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageContact:
         return to(
             MessageContact,
@@ -980,6 +1057,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -1018,6 +1097,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageAudio:
         return to(
             MessageAudio,
@@ -1044,6 +1125,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -1073,6 +1156,8 @@ class Client:
         reply_markup: Optional[ReplyMarkup] = None,
         message_effect_id: Optional[int] = None,
         business_connection_id: Optional[str] = None,
+        send_at: Optional[datetime.datetime] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> MessageAnimation:
         return to(
             MessageAnimation,
@@ -1100,6 +1185,8 @@ class Client:
                     "replyMarkup": reply_markup,
                     "messageEffectId": message_effect_id,
                     "businessConnectionId": business_connection_id,
+                    "sendAt": send_at,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -1190,6 +1277,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         business_connection_id: Optional[str] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> List[Message]:
         return to(
             List[Message],
@@ -1206,6 +1294,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "businessConnectionId": business_connection_id,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -1299,6 +1388,7 @@ class Client:
         message_thread_id: Optional[int] = None,
         send_as: Optional[ID] = None,
         business_connection_id: Optional[str] = None,
+        paid_broadcast: Optional[bool] = None,
     ) -> Message:
         return to(
             Message,
@@ -1316,6 +1406,7 @@ class Client:
                     "messageThreadId": message_thread_id,
                     "sendAs": send_as,
                     "businessConnectionId": business_connection_id,
+                    "paidBroadcast": paid_broadcast,
                 },
             ),
             self,
@@ -1488,6 +1579,12 @@ class Client:
                 "replyMarkup": reply_markup,
             },
         )
+
+    async def set_message_ttl(self, chat_id: ID, message_ttl: int) -> None:
+        await self._request("setMessageTtl", chat_id, message_ttl)
+
+    async def read_messages(self, chat_id: ID, until_chat_id: int) -> None:
+        await self._request("readMessages", chat_id, until_chat_id)
 
     ########################### PAYMENTS ########################
     async def answer_pre_checkout_query(
@@ -1868,6 +1965,17 @@ class Client:
             BusinessConnection, await self._request("getBusinessConnection", id), self
         )
 
+    async def start_bot(
+        self, bot_id: ID, deep_link: Optional[str] = None, chat_id: Optional[ID] = None
+    ) -> Message:
+        return to(
+            Message,
+            await self._request(
+                "startBot", bot_id, {"deepLink": deep_link, "chatId": chat_id}
+            ),
+            self,
+        )
+
     ########################### ACCOUNT ########################
     async def get_me(self) -> User:
         return to(User, await self._request("getMe"), self)
@@ -1883,6 +1991,9 @@ class Client:
 
     async def show_username(self, id: ID, username: str) -> None:
         await self._request("showUsername", id, username)
+
+    async def set_online(self, online: bool) -> None:
+        await self._request("setOnline", online)
 
     ########################### CHATS ########################
     async def ban_chat_member(
@@ -2129,6 +2240,53 @@ class Client:
             List[ChatMember],
             await self._request(
                 "getChatMembers", chat_id, {"offset": offset, "limit": limit}
+            ),
+            self,
+        )
+
+    async def create_gorup(
+        self,
+        title: str,
+        users: Optional[List[ID]] = None,
+        message_ttl: Optional[int] = None,
+    ) -> ChatPGroup:
+        return to(
+            ChatPGroup,
+            await self._request(
+                "createGroup", title, {"users": users, "messageTtl": message_ttl}
+            ),
+            self,
+        )
+
+    async def create_channel(
+        self,
+        title: str,
+        description: Optional[str] = None,
+        message_ttl: Optional[int] = None,
+    ) -> ChatPGroup:
+        return to(
+            ChatPGroup,
+            await self._request(
+                "createChannel",
+                title,
+                {"description": description, "messageTtl": message_ttl},
+            ),
+            self,
+        )
+
+    async def create_supergroup(
+        self,
+        title: str,
+        description: Optional[str] = None,
+        forum: Optional[bool] = None,
+        message_ttl: Optional[int] = None,
+    ) -> ChatPGroup:
+        return to(
+            ChatPGroup,
+            await self._request(
+                "createSupergroup",
+                title,
+                {"description": description, "forum": forum, "messageTtl": message_ttl},
             ),
             self,
         )
