@@ -280,6 +280,7 @@
     <span class="n">ChatMember</span><span class="p">,</span>
     <span class="n">ChatMemberRights</span><span class="p">,</span>
     <span class="n">ChatMemberUpdated</span><span class="p">,</span>
+    <span class="n">ChatPGroup</span><span class="p">,</span>
     <span class="n">ChosenInlineResult</span><span class="p">,</span>
     <span class="n">FailedInvitation</span><span class="p">,</span>
     <span class="n">FileSource</span><span class="p">,</span>
@@ -436,10 +437,12 @@
             <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
                 <span class="n">url</span><span class="p">,</span>
                 <span class="n">data</span><span class="o">=</span><span class="n">form_data</span><span class="p">,</span>
-                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientTimeout</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientTimeout</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;content-type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;application/json&quot;</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">transform</span><span class="p">(</span><span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
@@ -687,6 +690,42 @@
 
 
     <span class="c1">########################### MESSAGES ########################</span>
+<div class="viewcode-block" id="Client.send_scheduled_messages">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.send_scheduled_messages">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_scheduled_messages</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">message_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">],</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;sendScheduledMessages&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message_ids</span><span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.send_scheduled_message">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.send_scheduled_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_scheduled_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">Message</span><span class="p">,</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;sendScheduledMessage&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message_id</span><span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.delete_scheduled_messages">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.delete_scheduled_messages">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_scheduled_messages</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">message_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;deleteScheduledMessages&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message_ids</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.delete_scheduled_message">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.delete_scheduled_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_scheduled_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;deleteScheduledMessage&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message_id</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="Client.send_message">
 <a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.send_message">[docs]</a>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span>
@@ -705,6 +744,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageText</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageText</span><span class="p">,</span>
@@ -724,6 +765,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -783,6 +826,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageVoice</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageVoice</span><span class="p">,</span>
@@ -807,6 +852,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -837,6 +884,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageVideoNote</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageVideoNote</span><span class="p">,</span>
@@ -862,6 +911,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -897,6 +948,8 @@
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">star_count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageVideo</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageVideo</span><span class="p">,</span>
@@ -927,6 +980,8 @@
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
                     <span class="s2">&quot;starCount&quot;</span><span class="p">:</span> <span class="n">star_count</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -953,6 +1008,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageVenue</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageVenue</span><span class="p">,</span>
@@ -974,6 +1031,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -999,6 +1058,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageSticker</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageSticker</span><span class="p">,</span>
@@ -1019,6 +1080,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1054,6 +1117,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessagePoll</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessagePoll</span><span class="p">,</span>
@@ -1084,6 +1149,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1114,6 +1181,8 @@
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">star_count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessagePhoto</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessagePhoto</span><span class="p">,</span>
@@ -1139,6 +1208,8 @@
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
                     <span class="s2">&quot;starCount&quot;</span><span class="p">:</span> <span class="n">star_count</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1165,6 +1236,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageLocation</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageLocation</span><span class="p">,</span>
@@ -1186,6 +1259,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1214,6 +1289,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageDocument</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageDocument</span><span class="p">,</span>
@@ -1237,6 +1314,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1257,6 +1336,8 @@
         <span class="n">send_as</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">],</span>
@@ -1272,6 +1353,8 @@
                     <span class="s2">&quot;sendAs&quot;</span><span class="p">:</span> <span class="n">send_as</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1293,6 +1376,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageDice</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageDice</span><span class="p">,</span>
@@ -1309,6 +1394,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1333,6 +1420,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageContact</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageContact</span><span class="p">,</span>
@@ -1352,6 +1441,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1396,6 +1487,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageAudio</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageAudio</span><span class="p">,</span>
@@ -1422,6 +1515,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1454,6 +1549,8 @@
         <span class="n">reply_markup</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ReplyMarkup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">message_effect_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">send_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MessageAnimation</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">MessageAnimation</span><span class="p">,</span>
@@ -1481,6 +1578,8 @@
                     <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
                     <span class="s2">&quot;messageEffectId&quot;</span><span class="p">:</span> <span class="n">message_effect_id</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;sendAt&quot;</span><span class="p">:</span> <span class="n">send_at</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1595,6 +1694,7 @@
         <span class="n">message_thread_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">send_as</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">List</span><span class="p">[</span><span class="n">Message</span><span class="p">],</span>
@@ -1611,6 +1711,7 @@
                     <span class="s2">&quot;messageThreadId&quot;</span><span class="p">:</span> <span class="n">message_thread_id</span><span class="p">,</span>
                     <span class="s2">&quot;sendAs&quot;</span><span class="p">:</span> <span class="n">send_as</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1710,6 +1811,7 @@
         <span class="n">message_thread_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">send_as</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">business_connection_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">paid_broadcast</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
             <span class="n">Message</span><span class="p">,</span>
@@ -1727,6 +1829,7 @@
                     <span class="s2">&quot;messageThreadId&quot;</span><span class="p">:</span> <span class="n">message_thread_id</span><span class="p">,</span>
                     <span class="s2">&quot;sendAs&quot;</span><span class="p">:</span> <span class="n">send_as</span><span class="p">,</span>
                     <span class="s2">&quot;businessConnectionId&quot;</span><span class="p">:</span> <span class="n">business_connection_id</span><span class="p">,</span>
+                    <span class="s2">&quot;paidBroadcast&quot;</span><span class="p">:</span> <span class="n">paid_broadcast</span><span class="p">,</span>
                 <span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1923,6 +2026,18 @@
                 <span class="s2">&quot;replyMarkup&quot;</span><span class="p">:</span> <span class="n">reply_markup</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.set_message_ttl">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.set_message_ttl">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_message_ttl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">message_ttl</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;setMessageTtl&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message_ttl</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.read_messages">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.read_messages">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">until_chat_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;readMessages&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">until_chat_id</span><span class="p">)</span></div>
 
 
     <span class="c1">########################### PAYMENTS ########################</span>
@@ -2424,6 +2539,20 @@
         <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="Client.start_bot">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.start_bot">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">start_bot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">deep_link</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">Message</span><span class="p">,</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
+                <span class="s2">&quot;startBot&quot;</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;deepLink&quot;</span><span class="p">:</span> <span class="n">deep_link</span><span class="p">,</span> <span class="s2">&quot;chatId&quot;</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
     <span class="c1">########################### ACCOUNT ########################</span>
 <div class="viewcode-block" id="Client.get_me">
 <a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.get_me">[docs]</a>
@@ -2453,6 +2582,12 @@
 <a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.show_username">[docs]</a>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">show_username</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">ID</span><span class="p">,</span> <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;showUsername&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">username</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.set_online">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.set_online">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_online</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">online</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;setOnline&quot;</span><span class="p">,</span> <span class="n">online</span><span class="p">)</span></div>
 
 
     <span class="c1">########################### CHATS ########################</span>
@@ -2792,6 +2927,62 @@
             <span class="n">List</span><span class="p">[</span><span class="n">ChatMember</span><span class="p">],</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
                 <span class="s2">&quot;getChatMembers&quot;</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span> <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">limit</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.create_gorup">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.create_gorup">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_gorup</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">users</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ID</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">message_ttl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatPGroup</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">ChatPGroup</span><span class="p">,</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
+                <span class="s2">&quot;createGroup&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="n">users</span><span class="p">,</span> <span class="s2">&quot;messageTtl&quot;</span><span class="p">:</span> <span class="n">message_ttl</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.create_channel">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.create_channel">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_channel</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">message_ttl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatPGroup</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">ChatPGroup</span><span class="p">,</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
+                <span class="s2">&quot;createChannel&quot;</span><span class="p">,</span>
+                <span class="n">title</span><span class="p">,</span>
+                <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&quot;messageTtl&quot;</span><span class="p">:</span> <span class="n">message_ttl</span><span class="p">},</span>
+            <span class="p">),</span>
+            <span class="bp">self</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Client.create_supergroup">
+<a class="viewcode-back" href="../../mtkruto.html#mtkruto.Client.create_supergroup">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_supergroup</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">forum</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">message_ttl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatPGroup</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">to</span><span class="p">(</span>
+            <span class="n">ChatPGroup</span><span class="p">,</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span>
+                <span class="s2">&quot;createSupergroup&quot;</span><span class="p">,</span>
+                <span class="n">title</span><span class="p">,</span>
+                <span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="s2">&quot;forum&quot;</span><span class="p">:</span> <span class="n">forum</span><span class="p">,</span> <span class="s2">&quot;messageTtl&quot;</span><span class="p">:</span> <span class="n">message_ttl</span><span class="p">},</span>
             <span class="p">),</span>
             <span class="bp">self</span><span class="p">,</span>
         <span class="p">)</span></div>
